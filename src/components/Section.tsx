@@ -1,16 +1,15 @@
 import { ReactNode } from 'react';
 
 interface SectionProps {
+  id?: string;
   title: string;
   children: ReactNode;
 }
 
-export const Section = ({ title, children }: SectionProps) => {
+export const Section = ({ id, title, children }: SectionProps) => {
   return (
-    <section className="mb-12 animate-fade-in">
-      <h2 className="text-xl font-semibold text-foreground mb-6 border-b border-border pb-2">
-        {title}
-      </h2>
+    <section id={id} className="mb-16 scroll-mt-20">
+      <h2 className="text-2xl font-bold text-foreground mb-6">{title}</h2>
       <div className="space-y-6">{children}</div>
     </section>
   );
