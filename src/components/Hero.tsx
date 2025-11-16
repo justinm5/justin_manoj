@@ -7,19 +7,19 @@ interface HeroProps {
 
 export const Hero = ({ name, title, description, imageUrl }: HeroProps) => {
   return (
-    <section className="mb-12 animate-fade-in">
-      <div className="flex items-start gap-6 mb-6">
+    <section className="mb-20 animate-fade-in">
+      <div className="flex items-start gap-8 mb-8">
         <img
           src={imageUrl}
           alt={name}
-          className="w-16 h-16 rounded-full object-cover ring-2 ring-border"
+          className="w-20 h-20 rounded-full object-cover ring-1 ring-border/50"
         />
-        <div>
-          <h1 className="text-3xl font-bold text-foreground mb-1">{name}</h1>
-          <p className="text-muted-foreground text-sm">{title}</p>
+        <div className="flex-1">
+          <h1 className="text-4xl font-semibold text-foreground mb-2 tracking-tight">{name}</h1>
+          <p className="text-muted-foreground">{title}</p>
         </div>
       </div>
-      <p className="text-foreground leading-relaxed max-w-3xl">{description}</p>
+      <p className="text-foreground/80 leading-relaxed max-w-3xl text-[15px]">{description}</p>
     </section>
   );
 };

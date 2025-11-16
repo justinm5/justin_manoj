@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -33,38 +32,28 @@ export const ContactForm = () => {
   };
 
   return (
-    <Card className="p-6">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-            Your email
-          </label>
-          <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="your.email@example.com"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-            Your message
-          </label>
-          <Textarea
-            id="message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Hello Justin..."
-            rows={5}
-            required
-          />
-        </div>
-        <Button type="submit" className="w-full">
-          Submit
-        </Button>
-      </form>
-    </Card>
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-xl">
+      <div>
+        <Input
+          type="email"
+          placeholder="Your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="bg-background/50 border-border/40 focus:border-border rounded-lg"
+        />
+      </div>
+      <div>
+        <Textarea
+          placeholder="Your message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+          rows={5}
+          className="bg-background/50 border-border/40 focus:border-border rounded-lg resize-none"
+        />
+      </div>
+      <Button type="submit" className="rounded-full">Submit</Button>
+    </form>
   );
 };

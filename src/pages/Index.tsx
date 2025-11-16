@@ -13,47 +13,13 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <div id="home" className="max-w-4xl mx-auto px-6 py-12 md:py-16">
+      <div id="home" className="max-w-4xl mx-auto px-6 py-16 md:py-24">
         <Hero
           name="Justin Manoj"
           title="CS & Mathematics @ UMass Amherst"
           description="👋 Hi, I'm Justin! I'm an undergraduate student at the University of Massachusetts-Amherst pursuing a B.S in Computer Science and Mathematics, seeking new opportunities to learn and expand my abilities as an engineer. I'm interested in full-stack development, machine learning, and data science, and I love to innovate and solve problems. Browse through my site to view work, including research and some of my favorite personal projects!"
           imageUrl="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces"
         />
-
-        <div id="about" className="mb-12 flex gap-4">
-          <Button asChild variant="default">
-            <a href="mailto:justinmmanoj@gmail.com">Contact</a>
-          </Button>
-          <Button asChild variant="outline">
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-              <FileText className="w-4 h-4 mr-2" />
-              Resume
-            </a>
-          </Button>
-          <Button asChild variant="outline" size="icon">
-            <a
-              href="https://github.com/jmanoj01"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="w-4 h-4" />
-            </a>
-          </Button>
-          <Button asChild variant="outline" size="icon">
-            <a
-              href="https://linkedin.com/in/justinmmanoj"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-          </Button>
-        </div>
-
-        <div className="mb-12">
-          <GitHubContributions username="jmanoj01" />
-        </div>
 
         <SkillsSection />
 
@@ -268,13 +234,17 @@ const Index = () => {
           />
         </Section>
 
+        <div className="mb-16">
+          <GitHubContributions username="jmanoj01" />
+        </div>
+
         <Section id="contact" title="Contact Me">
-          <p className="text-foreground mb-6 leading-relaxed">
+          <p className="text-foreground/80 mb-6 leading-relaxed text-[15px]">
             If you would like to get in touch with me, please feel free to send me
             an email at{" "}
             <a
               href="mailto:justinmmanoj@gmail.com"
-              className="text-primary hover:underline"
+              className="text-accent hover:text-foreground transition-colors font-medium"
             >
               justinmmanoj@gmail.com
             </a>{" "}
@@ -282,6 +252,36 @@ const Index = () => {
           </p>
           <ContactForm />
         </Section>
+
+        <div id="about" className="mt-16 flex gap-3 justify-center border-t border-border/40 pt-8">
+          <Button asChild variant="default" className="rounded-full">
+            <a href="mailto:justinmmanoj@gmail.com">Contact</a>
+          </Button>
+          <Button asChild variant="outline" className="rounded-full">
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <FileText className="w-4 h-4 mr-2" />
+              Resume
+            </a>
+          </Button>
+          <Button asChild variant="outline" size="icon" className="rounded-full">
+            <a
+              href="https://github.com/jmanoj01"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          </Button>
+          <Button asChild variant="outline" size="icon" className="rounded-full">
+            <a
+              href="https://linkedin.com/in/justinmmanoj"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+          </Button>
+        </div>
       </div>
     </div>
   );
