@@ -19,46 +19,45 @@ export const ProjectCard = ({
   tags,
   liveLink,
 }: ProjectCardProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const handleClick = () => {
+    if (liveLink) {
+      window.open(liveLink, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
-    <div className="group border border-border/40 rounded-xl p-6 hover:border-border/60 transition-all duration-300 bg-card/30 backdrop-blur-sm">
+    <div
+      onClick={handleClick}
+      className={`group border border-border/40 rounded-xl p-6 transition-all duration-300 bg-card/20 backdrop-blur-sm hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:-translate-y-1 ${
+        liveLink ? "cursor-pointer" : ""
+      }`}
+    >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-baseline gap-3">
           <span className="text-xs text-muted-foreground font-mono tracking-tight">{year}</span>
-          <h3 className="font-medium text-foreground group-hover:text-accent transition-colors">{title}</h3>
+          <h3 className="font-medium text-foreground group-hover:text-accent transition-colors">
+            {title}
+          </h3>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs text-muted-foreground whitespace-nowrap">{timeAgo}</span>
           {liveLink && (
-            <a
-              href={liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" />
-            </a>
+            <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
           )}
         </div>
       </div>
 
-      <p className={`text-sm text-muted-foreground/90 mb-4 leading-relaxed ${!isExpanded && "line-clamp-2"}`}>
+      <p className="text-sm text-muted-foreground/90 mb-4 leading-relaxed">
         {description}
       </p>
 
-      {description.length > 150 && (
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="text-xs text-accent hover:text-foreground mb-4 transition-colors font-medium"
-        >
-          {isExpanded ? "Read less" : "Read more"}
-        </button>
-      )}
-
       <div className="flex flex-wrap gap-1.5">
         {tags.map((tag) => (
-          <Badge key={tag} variant="secondary" className="text-xs font-normal bg-secondary/50 hover:bg-secondary/70 border-0">
+          <Badge
+            key={tag}
+            variant="secondary"
+            className="text-xs font-normal bg-secondary/50 group-hover:bg-secondary/70 border-0 transition-colors"
+          >
             {tag}
           </Badge>
         ))}
