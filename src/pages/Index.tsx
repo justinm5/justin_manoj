@@ -6,14 +6,18 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { ExperienceCard } from "@/components/ExperienceCard";
 import { ContactForm } from "@/components/ContactForm";
 import { GitHubContributions } from "@/components/GitHubContributions";
+import { ParticleBackground } from "@/components/ParticleBackground";
+import { CustomCursor } from "@/components/CustomCursor";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, FileText } from "lucide-react";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <ParticleBackground />
+      <CustomCursor />
       <Navigation />
-      <div id="home" className="max-w-4xl mx-auto px-6 py-16 md:py-24">
+      <div id="home" className="relative z-10 max-w-4xl mx-auto px-6 py-16 md:py-24">
         <Hero
           name="Justin Manoj"
           title="CS & Mathematics @ UMass Amherst"
@@ -253,10 +257,7 @@ const Index = () => {
           <ContactForm />
         </Section>
 
-        <div id="about" className="mt-16 flex gap-3 justify-center border-t border-border/40 pt-8">
-          <Button asChild variant="default" className="rounded-full">
-            <a href="mailto:justinmmanoj@gmail.com">Contact</a>
-          </Button>
+        <div className="mt-16 flex gap-3 justify-center border-t border-border/40 pt-8">
           <Button asChild variant="outline" className="rounded-full">
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               <FileText className="w-4 h-4 mr-2" />

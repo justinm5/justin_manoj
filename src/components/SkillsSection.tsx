@@ -1,82 +1,41 @@
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import { Section } from "@/components/Section";
 
-const skillCategories = [
-  {
-    title: "Languages",
-    skills: [
-      "JavaScript",
-      "TypeScript",
-      "Python",
-      "Java",
-      "C",
-      "C++",
-      "Go",
-      "Rust",
-      "HTML",
-      "CSS",
-      "SQL",
-    ],
-  },
-  {
-    title: "Frontend",
-    skills: ["React", "Next.js", "Tailwind CSS", "Redux"],
-  },
-  {
-    title: "Backend",
-    skills: ["Flask", "Node.js", "Express", "GraphQL", "FastAPI"],
-  },
-  {
-    title: "Databases",
-    skills: ["MySQL", "PostgreSQL", "MongoDB", "Prisma", "Redis"],
-  },
-  {
-    title: "Cloud & DevOps",
-    skills: ["AWS", "Azure", "Docker", "Vercel", "Git", "Kubernetes", "CI/CD", "Kafka"],
-  },
-  {
-    title: "Machine Learning & Data",
-    skills: [
-      "PyTorch",
-      "Pandas",
-      "NumPy",
-      "Scikit-learn",
-      "Jupyter Notebook",
-      "Tableau",
-      "LangChain",
-      "Pinecone",
-    ],
-  },
-  {
-    title: "Tools & Other",
-    skills: ["OAuth", "Jest", "LaTeX", "AutoCAD", "Arduino", "Postman", "REST APIs"],
-  },
+const skillsData = [
+  { name: "JavaScript", icon: "⚡" },
+  { name: "TypeScript", icon: "📘" },
+  { name: "Python", icon: "🐍" },
+  { name: "React", icon: "⚛️" },
+  { name: "Next.js", icon: "▲" },
+  { name: "Node.js", icon: "🟢" },
+  { name: "Go", icon: "🔷" },
+  { name: "PostgreSQL", icon: "🐘" },
+  { name: "MongoDB", icon: "🍃" },
+  { name: "Redis", icon: "🔴" },
+  { name: "Docker", icon: "🐳" },
+  { name: "AWS", icon: "☁️" },
+  { name: "PyTorch", icon: "🔥" },
+  { name: "TensorFlow", icon: "🧠" },
+  { name: "Git", icon: "📦" },
 ];
 
 export const SkillsSection = () => {
   return (
-    <section id="skills" className="py-16">
-      <h2 className="text-2xl font-bold text-foreground mb-8">My Skills</h2>
-      <div className="grid gap-6">
-        {skillCategories.map((category) => (
-          <Card key={category.title} className="p-6 hover:shadow-lg transition-shadow">
-            <h3 className="text-lg font-semibold text-foreground mb-4">
-              {category.title}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {category.skills.map((skill) => (
-                <Badge
-                  key={skill}
-                  variant="secondary"
-                  className="text-sm px-3 py-1 hover:bg-accent hover:text-accent-foreground transition-colors cursor-default"
-                >
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </Card>
+    <Section id="skills" title="Skills">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {skillsData.map((skill) => (
+          <div
+            key={skill.name}
+            className="group flex flex-col items-center gap-3 p-6 rounded-xl border border-border/40 bg-card/20 backdrop-blur-sm hover:border-border/60 hover:bg-card/40 transition-all duration-300 hover:scale-105 cursor-pointer"
+          >
+            <span className="text-4xl group-hover:scale-110 transition-transform duration-300">
+              {skill.icon}
+            </span>
+            <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">
+              {skill.name}
+            </span>
+          </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 };
