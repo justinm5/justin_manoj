@@ -9,7 +9,7 @@ export const Hero = ({ name, title, description, imageUrl }: HeroProps) => {
   return (
     <section className="mb-8 animate-fade-in">
       <div className="flex items-start gap-8 mb-8">
-        <div className="relative group">
+        <div className="relative group mt-4 ml-4">
           <img
             src={imageUrl}
             alt={name}
