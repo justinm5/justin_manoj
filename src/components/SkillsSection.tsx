@@ -20,66 +20,71 @@ import {
   Table,
   Calculator,
   BarChart,
+  Terminal,
 } from "lucide-react";
 
 const skillIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   // Languages
   "Python": Code,
-  "Java": Code,
-  "C/C++": Code,
   "JavaScript": FileCode,
   "TypeScript": FileCode,
+  "Java": Code,
+  "C++": Code,
   "SQL": Database,
   "HTML/CSS": FileCode,
-  
+  "Bash/Shell": Terminal,
+
   // Frameworks & Tools
   "React": Zap,
-  "Next.js": Zap,
-  "Node.js": Server,
-  "Express": Server,
-  "FastAPI": Zap,
-  "Flask": Zap,
-  "Redux": Layers,
-  "Tailwind CSS": Palette,
   "React Native": Smartphone,
-  
+  "Next.js": Zap,
+  "Tailwind": Palette,
+  "Spring Boot": Zap,
+  "FastAPI": Zap,
+  "Node.js": Server,
+  "Express.js": Server,
+
   // Cloud, Infrastructure & DevOps
+  "Docker": Container,
+  "Kubernetes": Container,
   "AWS": Cloud,
   "Azure": Cloud,
-  "Kubernetes": Container,
-  "Docker": Container,
   "CI/CD": Workflow,
   "Kafka": MessageSquare,
-  "Git/GitHub": GitBranch,
-  "OAuth 2.0": Key,
-  
+
   // Data Systems, Machine Learning, & APIs
   "PostgreSQL": Database,
   "MongoDB": Database,
-  "MySQL": Database,
   "Redis": Database,
-  "GraphQL": Network,
-  "Prisma": Database,
-  "REST APIs": Globe,
-  "PyTorch": Brain,
-  "Scikit-learn": Brain,
   "Pandas": Table,
   "NumPy": Calculator,
-  "Tableau": BarChart,
+  "PyTorch": Brain,
+  "TensorFlow": Brain,
+  "Scikit-learn": Brain,
+  "GraphQL": Network,
+  "REST": Globe,
+  "OpenAPI": Globe,
+  "Websockets": Network,
 };
 
 const skillsByCategory = {
   "Languages": [
-    "Python", "Java", "C/C++", "JavaScript", "TypeScript", "SQL", "HTML/CSS"
+    "Python", "JavaScript", "TypeScript", "Java", "C++", "SQL", "HTML/CSS", "Bash/Shell"
   ],
-  "Frameworks & Tools": [
-    "React", "Next.js", "Node.js", "Express", "FastAPI", "Flask", "Redux", "Tailwind CSS", "React Native"
+  "Frameworks & Libraries": [
+    "React", "React Native", "Next.js", "Tailwind", "Spring Boot", "FastAPI", "Node.js", "Express.js"
   ],
-  "Cloud, Infrastructure & DevOps": [
-    "AWS", "Azure", "Kubernetes", "Docker", "CI/CD", "Kafka", "Git/GitHub", "OAuth 2.0"
+  "Cloud, DevOps & Infrastructure": [
+    "Docker", "Kubernetes", "AWS", "Azure", "CI/CD", "Kafka"
   ],
-  "Data Systems, Machine Learning, & APIs": [
-    "PostgreSQL", "MongoDB", "MySQL", "Redis", "GraphQL", "Prisma", "REST APIs", "PyTorch", "Scikit-learn", "Pandas", "NumPy", "Tableau"
+  "Databases & Data Systems": [
+    "PostgreSQL", "MongoDB", "Redis"
+  ],
+  "Data Science & Machine Learning": [
+    "Pandas", "NumPy", "PyTorch", "TensorFlow", "Scikit-learn"
+  ],
+  "APIs & Protocols": [
+    "GraphQL", "REST", "OpenAPI", "WebSockets"
   ]
 };
 

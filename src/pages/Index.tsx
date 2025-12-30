@@ -30,223 +30,60 @@ const Index = () => {
           <SkillsSection />
         </ScrollReveal>
 
-        <Section id="projects" title="My Projects">
-          <div className="space-y-6">
-            <ScrollReveal delay={0}>
-              <ProjectCard
-              year="2025"
-              title="ChitChat Workplace"
-              timeAgo="This year"
-              liveLink="https://chitchatwork.com"
-              description="An internal communication platform designed for organizations, featuring AI-powered messaging, seamless email integration, and customizable productivity widgets. Built with modern web technologies and deployed on Azure Cloud."
-              tags={[
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Tailwind",
-                "Prisma",
-                "PostgreSQL",
-                "Azure",
-                "Microsoft Graph API",
-              ]}
-              />
-            </ScrollReveal>
 
-            <ScrollReveal delay={100}>
-              <ProjectCard
-                year="2025"
-                title="UMass Dining Recommendation Engine (Hackathon Project)"
-              timeAgo="This year"
-              liveLink="https://github.com/JManoj01/UMassDining"
-              description="Pending adoption for campus-use at UMass Amherst. ML recommendation system using PyTorch and Sentence-Transformers to help students discover meals at UMass Amherst across 100+ daily menu items from 4 dining hall commons (Franklin, Worcester, Hampshire, and Berkshire) using a personalized dietary-preference matching algorithm."
-              tags={[
-                "PyTorch",
-                "FastAPI",
-                "Python",
-                "Next.js",
-                "PostgreSQL",
-                "Redis",
-                "Scikit-learn",
-                "Sentence-Transformers",
-                "OpenAI API",
-              ]}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <ProjectCard
-                year="2025"
-                title="Micro Habit Tree - Android"
-              timeAgo="This year"
-              liveLink="https://github.com/JManoj01/Micro-Habit-Tree"
-              description="A multi-platform app that turns your daily habits into a growing tree. Completing habits adds leaves, tracks streaks, shows weekly progress, and rewards achievements, helping users stay consistent and motivated."
-              tags={[
-                "Kotlin",
-                "Compose Multiplatform",
-                "MVVM",
-                "Gradle",
-                "JSON",
-              ]}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <ProjectCard
-                year="2025"
-                title="Terminal Clipboard History Manager"
-              timeAgo="This year"
-              liveLink="https://github.com/jmanoj01/clipboard-manager"
-              description="A cross-platform (Linux, MacOS, Windows) terminal clipboard history manager built with Go, using BubbleTea TUI library and storing data in SQLite database, featuring JSON-backed storage, fuzzy search, auto-categorization, and syntax highlighting via Chroma, supporting up to 500-600 text/image entries with duplicate detection and export functionality."
-              tags={[
-                "Go",
-                "SQLite",
-                "BubbleTea",
-                "Chroma",
-                "Lipgloss",
-                "JSON",
-                "Fuzzy Search",
-                "Auto-Categorization",
-                "Syntax Highlighting",
-              ]}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <ProjectCard
-                year="2025"
-                title="Rust Utility Kit"
-              timeAgo="This year"
-              liveLink="https://github.com/jmanoj01/rust-utility-kit"
-              description="Built a 6-in-1 CLI (URL shortener, password+QR generator, file organizer, base converter, text hasher) via Rust + Clap. Implemented local URL shortening with SHA-256 hashing and JSON storage, QR code generation supporting PNG/ASCII output, and file organizer with dry-run mode supporting 7+ file categories and 40+ extensions."
-              tags={[
-                "Rust",
-                "Clap",
-                "QRCode",
-                "BLAKE3",
-                "Serde",
-                "Base64",
-              ]}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <ProjectCard
-                year="2024"
-                title="Collaborative Sticky Notes Application"
-              timeAgo="1 year ago"
-              liveLink="https://stickynotes.vercel.app"
-              description="A real-time collaborative brainstorming application that enables teams to create, edit, and organize digital sticky notes. Features live synchronization, team workspaces, and intuitive drag-and-drop functionality for enhanced productivity."
-              tags={[
-                "React",
-                "TypeScript",
-                "Next.js",
-                "Tailwind",
-                "Redux",
-                "Convex",
-                "Clerk",
-                "LiveBlocks",
-                "Vercel",
-              ]}
-              />
-            </ScrollReveal>
-
-
-            <ScrollReveal delay={200}>
-              <ProjectCard
-                year="2024"
-                title="UMass Campus Map — SwiftUI + MapKit iOS App (Hackathon Project)"
-              timeAgo="1 year ago"
-              liveLink="https://github.com/JManoj01/UMassCampusMap-Xcode"
-              description="A SwiftUI app that helps students explore the UMass Amherst campus. Users can search for buildings, coffee shops, study spots, and get directions, with favorites and detailed building info."
-              tags={[
-                "Swift",
-                "SwiftUI",
-                "MapKit",
-                "Combine",
-                "MVVM",
-                "Xcode",
-              ]}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <ProjectCard
-                year="2023"
-                title="Roam - AI Travel Planning Platform"
-              timeAgo="2 years ago"
-              liveLink="https://roam.vercel.app"
-              description="An intelligent travel planning application powered by OpenAI that generates personalized itineraries, destination recommendations, and budget estimates. Features smart destination analysis, weather integration, and collaborative trip planning."
-              tags={[
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Tailwind",
-                "Convex",
-                "OpenAI API",
-                "Vercel",
-              ]}
-              />
-            </ScrollReveal>
-
-          </div>
-        </Section>
-
-        <Section id="experience" title="Experience">
+        <Section id="experience" title="My Experience">
           <ScrollReveal delay={0}>
             <ExperienceCard
-            title="AI Trainer"
-            company="Handshake AI Fellowship"
-            location="Remote"
-            period="Sept 2025 – Present"
-            description={[
-              "Evaluated, ranked, and optimized large-scale LLM outputs across text, image, and multimedia tasks to improve model accuracy, safety, and reasoning.",
-              "Trained foundation models by generating high-quality demonstrations, crafting edge-case prompts, and debugging failure modes used directly in model fine-tuning cycles.",
-              "Performed rapid research experiments on model behavior, identifying patterns, inconsistencies, and potential risks that informed data collection and model-alignment strategies.",
-              "Collaborated asynchronously with AI researchers and engineers to uphold rigorous annotation standards.",
-            ]}
+              title="AI Trainer Fellow"
+              company="Handshake AI"
+              location="San Francisco, CA"
+              period="Oct. 2025 – Present"
+              description={[
+                "Evaluated AI-generated responses for safety, accuracy, and compliance, identifying high-risk edge cases to improve model reliability before production release.",
+                "Designed adversarial tests to surface model weaknesses and improve robustness across user inputs.",
+                "Improved data quality workflows through rapid experimentation, reducing annotation errors by 30%.",
+              ]}
             />
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <ExperienceCard
-            title="Full-Stack Software Engineer"
-            company="ChitChat Workplace"
-            location="Boston, MA"
-            period="Apr 2025 – Present"
-            description={[
-              "Integrated chat, email, video calls, and calendar into one workspace using React, Next.js, TypeScript, and Microsoft Graph.",
-              "Reduced context switching by 10+ hours/month by unifying communications and scheduling in a single surface.",
-              "Added OpenAI API copilot for smart replies, meeting summaries, priority notifications, and context-aware suggestions.",
-              "Built real-time WebSocket+Redis pipeline for 5,000+ messages/day; shipped React widget SDK for third-party embeds.",
-            ]}
+              title="Software Engineer"
+              company="ChitChat Workplace"
+              location="Boston, MA"
+              period="Apr. 2025 – Present"
+              description={[
+                "Built a unified messaging platform (chat, email, video, calendar) using Next.js, TypeScript, GraphQL, Kafka, and WebSockets, reducing context-switching by 10+ hours/month.",
+                "Integrated GPT-4o drafting, summarization, and notifications using LangChain & Pinecone (RAG).",
+                "Deployed scalable infrastructure with Kubernetes & Docker supporting 5,000+ daily messages.",
+              ]}
             />
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
             <ExperienceCard
               title="Software Engineer Intern"
-            company="GBCS Group/SkyIT Services"
-            location="Alberta, CA"
-            period="Mar 2025 – Sept 2025"
-            description={[
-              "Migrated 8 REST endpoints to GraphQL in order to eliminate over-fetching and shrink client requests on internal SaaS platform.",
-              "Optimized React Query, code splitting, and PostgreSQL indexes to cut page load times by 30%.",
-              "Delivered 60+ reusable TypeScript/Tailwind components and enforced code quality across 100+ PRs by implementing TypeScript linting rules, Jest utilities, and component documentation.",
-            ]}
+              company="GBCS Group"
+              location="Alberta, CA"
+              period="Mar. 2025 – Sept. 2025"
+              description={[
+                "Migrated 8 REST APIs to GraphQL, reducing overfetching and simplifying client data access.",
+                "Optimized React Query, code splitting, and PostgreSQL indexes to cut page load times by 35%.",
+                "Shipped reusable TypeScript and Tailwind components and strengthened code quality by implementing linting rules, Jest utilities, and component documentation.",
+              ]}
             />
           </ScrollReveal>
 
           <ScrollReveal delay={300}>
             <ExperienceCard
               title="Undergraduate Student Researcher"
-            company="Early Research Scholars Program - UMass Amherst"
-            location="Amherst, MA"
-            period="Dec 2024 – Feb 2025"
-            description={[
-              "Developed Python framework to detect malicious prompts in 500+ test cases, reducing manual review time by 70%.",
-              "Enabled repeatable regression testing for GPT-4, Claude, and Llama with parameterized cases and standardized outputs.",
-              "Tested 10+ LLM attack vectors and proposed security hardening recommendations for production deployment.",
-            ]}
+              company="UMass Amherst"
+              location="Amherst, MA"
+              period="Dec. 2024 – Feb. 2025"
+              description={[
+                "Identified critical LLM safety gaps through systematic prompt stress-testing across risk categories.",
+                "Shaped deployment decisions by formalizing safety benchmarks used in model evaluation workflows.",
+              ]}
             />
           </ScrollReveal>
 
@@ -289,6 +126,176 @@ const Index = () => {
             ]}
             />
           </ScrollReveal>
+        </Section>
+
+        <Section id="projects" title="My Projects">
+          <div className="space-y-6">
+            <ScrollReveal delay={0}>
+              <ProjectCard
+                year="2025"
+                title="ChitChat Workplace"
+                timeAgo="This year"
+                liveLink="https://chitchatwork.com"
+                description="Built a unified messaging platform (chat, email, video, calendar) using Next.js, TypeScript, GraphQL, Kafka, and WebSockets, reducing context-switching by 10+ hours/month. Integrated GPT-4o drafting, summarization, and notifications using LangChain & Pinecone (RAG). Deployed scalable infrastructure with Kubernetes & Docker supporting 5,000+ daily messages."
+                tags={[
+                  "Next.js",
+                  "TypeScript",
+                  "GraphQL",
+                  "Kafka",
+                  "WebSockets",
+                  "LangChain",
+                  "Pinecone",
+                  "Kubernetes",
+                  "Docker",
+                  "GPT-4o",
+                ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={120}>
+              <ProjectCard
+                year="2025"
+                title="LLM Prompt Safety Detector"
+                timeAgo="This year"
+                liveLink="https://github.com/JManoj01/llm-safety-detector"
+                description="Automated unsafe prompt detection for LLMs using Python, PyTorch, and scikit-learn. Standardizes safety testing and reduces manual review for production AI models."
+                tags={[
+                  "Python",
+                  "PyTorch",
+                  "scikit-learn",
+                  "NLP",
+                  "AI Safety",
+                  "Research"
+                ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <ProjectCard
+                year="2025"
+                title="UMass Dining Recommendation Engine"
+                timeAgo="This year"
+                liveLink="https://github.com/JManoj01/UMassDining"
+                description="Developed full-stack dining recommender for UMass Amherst students, delivering personalized meal suggestions based on dietary preferences, favorite halls, and disliked ingredients. Designed Spring Boot & PostgreSQL backend with caching and a responsive React frontend, supporting real-time queries for 4 dining halls and 100+ menu items per day."
+                tags={[
+                  "Java",
+                  "Python",
+                  "Spring Boot",
+                  "React",
+                  "PostgreSQL",
+                  "React Native",
+                  "Fireclaw",
+                  "Caching",
+                ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <ProjectCard
+                year="2025"
+                title="Micro Habit Tree - Android"
+              timeAgo="This year"
+              liveLink="https://github.com/JManoj01/Micro-Habit-Tree"
+              description="A multi-platform app that turns your daily habits into a growing tree. Completing habits adds leaves, tracks streaks, shows weekly progress, and rewards achievements, helping users stay consistent and motivated."
+              tags={[
+                "Kotlin",
+                "Compose Multiplatform",
+                "MVVM",
+                "Gradle",
+                "JSON",
+              ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <ProjectCard
+                year="2025"
+                title="Terminal Clipboard History Manager"
+              timeAgo="This year"
+              liveLink="https://github.com/jmanoj01/clipboard-manager"
+              description="A cross-platform (Linux, MacOS, Windows) terminal clipboard history manager built with Go, using BubbleTea TUI library and storing data in SQLite database, featuring JSON-backed storage, fuzzy search, auto-categorization, and syntax highlighting via Chroma, supporting up to 500-600 text/image entries with duplicate detection and export functionality."
+              tags={[
+                "Go",
+                "SQLite",
+                "BubbleTea",
+                "Chroma",
+                "Lipgloss",
+                "JSON",
+                "Fuzzy Search",
+                "Auto-Categorization",
+                "Syntax Highlighting",
+              ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <ProjectCard
+                year="2025"
+                title="Rust Utility Kit"
+              timeAgo="This year"
+              liveLink="https://github.com/jmanoj01/rust-utility-kit"
+              description="Built a 6-in-1 CLI (URL shortener, password+QR generator, file organizer, base converter, text hasher) via Rust + Clap. Implemented local URL shortening with SHA-256 hashing and JSON storage, QR code generation supporting PNG/ASCII output, and file organizer with dry-run mode supporting 7+ file categories and 40+ extensions."
+              tags={[
+                "Rust",
+                "Clap",
+                "QRCode",
+                "BLAKE3",
+                "Serde",
+                "Base64",
+              ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <ProjectCard
+                year="2024"
+                title="Collaborative Sticky Notes Application"
+              timeAgo="1 year ago"
+              liveLink="https://stickynotes.vercel.app"
+              description="A real-time collaborative brainstorming application that enables teams to create, edit, and organize digital sticky notes. Features live synchronization, team workspaces, and intuitive drag-and-drop functionality for enhanced productivity."
+              tags={[
+                "React",
+                "TypeScript",
+                "Next.js",
+                "Tailwind",
+                "Redux",
+                "Convex",
+                "Clerk",
+                "LiveBlocks",
+                "Vercel",
+              ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <ProjectCard
+                year="2024"
+                title="UMass Campus Map — SwiftUI + MapKit iOS App (Hackathon Project)"
+              timeAgo="1 year ago"
+              liveLink="https://github.com/JManoj01/UMassCampusMap-Xcode"
+              description="A SwiftUI app that helps students explore the UMass Amherst campus. Users can search for buildings, coffee shops, study spots, and get directions, with favorites and detailed building info."
+              tags={[
+                "Swift",
+                "SwiftUI",
+                "MapKit",
+                "Combine",
+                "MVVM",
+                "Xcode",
+              ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <ProjectCard
+                year="2023"
+                title="Roam - AI Travel Planning Platform"
+              timeAgo="2 years ago"
+              liveLink="https://roam.vercel.app"
+              description="An intelligent travel planning application powered by OpenAI that generates personalized itineraries, destination recommendations, and budget estimates. Features smart destination analysis, weather integration, and collaborative trip planning."
+              tags={[
+                "React",
+                "Next.js",
+                "TypeScript",
+                "Tailwind",
+                "Convex",
+                "OpenAI API",
+                "Vercel",
+              ]}
+              />
+            </ScrollReveal>
+          </div>
         </Section>
 
         <ScrollReveal delay={0}>
