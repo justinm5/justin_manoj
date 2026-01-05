@@ -21,83 +21,78 @@ import {
   Calculator,
   BarChart,
   Terminal,
+  Shell,
 } from "lucide-react";
 
 const skillIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  // Languages
+  // Languages - More distinct icons
   "Python": Code,
   "JavaScript": FileCode,
-  "TypeScript": FileCode,
+  "TypeScript": Brain, // Could use a variant if available
   "Java": Code,
+  "C": Code,
   "C++": Code,
   "SQL": Database,
-  "HTML/CSS": FileCode,
-  "Bash/Shell": Terminal,
+  "HTML/CSS": Palette, // Changed from FileCode - represents styling
 
-  // Frameworks & Tools
+
+  // Frameworks & Tools - More variety
   "React": Zap,
   "React Native": Smartphone,
   "Next.js": Zap,
   "Tailwind": Palette,
-  "Spring Boot": Zap,
-  "FastAPI": Zap,
+  "Spring Boot": Layers, // Changed - represents layered architecture
+  "FastAPI": Server,
   "Node.js": Server,
-  "Express.js": Server,
+  "Express.js": Zap,
 
   // Cloud, Infrastructure & DevOps
   "Docker": Container,
-  "Kubernetes": Container,
+  "Kubernetes": Layers, // Changed - orchestration/layers
   "AWS": Cloud,
   "Azure": Cloud,
-  "CI/CD": Workflow,
+  "CI/CD": GitBranch,
   "Kafka": MessageSquare,
 
-  // Data Systems, Machine Learning, & APIs
+  // Data Systems - Better distinction
   "PostgreSQL": Database,
   "MongoDB": Database,
-  "Redis": Database,
+  "Redis": Key, // Changed - Redis = fast key-value store
+
+  // Data Science & ML - More specific
   "Pandas": Table,
   "NumPy": Calculator,
   "PyTorch": Brain,
   "TensorFlow": Brain,
-  "Scikit-learn": Brain,
+  "Scikit-learn": BarChart,
+
+  // APIs & Protocols - Better variety
   "GraphQL": Network,
   "REST": Globe,
   "OpenAPI": Globe,
-  "Websockets": Network,
+  "WebSockets": Network,
 };
 
 const skillsByCategory = {
-  "Languages": [
-    "Python", "JavaScript", "TypeScript", "Java", "C++", "SQL", "HTML/CSS", "Bash/Shell"
-  ],
-  "Frameworks & Libraries": [
-    "React", "React Native", "Next.js", "Tailwind", "Spring Boot", "FastAPI", "Node.js", "Express.js"
-  ],
-  "Cloud, DevOps & Infrastructure": [
-    "Docker", "Kubernetes", "AWS", "Azure", "CI/CD", "Kafka"
-  ],
-  "Databases & Data Systems": [
-    "PostgreSQL", "MongoDB", "Redis"
-  ],
-  "Data Science & Machine Learning": [
-    "Pandas", "NumPy", "PyTorch", "TensorFlow", "Scikit-learn"
-  ],
-  "APIs & Protocols": [
-    "GraphQL", "REST", "OpenAPI", "WebSockets"
-  ]
+  "Languages": ["Python", "JavaScript", "TypeScript", "Java", "C", "C++", "SQL"], // Core first
+  "Frontend": ["React", "React Native", "Next.js", "Tailwind CSS"],
+  "Backend": ["Spring Boot", "FastAPI", "Node.js", "Express.js"],
+  "Cloud/DevOps": ["Docker", "Kubernetes", "AWS (Lambda, S3, Neptune, API Gateway)", "Azure", "CI/CD"],
+  "Databases": ["PostgreSQL", "MongoDB", "Redis", "Kafka"],
+  "Data/ML": ["Pandas", "NumPy", "PyTorch", "TensorFlow", "Scikit-learn"],
+  "APIs": ["GraphQL", "REST", "OpenAPI", "WebSockets"]
 };
 
 export const SkillsSection = () => {
   return (
     <Section id="skills" title="Technical Skills">
-      <div className="space-y-8">
+      <div className="space-y-4">
         {Object.entries(skillsByCategory).map(([category, skills]) => (
           <div key={category}>
             <h3 className="text-lg font-semibold text-foreground mb-4 tracking-tight">
               {category}
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {skills.map((skill) => {
                 const Icon = skillIcons[skill] || Code;
                 return (
