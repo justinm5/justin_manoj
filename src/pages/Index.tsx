@@ -132,22 +132,6 @@ const Index = () => {
             <ScrollReveal delay={0}>
               <ProjectCard
                 year="2025"
-                title="LLM Prompt Safety Detector"
-                timeAgo="This year"
-                liveLink="https://github.com/JManoj01/llm-safety-detector"
-                description="Created for UMass Amherst Research purposes. Automated unsafe prompt detection for LLMs using Python, PyTorch, and scikit-learn. Standardizes safety testing and reduces manual review for production AI models."
-                tags={[
-                  "Python",
-                  "PyTorch",
-                  "scikit-learn",
-                  "NLP",
-                  "AI Safety Research",
-                ]}
-              />
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <ProjectCard
-                year="2025"
                 title="UMass Dining Recommendation Engine"
                 timeAgo="This year"
                 liveLink="https://github.com/JManoj01/UMassDining"
@@ -160,6 +144,22 @@ const Index = () => {
                   "PostgreSQL",
                   "React Native",
                   "Fireclaw",
+                ]}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <ProjectCard
+                year="2025"
+                title="LLM Prompt Safety Detector"
+                timeAgo="This year"
+                liveLink="https://github.com/JManoj01/llm-safety-detector"
+                description="Created for UMass Amherst Research purposes. Automated unsafe prompt detection for LLMs using Python, PyTorch, and scikit-learn. Standardizes safety testing and reduces manual review for production AI models."
+                tags={[
+                  "Python",
+                  "PyTorch",
+                  "scikit-learn",
+                  "NLP",
+                  "AI Safety Research",
                 ]}
               />
             </ScrollReveal>
