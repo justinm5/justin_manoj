@@ -8,7 +8,6 @@ import { ContactForm } from "@/components/ContactForm";
 import { GitHubContributions } from "@/components/GitHubContributions";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, FileText } from "lucide-react";
-import { ScrollProgress } from "@/components/ScrollProgress";
 import { AnimatedGradient } from "@/components/AnimatedGradient";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
@@ -16,13 +15,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <AnimatedGradient />
-      <ScrollProgress />
       <Navigation />
       <div id="home" className="relative z-10 max-w-4xl mx-auto px-6 py-8 md:py-12">
         <Hero
           name="Justin Manoj"
           title="CS & Math @ UMass Amherst"
-          description="👋 Hi, I'm Justin! I'm an undergraduate student at the University of Massachusetts-Amherst pursuing a B.S in Computer Science and Mathematics, seeking new opportunities to learn and expand my abilities as an engineer. I'm interested in full-stack development, machine learning, and data science, and I love to innovate and solve problems. Browse through my site to view my work, including research and some of my favorite personal projects!"
+          description="👋 Hi, I'm Justin! I'm an undergraduate student at the University of Massachusetts Amherst pursuing a B.S in Computer Science and Mathematics, seeking new opportunities to learn and expand my abilities as an engineer. I'm interested in full-stack development, machine learning, and data science, and I love to innovate and solve problems. Browse through my site to view my work, including research and some of my favorite personal projects!"
           imageUrl="/profile.jpg"
         />
 
@@ -33,55 +31,43 @@ const Index = () => {
         <Section id="experience" title="My Experience">
           <ScrollReveal delay={0}>
             <ExperienceCard
-              title="AI Trainer Fellow"
-              company="Handshake AI"
-              location="San Francisco, CA"
-              period="Oct. 2025 – Present"
+              title="Founding Engineer"
+              company="ChitChat Workplace – Venture-Backed Startup"
+              location="Boston, MA"
+              period="May 2025 – Present"
               description={[
-                "Evaluated AI-generated responses for safety, accuracy, and compliance, identifying high-risk edge cases to improve model reliability before production release.",
-                "Designed adversarial tests to surface model weaknesses and improve robustness across user inputs.",
-                "Improved data quality workflows through rapid experimentation, reducing annotation errors by 30%.",
+                "Launched ChitChat and the core platform MVP that centralizes messaging, email, and third-party apps, successfully onboarding initial enterprise customers and reducing context-switching by 10+ hours/month.",
+                "Architected the core messaging engine using Go (Golang) and WebSockets, supporting 50k+ concurrent users.",
+                "Designed a distributed event pipeline with Apache Kafka and Redis Pub/Sub to handle 2M+ daily events (messages, reactions, typing indicators), decoupling real-time delivery from persistent storage.",
+                "Shipped \"Smart Context\" AI features using LangChain and Vector Embeddings (Pinecone), enabling semantic search and auto-drafting that reduced repetitive internal queries by 40%.",
               ]}
             />
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <ExperienceCard
-              title="Software Engineer"
-              company="ChitChat Workplace"
-              location="Boston, MA"
-              period="Apr. 2025 – Present"
+              title="Software Engineer Intern"
+              company="GBCS Group"
+              location="Alberta, CA"
+              period="Mar. 2025 – Sept. 2025"
               description={[
-                "Built a unified messaging platform (chat, email, video, calendar) using Next.js, TypeScript, GraphQL, Kafka, and WebSockets, reducing context-switching by 10+ hours/month.",
-                "Integrated GPT-4o drafting, summarization, and notifications using LangChain & Pinecone (RAG).",
-                "Deployed scalable infrastructure with Kubernetes & Docker supporting 5,000+ daily messages.",
+                "Re-engineered the backend data layer by migrating 8 REST endpoints to GraphQL, eliminating payload overfetching by 40% and simplifying frontend state management.",
+                "Optimized full-stack performance by implementing PostgreSQL composite indexes and React Query caching strategies, slicing average page load times by 65% for core dashboards.",
+                "Shipped reusable TypeScript and Tailwind components and strengthened code quality by implementing linting rules, Jest utilities, and component documentation.",
               ]}
             />
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
             <ExperienceCard
-              title="Software Engineer Intern"
-              company="GBCS Group"
-              location="Alberta, CA"
-              period="Mar. 2025 – Sept. 2025"
-              description={[
-                "Migrated 8 REST APIs to GraphQL, reducing overfetching and simplifying client data access.",
-                "Optimized React Query, code splitting, and PostgreSQL indexes to cut page load times by 35%.",
-                "Shipped reusable TypeScript and Tailwind components and strengthened code quality by implementing linting rules, Jest utilities, and component documentation.",
-              ]}
-            />
-          </ScrollReveal>
-
-          <ScrollReveal delay={300}>
-            <ExperienceCard
-              title="Undergraduate Student Researcher"
-              company="UMass Amherst"
+              title="Undergraduate Research Assistant"
+              company="University of Massachusetts Amherst - Autonomous Learning Lab"
               location="Amherst, MA"
-              period="Dec. 2024 – Feb. 2025"
+              period="Nov. 2024 – Apr. 2025"
               description={[
-                "Identified critical LLM safety gaps through systematic prompt stress-testing across risk categories.",
-                "Shaped deployment decisions by formalizing safety benchmarks used in model evaluation workflows.",
+                "Built and ran automated stress-tests for 7 multi-agent AI frameworks (like AutoGen and MetaGPT) using Python, identifying 14 critical bug types that cause AI agents to fail in production.",
+                "Processed and labeled 1,600+ execution logs using OpenAI API and Pandas, creating a standardized ”crash dataset” used to benchmark model reliability scores.",
+                "Developed a failure-detection pipeline that automatically flags errors (like infinite loops or hallucinations) in agent conversations, reducing manual review time by 70% for research purposes."
               ]}
             />
           </ScrollReveal>
@@ -103,7 +89,7 @@ const Index = () => {
           <ScrollReveal delay={500}>
             <ExperienceCard
               title="Lead Programmer"
-            company="NRHS Robotics Team, FIRST Robotics, VEX Robotics"
+            company="NRHS Robotics, FIRST Robotics, VEX Robotics"
             location="Remote"
             period="Sept 2022 - Jun 2023"
             description={[
@@ -115,7 +101,7 @@ const Index = () => {
 
           <ScrollReveal delay={600}>
             <ExperienceCard
-              title="Mathematics Tutor"
+              title="Math Tutor"
             company="NRHS Math Lab & Private Tutoring"
             location="Remote"
             period="June 2023 - Present"
@@ -135,31 +121,30 @@ const Index = () => {
                 title="UMass Dining Recommendation Engine"
                 timeAgo="This year"
                 liveLink="https://github.com/JManoj01/UMassDining"
-                description="Developed full-stack dining recommender for UMass Amherst students, delivering personalized meal suggestions based on dietary preferences, favorite halls, and disliked ingredients. Designed Spring Boot & PostgreSQL backend with caching and a responsive React frontend, supporting real-time queries for 4 dining halls and 100+ menu items per day."
+                description="Launched a personalized nutrition platform for 30,000+ students, aggregating daily menus from 4 dining halls to generate AI-driven meal plans; pending integration into the official UMass Dining App. Built backend using Spring Boot and PostgreSQL, implementing Redis to serve real-time menu queries. Engineered a robust data ingestion pipeline with Python schedulers that scrapes, cleans, and normalizes 100+ daily menu items, ensuring 99.9% data accuracy for dietary filters."
                 tags={[
                   "Java",
-                  "Python",
                   "Spring Boot",
                   "React",
                   "PostgreSQL",
-                  "React Native",
-                  "Fireclaw",
+                  "Python",
+                  "Redis",
                 ]}
               />
             </ScrollReveal>
             <ScrollReveal delay={100}>
               <ProjectCard
                 year="2025"
-                title="LLM Prompt Safety Detector"
+                title="Multi-User Payment Hub"
                 timeAgo="This year"
-                liveLink="https://github.com/JManoj01/llm-safety-detector"
-                description="Created for UMass Amherst Research purposes. Automated unsafe prompt detection for LLMs using Python, PyTorch, and scikit-learn. Standardizes safety testing and reduces manual review for production AI models."
+                liveLink="https://github.com/JManoj01/payment-hub"
+                description='Built a secure group payment platform that holds funds in escrow until approval and tracks user "Reliability Scores" in PostgreSQL, enabling informed split decisions beyond simple payment tracking. Implemented logic for "payment staking," where users deposit collateral that is automatically forfeited if they miss deadlines, reducing dispute rates and ensuring on-time settlements via Stripe.'
                 tags={[
-                  "Python",
-                  "PyTorch",
-                  "scikit-learn",
-                  "NLP",
-                  "AI Safety Research",
+                  "TypeScript",
+                  "Next.js",
+                  "PostgreSQL",
+                  "Stripe",
+                  "Escrow",
                 ]}
               />
             </ScrollReveal>

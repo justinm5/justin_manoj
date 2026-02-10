@@ -11,76 +11,49 @@ import {
   Cloud,
   Container,
   GitBranch,
-  Workflow,
   MessageSquare,
   Key,
-  Network,
-  Globe,
   Brain,
-  Table,
-  Calculator,
-  BarChart,
-  Terminal,
-  Shell,
 } from "lucide-react";
 
 const skillIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  // Languages - More distinct icons
+  // Languages
   "Python": Code,
   "JavaScript": FileCode,
-  "TypeScript": Brain, // Could use a variant if available
+  "TypeScript": Brain,
+  "Go": Code,
   "Java": Code,
-  "C": Code,
-  "C++": Code,
+  "C/C++": Code,
   "SQL": Database,
-  "HTML/CSS": Palette, // Changed from FileCode - represents styling
+  "HTML/CSS": Palette,
 
-
-  // Frameworks & Tools - More variety
+  // Frontend
   "React": Zap,
   "React Native": Smartphone,
-  "Next.js": Zap,
-  "Tailwind": Palette,
-  "Spring Boot": Layers, // Changed - represents layered architecture
-  "FastAPI": Server,
+
+  // Backend
   "Node.js": Server,
   "Express.js": Zap,
+  "Django": Server,
+  "Flask": Server,
+  "Spring Boot": Server,
 
-  // Cloud, Infrastructure & DevOps
-  "Docker": Container,
-  "Kubernetes": Layers, // Changed - orchestration/layers
+  // Cloud & DevOps
   "AWS": Cloud,
-  "Azure": Cloud,
-  "CI/CD": GitBranch,
+  "Docker": Container,
+  "Kubernetes": Layers,
   "Kafka": MessageSquare,
-
-  // Data Systems - Better distinction
-  "PostgreSQL": Database,
-  "MongoDB": Database,
-  "Redis": Key, // Changed - Redis = fast key-value store
-
-  // Data Science & ML - More specific
-  "Pandas": Table,
-  "NumPy": Calculator,
-  "PyTorch": Brain,
-  "TensorFlow": Brain,
-  "Scikit-learn": BarChart,
-
-  // APIs & Protocols - Better variety
-  "GraphQL": Network,
-  "REST": Globe,
-  "OpenAPI": Globe,
-  "WebSockets": Network,
+  "Redis": Key,
+  "CI/CD": GitBranch,
+  "Git": GitBranch,
 };
 
 const skillsByCategory = {
-  "Languages": ["Python", "JavaScript", "TypeScript", "Java", "C", "C++", "SQL"], // Core first
-  "Frontend": ["React", "React Native", "Next.js", "Tailwind CSS"],
-  "Backend": ["Spring Boot", "FastAPI", "Node.js", "Express.js"],
-  "Cloud/DevOps": ["Docker", "Kubernetes", "AWS (Lambda, S3, Neptune, API Gateway)", "Azure", "CI/CD"],
-  "Databases": ["PostgreSQL", "MongoDB", "Redis", "Kafka"],
-  "Data/ML": ["Pandas", "NumPy", "PyTorch", "TensorFlow", "Scikit-learn"],
-  "APIs": ["GraphQL", "REST", "OpenAPI", "WebSockets"]
+  "Languages": ["Python", "Java", "C/C++","JavaScript", "TypeScript", "Go", "SQL", "HTML/CSS"],
+  "Frontend": ["React", "React Native"],
+  "Backend": ["Node.js", "Express.js", "Spring Boot", "Django", "Flask"],
+  "Cloud & DevOps": ["AWS", "Docker", "Kubernetes", "Kafka", "Redis", "CI/CD", "Git"],
+  "Data & ML": ["PyTorch", "Scikit-learn", "Pandas"],
 };
 
 export const SkillsSection = () => {

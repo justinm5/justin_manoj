@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom colored pointer cursor - normal pointer shape with accent color */
-* {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z' fill='%23151515' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E") 4 4, pointer;
-}
-
-.dark * {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z' fill='%23d9d9d9' stroke='%23000000' stroke-width='0.5'/%3E%3C/svg%3E") 4 4, pointer;
-}
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* Account for sticky navigation */
