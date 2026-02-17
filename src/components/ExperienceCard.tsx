@@ -3,7 +3,7 @@ interface ExperienceCardProps {
   company: string;
   location: string;
   period: string;
-  description: string[];
+  description: (string | React.ReactNode)[];
   link?: string;
 }
 
@@ -29,8 +29,8 @@ export const ExperienceCard = ({
       </div>
       <ul className="space-y-2 mt-4">
         {description.map((item, index) => (
-          <li key={index} className="text-sm text-muted-foreground/90 pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-muted-foreground/50 leading-relaxed">
-            {item}
+          <li key={index} className="text-sm text-muted-foreground/90 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-muted-foreground/50 leading-relaxed">
+            {typeof item === 'string' ? <span dangerouslySetInnerHTML={{ __html: item }} /> : item}
           </li>
         ))}
       </ul>

@@ -24,7 +24,9 @@ export const Hero = ({ name, title, description, imageUrl }: HeroProps) => {
           <p className="text-muted-foreground">{title}</p>
         </div>
       </div>
-      <p className="text-foreground/80 leading-relaxed max-w-4xl text-[15px]">{description}</p>
+      <p className="text-foreground/80 leading-relaxed max-w-4xl text-[15px]">
+        <span dangerouslySetInnerHTML={{ __html: description }} />
+      </p>
     </section>
   );
 };

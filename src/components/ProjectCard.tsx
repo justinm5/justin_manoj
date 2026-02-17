@@ -51,7 +51,7 @@ export const ProjectCard = ({
       </div>
 
       <p className="text-sm text-muted-foreground/90 mb-4 leading-relaxed">
-        {description}
+        <span dangerouslySetInnerHTML={{ __html: description }} />
       </p>
 
       <div className="flex flex-wrap gap-1.5">
