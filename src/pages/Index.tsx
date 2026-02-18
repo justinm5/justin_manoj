@@ -19,7 +19,7 @@ const Index = () => {
         <Hero
           name="Justin Manoj"
           title="CS & Math @ UMass Amherst"
-          description="👋 Hi, I'm Justin! I'm an undergraduate junior student at the University of Massachusetts Amherst pursuing a <strong>B.S in Computer Science and Mathematics</strong>, seeking new opportunities to learn and expand my abilities as an engineer. I'm interested in <strong>full-stack development</strong>, <strong>machine learning</strong>, and <strong>data science</strong>, and I love to innovate and solve problems. Browse through my site to view my work, including research and some of my favorite personal projects!"
+          description="👋 Hi, I'm Justin! I'm a junior student at the University of Massachusetts Amherst pursuing a <strong>B.S in Computer Science and Mathematics</strong>, seeking new opportunities to learn and expand my abilities as an engineer. I'm interested in <strong>full-stack development</strong>, <strong>machine learning</strong>, and <strong>data science</strong>, and I love to innovate and solve problems. Browse through my site to view my work, including research and some of my favorite personal projects!"
           imageUrl="/profile.jpg"
         />
 
@@ -42,7 +42,7 @@ const Index = () => {
             title="Software Engineer Intern"
             company="GBCS Group"
             location="Alberta, CA"
-            period="Mar. 2025 – Sept. 2025"
+            period="Mar 2025 – Sept 2025"
             description={[
               "Migrated <strong>8 REST endpoints to GraphQL</strong>, eliminating <strong>40% payload overfetching</strong>.",
               "Optimized performance with <strong>PostgreSQL indexes</strong> & <strong>React Query caching</strong>, reducing load times by <strong>65%</strong>.",
@@ -54,7 +54,7 @@ const Index = () => {
             title="Undergraduate Research Assistant"
             company="University of Massachusetts Amherst - Autonomous Learning Lab"
             location="Amherst, MA"
-            period="Nov. 2024 – Apr. 2025"
+            period="Nov 2024 – Apr 2025"
             description={[
               "Stress-tested <strong>7 multi-agent AI frameworks</strong> with <strong>Python</strong>, identifying <strong>14 critical bug types</strong>.",
               "Labeled <strong>1,600+ execution logs</strong> using <strong>OpenAI API</strong> & <strong>Pandas</strong>, creating standardized crash dataset.",
@@ -80,9 +80,9 @@ const Index = () => {
             location="Remote"
             period="Sept 2022 - Jun 2023"
             description={[
-              "Implemented robot behaviors in <strong>C++</strong> with computer vision, object detection algorithms, and path-finding techniques.",
-              "Led the software team for robotic programs in FIRST and VEX in <strong>regional & national competitions</strong>.",
-              "Coordinated software development lifecycle tasks including version control, code reviews, testing frameworks, and release planning under competition deadlines.",
+              "Implemented robot behaviors in <strong>C++</strong> with <strong>computer vision, object detection, and path-finding</strong>.",
+              "Coordinated team workflow including version control, code reviews, testing, and planning under competition deadlines.",
+              "Led the <strong>software team</strong> in FIRST and VEX in <strong>regional & national competitions</strong>.",
             ]}
             
           />
@@ -108,16 +108,25 @@ const Index = () => {
 
             <ProjectCard
               year="2025"
+              title="Symptom Medical Assistant Bot"
+              timeAgo="1 year ago"
+              liveLink="https://github.com/JManoj01/symptom-bot"
+              description="AI-powered medical assistant using <strong>Gemini API</strong> for symptom analysis and triage. Provides users with evidence-based medical suggestions reaching <strong>85% accuracy</strong>, and integrates patient testimonial matching for personalized insights. Developed a secure chat interface with <strong>privacy-conscious logging</strong> and data handling."
+              tags={["Python", "JavaScript", "FastAPI", "PostgreSQL", "MongoDB", "Gemini API", "Elasticsearch" ]}
+            />
+
+            <ProjectCard
+              year="2025"
               title="LLM Prompt Safety Detector"
               timeAgo="1 year ago"
               liveLink="https://github.com/JManoj01/llm-prompt-safety-detector"
               description="Automated system to detect unsafe LLM prompts in <strong>500+ test cases</strong> using <strong>Python</strong> & <strong>PyTorch</strong>. Standardized safety testing for <strong>GPT-4, Claude, Llama, & Mistral</strong>. Fine-tuned <strong>BERT classifier</strong> on <strong>1,000+ labeled prompts</strong> achieving <strong>92% accuracy</strong>. Integrated into <strong>CI/CD pipeline</strong> reducing unsafe deployment by <strong>80%</strong>."
-              tags={["Python", "PyTorch", "scikit-learn", "NLP", "LLMs" ]}
+              tags={["Python", "PyTorch", "scikit-learn", "BERT", "LLMs"]}
             />
 
             <ProjectCard
               year="2024"
-              title="Multi-User Payment Hub"
+              title="Multi-User Trust Payment Platform"
               timeAgo="2 years ago"
               liveLink="https://github.com/JManoj01/payment-hub"
               description="Secure group payment platform with escrow in <strong>PostgreSQL</strong> and <strong>Reliability Scores</strong>. Implemented <strong>payment staking</strong> where users deposit collateral automatically forfeited on missed deadlines. Integrated <strong>Stripe</strong> for settlements, reducing disputes."
@@ -127,20 +136,6 @@ const Index = () => {
                 "PostgreSQL",
                 "Stripe",
                 "Escrow",
-              ]}
-            />
-            <ProjectCard
-              year="2024"
-              title="Terminal Clipboard History Manager"
-              timeAgo="2 years ago"
-              liveLink="https://github.com/jmanoj01/clipboard-manager"
-              description="Cross-platform <strong>(Linux, MacOS, Windows)</strong> clipboard manager built with <strong>Go</strong> & <strong>SQLite</strong>. Features <strong>fuzzy search</strong>, <strong>auto-categorization</strong>, syntax highlighting, supporting <strong>500-600+ entries</strong> with duplicate detection & export."
-              tags={[
-                "Go",
-                "SQLite",
-                "TUI",
-                "Chroma",
-                "JSON",
               ]}
             />
           </div>
