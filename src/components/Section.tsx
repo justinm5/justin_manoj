@@ -8,9 +8,9 @@ interface SectionProps {
 
 export const Section = ({ id, title, children }: SectionProps) => {
   return (
-    <section id={id} className="mb-8 scroll-mt-20">
-      <h2 className="text-2xl font-semibold text-foreground mb-4 tracking-tight">{title}</h2>
-      <div className="space-y-4">{children}</div>
+    <section id={id} className="mb-6 scroll-mt-20">
+      <h2 className="text-2xl font-semibold text-foreground mb-3 tracking-tight">{title}</h2>
+      <div className="space-y-3">{children}</div>
     </section>
   );
 };

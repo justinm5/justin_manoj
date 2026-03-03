@@ -1,96 +1,58 @@
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "@/hooks/use-theme";
-import { useEffect, useState } from "react";
+import { BriefcaseBusiness, FolderKanban, House } from "lucide-react";
+import { NavLink } from "@/components/NavLink";
 
 export const Navigation = () => {
-  const { theme, setTheme } = useTheme();
-  const [activeSection, setActiveSection] = useState("home");
-
-  const scrollToSection = (id: string) => {
-    const element = document.querySelector(id);
-    if (element) {
-      // Get the navigation height for offset
-      const navHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["home", "skills", "experience", "projects", "contact"];
-      const scrollPosition = window.scrollY + 150;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.querySelector(`#${sections[i]}`);
-        if (section) {
-          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-          if (scrollPosition >= sectionTop) {
-            setActiveSection(sections[i]);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   const navItems = [
-    { id: "home", label: "Home" },
-    { id: "skills", label: "Skills" },
-    { id: "experience", label: "Experience" },
-    { id: "projects", label: "Projects" },
-    { id: "contact", label: "Contact" },
+    { to: "/", label: "Home", icon: House, end: true },
+    { to: "/experience", label: "Experience", icon: BriefcaseBusiness },
+    { to: "/projects", label: "Projects", icon: FolderKanban },
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/60 backdrop-blur-xl border-b border-border/40">
-      <div className="max-w-4xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex gap-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(`#${item.id}`)}
-                className={`text-sm font-medium transition-all duration-200 relative ${
-                  activeSection === item.id
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {item.label}
-                {activeSection === item.id && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent rounded-full" />
-                )}
-              </button>
-            ))}
+    <>
+      <nav className="hidden md:block fixed left-5 lg:left-7 top-1/2 -translate-y-1/2 z-50">
+        <div className="rounded-3xl border border-border/50 bg-background/70 backdrop-blur-2xl p-2.5 shadow-[0_20px_44px_rgba(0,0,0,0.25)]">
+          <div className="flex flex-col gap-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  end={item.end}
+                  className="group flex items-center gap-2 rounded-2xl px-3 py-2.5 text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground transition-all duration-200 hover:text-foreground hover:bg-secondary/50"
+                  activeClassName="text-foreground bg-secondary/80 shadow-[inset_0_0_0_1px_hsl(var(--border))]"
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {item.label}
+                </NavLink>
+              );
+            })}
           </div>
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-secondary/50 transition-all duration-200"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? (
-              <Sun className="w-5 h-5" />
-            ) : (
-              <Moon className="w-5 h-5" />
-            )}
-          </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      <nav className="md:hidden fixed bottom-4 inset-x-4 z-50">
+        <div className="rounded-2xl border border-border/50 bg-background/80 backdrop-blur-2xl px-2 py-2 shadow-[0_12px_34px_rgba(0,0,0,0.28)]">
+          <div className="grid grid-cols-3 gap-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  end={item.end}
+                  className="flex flex-col items-center justify-center gap-1 rounded-xl px-2 py-1.5 text-[10px] font-mono uppercase tracking-[0.12em] text-muted-foreground transition-all duration-200 hover:text-foreground"
+                  activeClassName="text-foreground bg-secondary/80"
+                >
+                  <Icon className="w-4 h-4" />
+                  {item.label}
+                </NavLink>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };

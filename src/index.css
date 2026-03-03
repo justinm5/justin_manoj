@@ -47,8 +47,6 @@ All colors MUST be HSL.
     --input: 0 0% 90%;
     --ring: 0 0% 10%;
 
-    --github-green: 134 61% 41%;
-    
     --radius: 0.75rem;
   }
 
@@ -81,7 +79,6 @@ All colors MUST be HSL.
     --input: 0 0% 15%;
     --ring: 0 0% 85%;
     
-    --github-green: 134 61% 41%;
   }
 }
 
