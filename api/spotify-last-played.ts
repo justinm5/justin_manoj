@@ -21,6 +21,7 @@ type RuntimeEnv = Record<string, string | undefined>;
 
 interface ApiRequest {
   method?: string;
+  url?: string;
 }
 
 interface ApiResponse {
@@ -38,6 +39,21 @@ const json = (res: ApiResponse, status: number, body: Record<string, unknown>) =
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
   res.end(JSON.stringify(body));
+};
+
+const isProductionRuntime = (env: RuntimeEnv) =>
+  env.VERCEL_ENV === "production" || env.NODE_ENV === "production";
+
+const getMissingCredentials = (credentials: {
+  clientId?: string;
+  clientSecret?: string;
+  refreshToken?: string;
+}) => {
+  const missing: string[] = [];
+  if (!credentials.clientId) missing.push("SPOTIFY_CLIENT_ID");
+  if (!credentials.clientSecret) missing.push("SPOTIFY_CLIENT_SECRET");
+  if (!credentials.refreshToken) missing.push("SPOTIFY_REFRESH_TOKEN");
+  return missing;
 };
 
 const getAccessToken = async (clientId: string, clientSecret: string, refreshToken: string) => {
@@ -73,8 +89,20 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
   const clientId = env.SPOTIFY_CLIENT_ID;
   const clientSecret = env.SPOTIFY_CLIENT_SECRET;
   const refreshToken = env.SPOTIFY_REFRESH_TOKEN;
+  const requestUrl = new URL(req.url ?? "/", "http://localhost");
+  const debugRequested = requestUrl.searchParams.get("debug") === "1";
+  const productionRuntime = isProductionRuntime(env);
 
-  if (!clientId || !clientSecret || !refreshToken) {
+  const missingCredentials = getMissingCredentials({ clientId, clientSecret, refreshToken });
+  if (missingCredentials.length > 0) {
+    if (!productionRuntime && debugRequested) {
+      return json(res, 500, {
+        error: "Spotify server credentials are missing.",
+        missing: missingCredentials,
+        vercelEnv: env.VERCEL_ENV ?? null,
+      });
+    }
+
     return json(res, 500, { error: "Spotify server credentials are missing." });
   }
 

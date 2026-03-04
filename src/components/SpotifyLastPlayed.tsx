@@ -11,6 +11,30 @@ interface SpotifyLastPlayedPayload {
 }
 
 const POLL_INTERVAL_MS = 20000;
+const TRACK_CACHE_KEY = "spotify.lastPlayed.cache";
+
+const getCachedTrack = (): SpotifyLastPlayedPayload | null => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  try {
+    const raw = window.localStorage.getItem(TRACK_CACHE_KEY);
+    if (!raw) {
+      return null;
+    }
+    return JSON.parse(raw) as SpotifyLastPlayedPayload;
+  } catch {
+    return null;
+  }
+};
+
+const cacheTrack = (track: SpotifyLastPlayedPayload) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+  window.localStorage.setItem(TRACK_CACHE_KEY, JSON.stringify(track));
+};
 
 const formatRelativeTime = (playedAt: string) => {
   const playedAtMs = new Date(playedAt).getTime();
@@ -47,38 +71,60 @@ const formatRelativeTime = (playedAt: string) => {
 };
 
 export const SpotifyLastPlayed = () => {
-  const [track, setTrack] = useState<SpotifyLastPlayedPayload | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const initialTrack = getCachedTrack();
+  const isDebugMode =
+    import.meta.env.DEV &&
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("spotifyDebug") === "1";
+
+  const [track, setTrack] = useState<SpotifyLastPlayedPayload | null>(initialTrack);
+  const [isLoading, setIsLoading] = useState(!initialTrack);
+  const [debugMessage, setDebugMessage] = useState<string | null>(null);
 
   const loadTrack = useCallback(async (signal?: AbortSignal) => {
     try {
+      setDebugMessage(null);
       const response = await fetch("/api/spotify-last-played", {
         cache: "no-store",
         signal,
       });
 
       if (!response.ok) {
-        throw new Error("Could not load Spotify activity.");
+        let apiError = "Could not load Spotify activity.";
+        try {
+          const errorPayload = (await response.json()) as { error?: string };
+          if (errorPayload.error) {
+            apiError = errorPayload.error;
+          }
+        } catch {
+          // keep fallback message when error body is non-JSON
+        }
+
+        if (isDebugMode) {
+          setDebugMessage(`Spotify API ${response.status}: ${apiError}`);
+        }
+        throw new Error(apiError);
       }
 
       const payload = (await response.json()) as SpotifyLastPlayedPayload | { trackName: null };
       if ("trackName" in payload && payload.trackName === null) {
         setTrack(null);
       } else {
-        setTrack(payload as SpotifyLastPlayedPayload);
+        const nextTrack = payload as SpotifyLastPlayedPayload;
+        setTrack(nextTrack);
+        cacheTrack(nextTrack);
       }
-
-      setErrorMessage(null);
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") {
         return;
       }
-      setErrorMessage("Spotify activity is unavailable right now.");
+      if (isDebugMode && error instanceof Error) {
+        setDebugMessage(error.message);
+      }
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [isDebugMode]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -96,7 +142,7 @@ export const SpotifyLastPlayed = () => {
 
   return (
     <div className="rounded-2xl border border-border/40 p-4 bg-card/20 backdrop-blur-sm">
-      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+      <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
         What I&apos;m Listening To
       </p>
 
@@ -136,10 +182,12 @@ export const SpotifyLastPlayed = () => {
           </div>
         </a>
       ) : (
-        <p className="mt-3 text-sm text-muted-foreground">
-          {errorMessage ?? "No recently played Spotify track found."}
-        </p>
+        <p className="mt-3 text-sm text-muted-foreground">No recently played Spotify track found.</p>
       )}
+
+      {isDebugMode && debugMessage ? (
+        <p className="mt-2 text-[11px] text-amber-500/85">Debug: {debugMessage}</p>
+      ) : null}
     </div>
   );
 };

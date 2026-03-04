@@ -1,6 +1,6 @@
 import { PageLayout } from "@/components/PageLayout";
 import type { ComponentType } from "react";
-import { ArrowUpRight, Github, GraduationCap, Instagram, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Github, Instagram, Linkedin, Mail } from "lucide-react";
 import { SpotifyLastPlayed } from "@/components/SpotifyLastPlayed";
 
 type IconComponent = ComponentType<{ className?: string }>;
@@ -35,7 +35,7 @@ const socialLinks: { label: string; href: string; icon: IconComponent }[] = [
   },
   {
     label: "GitHub",
-    href: "https://github.com/jmanoj01",
+    href: "https://github.com/justinm5",
     icon: Github,
   },
   {
@@ -80,7 +80,7 @@ const Index = () => {
     <PageLayout>
       <div id="home" className="space-y-8">
         <section className="grid gap-4 lg:gap-3 lg:grid-cols-[1.46fr_1fr]">
-          <div className="relative rounded-2xl overflow-hidden border border-border/40 bg-card/20 min-h-[520px] lg:min-h-[640px]">
+          <div className="relative rounded-2xl overflow-hidden border border-border/40 bg-card/20 min-h-[540px] lg:min-h-[672px]">
             <img
               src="/profile.jpg"
               alt="Justin Manoj in the city at sunset"
@@ -95,40 +95,35 @@ const Index = () => {
           </div>
 
           <aside className="space-y-3 animate-fade-in">
-            <div className="rounded-2xl border border-border/40 p-5 bg-card/20 backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-accent/10 border border-border/40 flex items-center justify-center">
-                  <GraduationCap className="w-5 h-5 text-foreground/80" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    Education
-                  </p>
-                  <h2 className="mt-1 text-base font-semibold text-foreground leading-tight">
-                    University of <span className="whitespace-nowrap">Massachusetts Amherst</span>
-                  </h2>
-                </div>
+            <div className="rounded-2xl border border-border/40 p-6 bg-card/20 backdrop-blur-sm">
+              <div>
+                <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
+                  Education
+                </p>
+                <h2 className="mt-1 text-base font-semibold text-foreground leading-tight">
+                  University of <span className="whitespace-nowrap">Massachusetts Amherst</span>
+                </h2>
               </div>
 
-              <p className="mt-3 text-[12px] tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
+              <p className="mt-2 text-[12px] italic tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
                 B.S in Computer Science & Mathematics · May 2027
               </p>
 
-              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="mt-5 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                 Relevant Coursework
               </p>
               <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                 {coursework}
               </p>
 
-              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="mt-5 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                 Awards/Honors
               </p>
               <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                 {honors}
               </p>
 
-              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="mt-5 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                 Technical Skills
               </p>
               <div className="mt-1.5 space-y-2">
