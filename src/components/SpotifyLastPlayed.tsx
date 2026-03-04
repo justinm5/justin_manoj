@@ -13,6 +13,8 @@ interface SpotifyLastPlayedPayload {
 
 const POLL_INTERVAL_MS = 5000;
 const TRACK_CACHE_KEY = "spotify.lastPlayed.cache";
+const MAX_TITLE_CHARS = 46;
+const MAX_ARTISTS_CHARS = 64;
 
 const getCachedTrack = (): SpotifyLastPlayedPayload | null => {
   if (typeof window === "undefined") {
@@ -69,6 +71,13 @@ const formatRelativeTime = (playedAt: string) => {
   }
 
   return `${Math.floor(months / 12)}y ago`;
+};
+
+const clampText = (value: string, maxChars: number) => {
+  if (value.length <= maxChars) {
+    return value;
+  }
+  return `${value.slice(0, maxChars - 1).trimEnd()}...`;
 };
 
 export const SpotifyLastPlayed = () => {
@@ -154,7 +163,7 @@ export const SpotifyLastPlayed = () => {
   }, [loadTrack]);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border/40 p-4 bg-card/20 backdrop-blur-sm">
+    <div className="min-w-0 overflow-hidden rounded-2xl border border-border/40 p-4 bg-card/20 backdrop-blur-sm">
       <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
         What I&apos;m Listening To
       </p>
@@ -169,26 +178,36 @@ export const SpotifyLastPlayed = () => {
           href={track.trackUrl ?? "https://open.spotify.com"}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 flex w-full min-w-0 items-center gap-3 group"
+          className="group mt-3 flex w-full min-w-0 items-center gap-3 overflow-hidden"
         >
+          {/**
+           * Hard clamp text length in addition to CSS ellipsis so extremely long
+           * Spotify metadata never stretches the home layout.
+           */}
           {track.albumArtUrl ? (
             <img
               src={track.albumArtUrl}
               alt={`${track.trackName} album art`}
-              className="w-14 h-14 rounded-lg object-cover border border-border/40"
+              className="h-14 w-14 shrink-0 rounded-lg border border-border/40 object-cover"
             />
           ) : (
-            <div className="w-14 h-14 rounded-lg bg-accent/10 border border-border/40 flex items-center justify-center">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-border/40 bg-accent/10">
               <Music2 className="w-5 h-5 text-foreground/80" />
             </div>
           )}
 
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-base font-semibold leading-tight text-foreground">
-              {track.trackName}
+          <div className="min-w-0 basis-0 flex-1">
+            <p
+              className="block w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold leading-tight text-foreground"
+              title={track.trackName}
+            >
+              {clampText(track.trackName, MAX_TITLE_CHARS)}
             </p>
-            <p className="mt-0.5 truncate text-sm text-muted-foreground">
-              {track.artists.join(", ")}
+            <p
+              className="mt-0.5 block w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm text-muted-foreground"
+              title={track.artists.join(", ")}
+            >
+              {clampText(track.artists.join(", "), MAX_ARTISTS_CHARS)}
             </p>
             <p className="mt-1 text-[11px] tracking-[0.04em] text-muted-foreground">
               {track.isPlaying ? "Now Playing" : `Played ${formatRelativeTime(track.playedAt)}`}

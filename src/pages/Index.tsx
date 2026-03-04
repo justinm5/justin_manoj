@@ -79,8 +79,8 @@ const Index = () => {
   return (
     <PageLayout>
       <div id="home" className="space-y-8">
-        <section className="grid gap-4 lg:gap-3 lg:grid-cols-[1.46fr_1fr]">
-          <div className="relative rounded-2xl overflow-hidden border border-border/40 bg-card/20 min-h-[540px] lg:min-h-[672px]">
+        <section className="grid gap-4 lg:gap-3 lg:grid-cols-[minmax(0,1.46fr)_minmax(0,1fr)]">
+          <div className="min-w-0 relative rounded-2xl overflow-hidden border border-border/40 bg-card/20 min-h-[540px] lg:min-h-[672px]">
             <img
               src="/profile.jpg"
               alt="Justin Manoj in the city at sunset"
@@ -94,7 +94,7 @@ const Index = () => {
             </div>
           </div>
 
-          <aside className="space-y-3 animate-fade-in">
+          <aside className="min-w-0 space-y-3 animate-fade-in">
             <div className="rounded-2xl border border-border/40 p-6 bg-card/20 backdrop-blur-sm">
               <div>
                 <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
