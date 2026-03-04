@@ -105,7 +105,7 @@ const Index = () => {
                 </h2>
               </div>
 
-              <p className="mt-2 text-[12px] italic tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
+              <p className="mt-2 text-[12px] tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
                 B.S in Computer Science & Mathematics · May 2027
               </p>
 
@@ -152,7 +152,29 @@ const Index = () => {
           </aside>
         </section>
 
-        <div className="flex flex-wrap justify-center gap-4 border-t border-border/40 pt-6">
+        <div className="hidden md:block fixed right-4 lg:right-6 top-1/2 -translate-y-1/2 z-40">
+          <div className="rounded-3xl border border-border/50 bg-background/70 backdrop-blur-2xl p-2 shadow-[0_20px_44px_rgba(0,0,0,0.25)]">
+            <div className="flex flex-col gap-1.5">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="group rounded-2xl border border-border/40 p-2.5 bg-card/20 backdrop-blur-sm hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <Icon className="w-7 h-7 text-foreground/80 group-hover:text-accent transition-colors" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="md:hidden flex flex-wrap justify-center gap-4 border-t border-border/40 pt-6">
           {socialLinks.map((social) => {
             const Icon = social.icon;
             return (
