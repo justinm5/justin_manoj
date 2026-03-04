@@ -4,13 +4,14 @@ import { Loader2, Music2 } from "lucide-react";
 interface SpotifyLastPlayedPayload {
   albumName: string;
   artists: string[];
+  isPlaying?: boolean;
   playedAt: string;
   trackName: string;
   trackUrl?: string;
   albumArtUrl?: string;
 }
 
-const POLL_INTERVAL_MS = 20000;
+const POLL_INTERVAL_MS = 5000;
 const TRACK_CACHE_KEY = "spotify.lastPlayed.cache";
 
 const getCachedTrack = (): SpotifyLastPlayedPayload | null => {
@@ -130,13 +131,25 @@ export const SpotifyLastPlayed = () => {
     const controller = new AbortController();
     void loadTrack(controller.signal);
 
-    const intervalId = window.setInterval(() => {
+    const refreshTrack = () => {
       void loadTrack();
-    }, POLL_INTERVAL_MS);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        refreshTrack();
+      }
+    };
+
+    const intervalId = window.setInterval(refreshTrack, POLL_INTERVAL_MS);
+    window.addEventListener("focus", refreshTrack);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       controller.abort();
       window.clearInterval(intervalId);
+      window.removeEventListener("focus", refreshTrack);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [loadTrack]);
 
@@ -177,7 +190,7 @@ export const SpotifyLastPlayed = () => {
             </p>
             <p className="mt-0.5 text-sm text-muted-foreground truncate">{track.artists.join(", ")}</p>
             <p className="mt-1 text-[11px] tracking-[0.04em] text-muted-foreground">
-              {formatRelativeTime(track.playedAt)}
+              {track.isPlaying ? "now playing" : formatRelativeTime(track.playedAt)}
             </p>
           </div>
         </a>

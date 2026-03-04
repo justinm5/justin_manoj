@@ -2,18 +2,26 @@ interface SpotifyTokenPayload {
   access_token?: string;
 }
 
+interface SpotifyTrack {
+  name?: string;
+  artists?: Array<{ name?: string }>;
+  external_urls?: { spotify?: string };
+  album?: {
+    name?: string;
+    images?: Array<{ url?: string }>;
+  };
+}
+
+interface SpotifyCurrentlyPlayingResponse {
+  timestamp?: number;
+  is_playing?: boolean;
+  item?: SpotifyTrack;
+}
+
 interface SpotifyRecentResponse {
   items?: Array<{
     played_at?: string;
-    track?: {
-      name?: string;
-      artists?: Array<{ name?: string }>;
-      external_urls?: { spotify?: string };
-      album?: {
-        name?: string;
-        images?: Array<{ url?: string }>;
-      };
-    };
+    track?: SpotifyTrack;
   }>;
 }
 
@@ -79,6 +87,16 @@ const getAccessToken = async (clientId: string, clientSecret: string, refreshTok
   return payload.access_token ?? null;
 };
 
+const toTrackPayload = (track: SpotifyTrack, playedAt: string, isPlaying: boolean) => ({
+  albumArtUrl: track.album?.images?.[0]?.url ?? null,
+  albumName: track.album?.name ?? "",
+  artists: (track.artists ?? []).map((artist) => artist.name).filter(Boolean),
+  isPlaying,
+  playedAt,
+  trackName: track.name,
+  trackUrl: track.external_urls?.spotify ?? null,
+});
+
 export default async function handler(req: ApiRequest, res: ApiResponse) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
@@ -112,10 +130,26 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       return json(res, 502, { error: "Could not refresh Spotify access token." });
     }
 
+    const spotifyHeaders = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+
+    // Faster updates: check currently playing first, then fall back to recently played.
+    const currentResponse = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+      headers: spotifyHeaders,
+    });
+
+    if (currentResponse.status === 200) {
+      const currentPayload = (await currentResponse.json()) as SpotifyCurrentlyPlayingResponse;
+      const currentTrack = currentPayload.item;
+      if (currentTrack?.name) {
+        const playedAt = new Date(currentPayload.timestamp ?? Date.now()).toISOString();
+        return json(res, 200, toTrackPayload(currentTrack, playedAt, Boolean(currentPayload.is_playing)));
+      }
+    }
+
     const recentResponse = await fetch("https://api.spotify.com/v1/me/player/recently-played?limit=1", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+      headers: spotifyHeaders,
     });
 
     if (!recentResponse.ok) {
@@ -130,14 +164,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       return json(res, 200, { trackName: null });
     }
 
-    return json(res, 200, {
-      albumArtUrl: track.album?.images?.[0]?.url ?? null,
-      albumName: track.album?.name ?? "",
-      artists: (track.artists ?? []).map((artist) => artist.name).filter(Boolean),
-      playedAt: item.played_at,
-      trackName: track.name,
-      trackUrl: track.external_urls?.spotify ?? null,
-    });
+    return json(res, 200, toTrackPayload(track, item.played_at, false));
   } catch {
     return json(res, 500, { error: "Unexpected Spotify API error." });
   }
