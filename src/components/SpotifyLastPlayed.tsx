@@ -154,7 +154,7 @@ export const SpotifyLastPlayed = () => {
   }, [loadTrack]);
 
   return (
-    <div className="rounded-2xl border border-border/40 p-4 bg-card/20 backdrop-blur-sm">
+    <div className="overflow-hidden rounded-2xl border border-border/40 p-4 bg-card/20 backdrop-blur-sm">
       <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
         What I&apos;m Listening To
       </p>
@@ -169,7 +169,7 @@ export const SpotifyLastPlayed = () => {
           href={track.trackUrl ?? "https://open.spotify.com"}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 flex items-center gap-3 group"
+          className="mt-3 flex w-full min-w-0 items-center gap-3 group"
         >
           {track.albumArtUrl ? (
             <img
@@ -183,14 +183,15 @@ export const SpotifyLastPlayed = () => {
             </div>
           )}
 
-          <div className="min-w-0">
-            <p className="text-xs text-muted-foreground truncate">{track.albumName}</p>
-            <p className="text-base font-semibold text-foreground leading-tight truncate">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-base font-semibold leading-tight text-foreground">
               {track.trackName}
             </p>
-            <p className="mt-0.5 text-sm text-muted-foreground truncate">{track.artists.join(", ")}</p>
+            <p className="mt-0.5 truncate text-sm text-muted-foreground">
+              {track.artists.join(", ")}
+            </p>
             <p className="mt-1 text-[11px] tracking-[0.04em] text-muted-foreground">
-              {track.isPlaying ? "now playing" : formatRelativeTime(track.playedAt)}
+              {track.isPlaying ? "Now Playing" : `Played ${formatRelativeTime(track.playedAt)}`}
             </p>
           </div>
         </a>
