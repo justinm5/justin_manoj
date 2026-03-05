@@ -54,12 +54,12 @@ const coursework =
   "Algorithms & Data Structures, Distributed Systems, Operating Systems, Databases, Computer Networks & Security, Machine Learning, Web Programming, Discrete Mathematics";
 
 const honors =
-  "Dean's List, Chancellor's Award, NYS Award for Academic Excellence, AP Scholar with Distinction, National Merit Commended Scholar, Commonwealth Honors College";
+  "Dean’s List, Chancellor’s Award, NYS Academic Excellence Award, AP Scholar with Distinction, National Merit Scholar, Honors College";
 
 const technicalSkills = [
   {
     title: "Languages",
-    items: "Python · Java · C · C++ · TypeScript · SQL",
+    items: "Python · Java · C++ · TypeScript · SQL",
   },
   {
     title: "Frameworks",
@@ -67,11 +67,11 @@ const technicalSkills = [
   },
   {
     title: "Machine Learning",
-    items: "PyTorch · TensorFlow · Scikit-learn · LangChain",
+    items: "PyTorch · Scikit-learn · NumPy · Pandas",
   },
   {
     title: "Systems & Infrastructure",
-    items: "PostgreSQL · Redis · Docker · Kubernetes · AWS",
+    items: "AWS · Docker · Kubernetes · PostgreSQL · Redis",
   },
 ];
 
@@ -100,30 +100,30 @@ const Index = () => {
                 <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                   Education
                 </p>
-                <h2 className="mt-1 text-base font-semibold text-foreground leading-tight">
+                <h2 className="mt-2 text-[16px] font-semibold text-foreground leading-tight">
                   University of <span className="whitespace-nowrap">Massachusetts Amherst</span>
                 </h2>
               </div>
 
-              <p className="mt-2 text-[12px] tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
-                B.S in Computer Science & Mathematics · May 2027
+              <p className="mt-2 text-[14px] tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
+                B.S in Computer Science & Mathematics
               </p>
 
-              <p className="mt-5 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="mt-6 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                 Relevant Coursework
               </p>
               <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                 {coursework}
               </p>
 
-              <p className="mt-5 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="mt-6 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                 Awards/Honors
               </p>
               <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                 {honors}
               </p>
 
-              <p className="mt-5 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="mt-6 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                 Technical Skills
               </p>
               <div className="mt-1.5 space-y-2">
@@ -141,7 +141,7 @@ const Index = () => {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-foreground/80 hover:text-accent transition-colors"
+                className="inline-flex items-center gap-1 mt-6 text-sm font-medium text-foreground/80 hover:text-accent transition-colors"
               >
                 View Resume
                 <ArrowUpRight className="w-4 h-4" />
@@ -157,12 +157,13 @@ const Index = () => {
             <div className="flex flex-col gap-1.5">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
+                const isEmailLink = social.href.startsWith("mailto:");
                 return (
                   <a
                     key={social.label}
                     href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={isEmailLink ? undefined : "_blank"}
+                    rel={isEmailLink ? undefined : "noopener noreferrer"}
                     aria-label={social.label}
                     className="group rounded-2xl border border-border/40 p-2.5 bg-card/20 backdrop-blur-sm hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:-translate-y-0.5 transition-all duration-300"
                   >
@@ -177,12 +178,13 @@ const Index = () => {
         <div className="md:hidden flex flex-wrap justify-center gap-4 border-t border-border/40 pt-6">
           {socialLinks.map((social) => {
             const Icon = social.icon;
+            const isEmailLink = social.href.startsWith("mailto:");
             return (
               <a
                 key={social.label}
                 href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={isEmailLink ? undefined : "_blank"}
+                rel={isEmailLink ? undefined : "noopener noreferrer"}
                 aria-label={social.label}
                 className="group rounded-2xl border border-border/40 p-4 bg-card/20 backdrop-blur-sm hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:-translate-y-0.5 transition-all duration-300"
               >
