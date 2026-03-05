@@ -51,7 +51,7 @@ const socialLinks: { label: string; href: string; icon: IconComponent }[] = [
 ];
 
 const coursework =
-  "Algorithms & Data Structures, Distributed Systems, Operating Systems, Databases, Computer Networks & Security, Machine Learning, Web Programming, Discrete Mathematics";
+  "Algorithms, Data Structures, Operating Systems, Databases, Computer Networks & Security, Machine Learning, Web Programming, Scalable Web Systems, Discrete Mathematics";
 
 const honors =
   "Dean’s List, Chancellor’s Award, NYS Academic Excellence Award, AP Scholar with Distinction, National Merit Scholar, Honors College";

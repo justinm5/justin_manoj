@@ -48,10 +48,10 @@ const Experience = () => {
   return (
     <PageLayout>
       <section id="experience" className="mb-6 scroll-mt-20">
-        <div className="space-y-8">
+        <div className="space-y-4">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Experience</h2>
           <div className="relative p-0 md:p-1">
-            <ol className="relative space-y-5 md:space-y-7 before:absolute before:-bottom-8 before:left-[14px] before:-top-6 before:w-0 before:border-l-2 before:border-foreground/35 md:before:left-1/2 md:before:-translate-x-1/2">
+            <ol className="relative space-y-5 md:space-y-7 before:absolute before:-bottom-8 before:left-[14px] before:-top-2 before:w-0 before:border-l-2 before:border-foreground/35 md:before:left-1/2 md:before:-translate-x-1/2">
               {experiences.map((experience, index) => {
                 const isRight = index % 2 === 1;
 
