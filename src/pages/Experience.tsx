@@ -3,12 +3,12 @@ import { cn } from "@/lib/utils";
 
 const experiences = [
   {
-    title: "Co-Founder",
+    title: "Software Engineer",
     company: "ChitChat Workplace",
     location: "Boston, MA",
     period: "May 2025 – Present",
     summary:
-      "Built real-time messaging backend for 100k+ user concurrent messaging platform and launched enterprise pilots in 90 days.",
+      "Built real-time backend for 100k+ user concurrent messaging platform & launched enterprise pilots in 90 days.",
   },
   {
     title: "Software Engineer Intern",
@@ -16,7 +16,7 @@ const experiences = [
     location: "Alberta, CA",
     period: "Mar 2025 – Sept 2025",
     summary:
-      "Rebuilt core APIs with GraphQL and caching, reducing backend load and cutting dashboard load times by 65%",
+      "Rebuilt core APIs with GraphQL & caching, reducing backend load & cutting dashboard load times by 65%.",
   },
   {
     title: "Research Assistant",
@@ -24,7 +24,7 @@ const experiences = [
     location: "Amherst, MA",
     period: "Nov 2024 – Apr 2025",
     summary:
-      "Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations and improving analysis speed 3x.",
+      "Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x.",
   },
   {
     title: "Software Engineer",
@@ -32,7 +32,7 @@ const experiences = [
     location: "Amherst, MA",
     period: "Sept 2024 – Present",
     summary:
-      "Optimized campus events platform with faster search and reliable real-time updates for UMass students.",
+      "Optimized campus events platform with faster search & reliable real-time updates for UMass students.",
   },
   {
     title: "Team Captain",
@@ -40,7 +40,7 @@ const experiences = [
     location: "Thiells, NY",
     period: "Sept 2022 - Jun 2023",
     summary:
-      "Led C++ robotics software development and team execution for regional and national competitions.",
+      "Led C++ robotics software development and team execution for regional & national competitions.",
   },
 ];
 
