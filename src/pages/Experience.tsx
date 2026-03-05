@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 const experiences = [
   {
-    title: "Software Engineer",
+    title: "Co-Founder",
     company: "ChitChat Workplace",
     location: "Boston, MA",
     period: "May 2025 – Present",
@@ -16,7 +16,7 @@ const experiences = [
     location: "Alberta, CA",
     period: "Mar 2025 – Sept 2025",
     summary:
-      "Rebuilt core APIs with GraphQL and caching, reducing backend load and cutting dashboard load times by 65%.",
+      "Rebuilt core APIs with GraphQL and caching, reducing backend load and cutting dashboard load times by 65%",
   },
   {
     title: "Research Assistant",
@@ -32,7 +32,7 @@ const experiences = [
     location: "Amherst, MA",
     period: "Sept 2024 – Present",
     summary:
-      "Built and optimized campus events platform with faster search and reliable real-time updates for UMass students.",
+      "Optimized campus events platform with faster search and reliable real-time updates for UMass students.",
   },
   {
     title: "Team Captain",
@@ -48,9 +48,10 @@ const Experience = () => {
   return (
     <PageLayout>
       <section id="experience" className="mb-6 scroll-mt-20">
-        <div className="space-y-3">
-          <div className="relative p-2 md:p-3">
-            <ol className="relative space-y-5 md:space-y-7 before:absolute before:bottom-4 before:left-[14px] before:-top-4 before:w-0 before:border-l-2 before:border-foreground/35 md:before:left-1/2 md:before:-translate-x-1/2">
+        <div className="space-y-8">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Experience</h2>
+          <div className="relative p-0 md:p-1">
+            <ol className="relative space-y-5 md:space-y-7 before:absolute before:-bottom-8 before:left-[14px] before:-top-6 before:w-0 before:border-l-2 before:border-foreground/35 md:before:left-1/2 md:before:-translate-x-1/2">
               {experiences.map((experience, index) => {
                 const isRight = index % 2 === 1;
 
@@ -68,13 +69,13 @@ const Experience = () => {
                     <div
                       className={cn(
                         "pl-8 md:grid md:grid-cols-2 md:gap-8 md:pl-0",
-                        isRight ? "md:[&>article]:col-start-2 md:[&>article]:ml-4" : "md:[&>article]:col-start-1 md:[&>article]:mr-4"
+                        isRight ? "md:[&>article]:col-start-2" : "md:[&>article]:col-start-1"
                       )}
                     >
-                      <article className="group rounded-2xl border-2 border-foreground/35 ring-2 ring-foreground/20 bg-background/60 p-4 shadow-[0_10px_28px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/55 hover:bg-background/75 md:p-5">
+                      <article className="group rounded-2xl border-2 border-foreground/35 ring-2 ring-foreground/20 bg-background/60 p-3.5 shadow-[0_10px_28px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/55 hover:bg-background/75 md:p-4">
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div className="min-w-0">
-                            <h3 className="text-[18px] font-semibold leading-snug tracking-tight text-foreground">
+                            <h3 className="text-[17px] font-semibold leading-snug tracking-tight text-foreground">
                               {experience.title}
                             </h3>
                             <p className="mt-1.5 text-[12px] text-muted-foreground">
@@ -89,7 +90,7 @@ const Experience = () => {
                             {experience.period}
                           </span>
                         </div>
-                        <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground/95">
+                        <p className="mt-2.5 text-[14px] leading-relaxed text-muted-foreground/95">
                           {experience.summary}
                         </p>
                       </article>
