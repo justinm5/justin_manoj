@@ -27,7 +27,7 @@ export const ProjectCard = ({
   return (
     <div
       onClick={handleClick}
-      className={`group border border-border/40 rounded-2xl p-7 transition-all duration-300 bg-card/25 backdrop-blur-sm hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:-translate-y-0.5 ${
+      className={`group rounded-2xl border-2 border-foreground/25 ring-1 ring-foreground/15 bg-background/55 p-6 shadow-[0_12px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/55 hover:shadow-[0_0_20px_rgba(99,102,241,0.18)] ${
         liveLink ? "cursor-pointer" : ""
       }`}
       style={{
@@ -55,7 +55,7 @@ export const ProjectCard = ({
         </div>
       </div>
 
-      <p className="text-[15px] text-muted-foreground/90 mb-4 leading-relaxed">
+      <p className="mb-4 text-[15px] leading-relaxed text-muted-foreground/90">
         <span dangerouslySetInnerHTML={{ __html: description }} />
       </p>
 
