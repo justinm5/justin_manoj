@@ -9,7 +9,7 @@ const experiences = [
     location: "Boston, MA",
     period: "May 2025 – Present",
     summary:
-      "Built real-time backend for 100k+ user concurrent messaging platform and launched enterprise pilots in 90 days.",
+      "Built real-time messaging backend for 100k+ user concurrent messaging platform and launched enterprise pilots in 90 days.",
   },
   {
     title: "Software Engineer Intern",
@@ -25,7 +25,7 @@ const experiences = [
     location: "Amherst, MA",
     period: "Nov 2024 – Apr 2025",
     summary:
-      "Tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations and improving analysis speed 3x.",
+      "Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations and improving analysis speed 3x.",
   },
   {
     title: "Software Engineer",

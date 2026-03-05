@@ -105,7 +105,7 @@ const Index = () => {
                 </h2>
               </div>
 
-              <p className="mt-2 text-[14px] tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
+              <p className="mt-1 text-[14px] tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
                 B.S in Computer Science & Mathematics
               </p>
 
@@ -141,7 +141,7 @@ const Index = () => {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-6 text-sm font-medium text-foreground/80 hover:text-accent transition-colors"
+                className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-foreground/80 hover:text-accent transition-colors"
               >
                 View Resume
                 <ArrowUpRight className="w-4 h-4" />
