@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 const experiences = [
   {
+    id: "chitchat-workplace",
     title: "Software Engineer",
     company: "ChitChat Workplace",
     location: "Boston, MA",
@@ -11,6 +12,7 @@ const experiences = [
       "Built real-time backend for 100k+ user concurrent messaging platform & launched enterprise pilots in 90 days.",
   },
   {
+    id: "gbcs-group",
     title: "Software Engineer Intern",
     company: "GBCS Group",
     location: "Alberta, CA",
@@ -19,6 +21,7 @@ const experiences = [
       "Rebuilt core APIs with GraphQL & caching, reducing backend load & cutting dashboard load times by 65%.",
   },
   {
+    id: "umass-autonomous-learning-lab",
     title: "Research Assistant",
     company: "UMass Amherst - Autonomous Learning Lab",
     location: "Amherst, MA",
@@ -27,6 +30,7 @@ const experiences = [
       "Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x.",
   },
   {
+    id: "build-umass",
     title: "Software Engineer",
     company: "BUILD UMass",
     location: "Amherst, MA",
@@ -35,6 +39,7 @@ const experiences = [
       "Optimized campus events platform with faster search & reliable real-time updates for UMass students.",
   },
   {
+    id: "nrhs-robotics-first-vex-robotics",
     title: "Team Captain",
     company: "NRHS Robotics / FIRST & VEX Robotics",
     location: "Thiells, NY",
@@ -56,7 +61,7 @@ const Experience = () => {
                 const isRight = index % 2 === 1;
 
                 return (
-                  <li key={`${experience.company}-${experience.period}`} className="relative">
+                  <li id={experience.id} key={`${experience.company}-${experience.period}`} className="relative scroll-mt-24">
                     <span className="absolute left-[14px] top-5 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-foreground/75 ring-4 ring-background md:left-1/2" />
                     <span className="absolute left-[14px] top-6 h-px w-6 border-t border-foreground/35 md:hidden" />
                     <span
