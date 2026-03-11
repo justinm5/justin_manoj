@@ -1,17 +1,28 @@
 import { ReactNode } from "react";
 import { AnimatedGradient } from "@/components/AnimatedGradient";
 import { Navigation } from "@/components/Navigation";
+import { cn } from "@/lib/utils";
 
 interface PageLayoutProps {
   children: ReactNode;
+  width?: "normal" | "wide";
+  contentClassName?: string;
 }
 
-export const PageLayout = ({ children }: PageLayoutProps) => {
+export const PageLayout = ({ children, width = "normal", contentClassName }: PageLayoutProps) => {
+  const widthClass = width === "wide" ? "mx-auto max-w-6xl" : "mx-auto max-w-5xl";
+
   return (
     <div className="min-h-screen bg-background relative">
       <AnimatedGradient />
       <Navigation />
-      <main className="relative z-10 mx-auto w-full max-w-5xl px-4 pb-24 pt-6 sm:px-6 md:pb-10 md:pt-8 md:pl-24 lg:pl-28">
+      <main
+        className={cn(
+          "relative z-10 w-full px-4 pb-0 pt-20 sm:px-6 sm:pt-24 lg:px-10",
+          widthClass,
+          contentClassName,
+        )}
+      >
         {children}
       </main>
     </div>
