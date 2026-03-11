@@ -47,7 +47,7 @@ const Index = () => {
             </div>
           </div>
 
-          <aside className="min-w-0 flex flex-col gap-3">
+          <aside className="min-w-0 flex flex-col gap-3 h-full">
             <div className="rounded-2xl p-5 sm:p-6 bg-card/35 border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] relative overflow-hidden">
               <div>
                 <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
@@ -111,7 +111,7 @@ const Index = () => {
               </a>
             </div>
 
-            <div className="min-w-0">
+            <div className="min-w-0 mt-auto">
               <SpotifyLastPlayed />
             </div>
           </aside>
