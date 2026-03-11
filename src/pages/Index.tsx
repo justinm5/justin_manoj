@@ -30,10 +30,10 @@ const technicalSkills = [
 
 const Index = () => {
   return (
-    <PageLayout width="wide" contentClassName="pb-8">
+    <PageLayout width="wide" contentClassName="pb-0">
       <div id="home" className="flex flex-col">
         <section className="grid gap-3 lg:gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-          <div className="min-w-0 relative rounded-2xl overflow-hidden bg-card/20 min-h-[300px] sm:min-h-[380px]">
+          <div className="min-w-0 relative rounded-2xl overflow-hidden bg-card/20 h-[300px] sm:h-[360px] lg:h-[720px]">
             <img
               src="/profile.jpg"
               alt="Justin Manoj"
@@ -48,20 +48,20 @@ const Index = () => {
           </div>
 
           <aside className="min-w-0 flex flex-col gap-3">
-            <div className="rounded-2xl p-5 bg-card/20">
+            <div className="rounded-2xl p-4 bg-card/20">
               <div>
                 <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                   <GraduationCap className="h-3.5 w-3.5" />
                   Education
                 </p>
-                <div className="mt-2 flex items-start gap-3">
+                <div className="mt-3 flex items-start gap-3">
                   <UMassBadge className="h-12 w-12 shrink-0" />
                   <div>
-                    <h2 className="text-[19px] font-semibold text-foreground leading-tight">
+                    <h2 className="text-[17px] font-semibold text-foreground leading-tight">
                       University of <span className="whitespace-nowrap">Massachusetts Amherst</span>
                     </h2>
                     <p className="mt-1 text-[16px] tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
-                      B.S. in Computer Science & Mathematics
+                      B.S in Computer Science & Mathematics
                     </p>
                   </div>
                 </div>
