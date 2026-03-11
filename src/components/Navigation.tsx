@@ -59,15 +59,15 @@ export const Navigation = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <div className="mt-4 flex items-center justify-between gap-4 rounded-2xl bg-card/30 px-4 py-3">
-          <nav className="hidden md:flex items-center gap-2 rounded-full bg-card/30 px-2 py-1 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+        <div className="mt-4 flex items-center justify-between gap-4">
+          <nav className="hidden md:flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
                 key={item.href}
                 to={item.href}
                 className={({ isActive }) =>
                   cn(
-                    "rounded-full px-3 py-1 transition-colors",
+                    "rounded-full px-2 py-1 transition-colors",
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )
                 }
@@ -97,15 +97,15 @@ export const Navigation = () => {
           </div>
         </div>
 
-        <div className="mt-2 flex items-center justify-center md:hidden">
-          <nav className="flex items-center gap-2 rounded-full bg-card/30 px-2 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+        <div className="mt-3 flex flex-col items-start gap-3 md:hidden">
+          <nav className="flex items-center gap-3 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
                 key={item.href}
                 to={item.href}
                 className={({ isActive }) =>
                   cn(
-                    "rounded-full px-3 py-1 transition-colors",
+                    "rounded-full px-2 py-1 transition-colors",
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )
                 }
@@ -114,6 +114,25 @@ export const Navigation = () => {
               </NavLink>
             ))}
           </nav>
+
+          <div className="flex items-center gap-2">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+              const isEmailLink = social.href.startsWith("mailto:");
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target={isEmailLink ? undefined : "_blank"}
+                  rel={isEmailLink ? undefined : "noopener noreferrer"}
+                  aria-label={social.label}
+                  className="group rounded-xl p-2 bg-card/30 transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <Icon className="h-5 w-5 text-foreground/80 group-hover:text-accent transition-colors" />
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
     </header>

@@ -6,7 +6,7 @@ type UMassBadgeProps = {
 
 export const UMassBadge = ({ className }: UMassBadgeProps) => (
   <img
-    src="public/umass-logo.png"
+    src="/umass-logo.png"
     alt="UMass logo"
     className={cn("inline-block h-8 w-8 object-contain", className)}
     loading="lazy"

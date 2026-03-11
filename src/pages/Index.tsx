@@ -33,7 +33,7 @@ const Index = () => {
     <PageLayout width="wide" contentClassName="pb-8">
       <div id="home" className="flex flex-col">
         <section className="grid gap-3 lg:gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-          <div className="min-w-0 relative rounded-2xl overflow-hidden bg-card/20 min-h-[320px] sm:min-h-[400px]">
+          <div className="min-w-0 relative rounded-2xl overflow-hidden bg-card/20 min-h-[300px] sm:min-h-[380px]">
             <img
               src="/profile.jpg"
               alt="Justin Manoj"
@@ -48,7 +48,7 @@ const Index = () => {
           </div>
 
           <aside className="min-w-0 flex flex-col gap-3">
-            <div className="rounded-2xl p-6 bg-card/20">
+            <div className="rounded-2xl p-5 bg-card/20">
               <div>
                 <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
                   <GraduationCap className="h-3.5 w-3.5" />

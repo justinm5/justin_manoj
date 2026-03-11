@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { UMassBadge } from "@/components/UMassBadge";
 
 type ExperienceCard = {
   period: string;
@@ -198,11 +197,8 @@ const About = () => {
                 </div>
 
                 <div className="mt-2.5 space-y-1">
-                  <p className="flex min-w-0 items-center gap-2 text-[14px] font-semibold leading-snug text-foreground">
-                    {experience.company === "University of Massachusetts Amherst" ? (
-                      <UMassBadge className="h-4 w-4" />
-                    ) : null}
-                    <span className="truncate">{experience.company}</span>
+                  <p className="truncate text-[14px] font-semibold leading-snug text-foreground">
+                    {experience.company}
                   </p>
                   {experience.companySecondary ? (
                     <p className="truncate text-[12px] font-semibold leading-snug text-foreground/75">
