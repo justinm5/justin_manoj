@@ -60,7 +60,7 @@ export const Navigation = () => {
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <div className="mt-4 flex items-center justify-between gap-4">
-          <nav className="hidden md:flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+          <nav className="hidden md:flex items-center gap-3 text-[13px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
                 key={item.href}
@@ -77,7 +77,7 @@ export const Navigation = () => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {socialLinks.map((social) => {
               const Icon = social.icon;
               const isEmailLink = social.href.startsWith("mailto:");
@@ -88,9 +88,9 @@ export const Navigation = () => {
                   target={isEmailLink ? undefined : "_blank"}
                   rel={isEmailLink ? undefined : "noopener noreferrer"}
                   aria-label={social.label}
-                  className="group rounded-xl p-2 bg-card/30 transition-all duration-300 hover:-translate-y-0.5"
+                  className="group p-1.5 transition-transform duration-300 hover:-translate-y-0.5"
                 >
-                  <Icon className="h-5 w-5 text-foreground/80 group-hover:text-accent transition-colors" />
+                  <Icon className="h-7 w-7 text-foreground/80 group-hover:text-accent transition-colors" />
                 </a>
               );
             })}
@@ -98,7 +98,7 @@ export const Navigation = () => {
         </div>
 
         <div className="mt-3 flex flex-col items-start gap-3 md:hidden">
-          <nav className="flex items-center gap-3 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+          <nav className="flex items-center gap-3 text-[12px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
                 key={item.href}
@@ -115,7 +115,7 @@ export const Navigation = () => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {socialLinks.map((social) => {
               const Icon = social.icon;
               const isEmailLink = social.href.startsWith("mailto:");
@@ -126,9 +126,9 @@ export const Navigation = () => {
                   target={isEmailLink ? undefined : "_blank"}
                   rel={isEmailLink ? undefined : "noopener noreferrer"}
                   aria-label={social.label}
-                  className="group rounded-xl p-2 bg-card/30 transition-all duration-300 hover:-translate-y-0.5"
+                  className="group p-1.5 transition-transform duration-300 hover:-translate-y-0.5"
                 >
-                  <Icon className="h-5 w-5 text-foreground/80 group-hover:text-accent transition-colors" />
+                  <Icon className="h-7 w-7 text-foreground/80 group-hover:text-accent transition-colors" />
                 </a>
               );
             })}

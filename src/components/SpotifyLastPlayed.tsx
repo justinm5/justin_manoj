@@ -163,7 +163,7 @@ export const SpotifyLastPlayed = () => {
   }, [loadTrack]);
 
   return (
-    <div className="min-w-0 overflow-hidden rounded-2xl p-4 bg-card/20">
+    <div className="min-w-0 overflow-hidden rounded-2xl p-5 sm:p-6 bg-card/35 border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] relative">
       <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
         What I&apos;m Listening To
       </p>
