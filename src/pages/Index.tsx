@@ -67,27 +67,27 @@ const Index = () => {
                 </div>
               </div>
 
-              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-6 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
                 <BookOpen className="h-3.5 w-3.5" />
                 Relevant Coursework
               </p>
-              <p className="mt-2 text-[15px] text-muted-foreground leading-relaxed">
+              <p className="mt-2.5 text-[15px] text-muted-foreground leading-relaxed">
                 {coursework}
               </p>
 
-              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-6 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
                 <Award className="h-3.5 w-3.5" />
                 Awards/Honors
               </p>
-              <p className="mt-2 text-[15px] text-muted-foreground leading-relaxed">
+              <p className="mt-2.5 text-[15px] text-muted-foreground leading-relaxed">
                 {honors}
               </p>
 
-              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-6 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
                 <Cpu className="h-3.5 w-3.5" />
                 Technical Skills
               </p>
-              <div className="mt-3 space-y-3">
+              <div className="mt-3.5 space-y-3">
                 {technicalSkills.map((skillGroup) => (
                   <div key={skillGroup.title}>
                     <p className="text-[15px] font-medium text-foreground/90">
@@ -104,7 +104,7 @@ const Index = () => {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-5 text-sm font-medium text-foreground/80 hover:text-accent transition-colors"
+                className="inline-flex items-center gap-1 mt-6 text-sm font-medium text-foreground/80 hover:text-accent transition-colors"
               >
                 View Resume
                 <ArrowUpRight className="w-4 h-4" />

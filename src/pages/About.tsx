@@ -19,8 +19,8 @@ const experienceCards: ExperienceCard[] = [
     company: "Dell Technologies",
     role: "Incoming Software Engineering Intern",
     location: "Hopkinton, MA",
-    focus: "Infrastructure · Cloud · Microservices · Distrubuted Systems",
-    summary: "Summer '26",
+    focus: "Infrastructure · Cloud · Microservices",
+    summary: "Summer 2026",
     href: "/experience#dell-technologies-isg",
   },
   {
