@@ -163,10 +163,12 @@ export const SpotifyLastPlayed = () => {
   }, [loadTrack]);
 
   return (
-    <div className="min-w-0 overflow-hidden rounded-2xl p-5 sm:p-6 bg-card/35 border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] relative">
-      <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-        What I&apos;m Listening To
-      </p>
+    <div className="min-w-0 overflow-hidden rounded-2xl p-4 sm:p-5 bg-card/30 border border-white/12 shadow-[0_24px_60px_rgba(0,0,0,0.6),0_8px_20px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.12)] relative">
+      <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
+      <div className="relative">
+        <p className="text-[11px] font-mono uppercase tracking-[0.24em] text-muted-foreground/90">
+          What I&apos;m Listening To
+        </p>
 
       {isLoading ? (
         <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
@@ -188,11 +190,11 @@ export const SpotifyLastPlayed = () => {
             <img
               src={track.albumArtUrl}
               alt={`${track.trackName} album art`}
-              className="h-14 w-14 shrink-0 rounded-lg border border-border/40 object-cover"
+              className="h-12 w-12 shrink-0 rounded-xl border border-white/10 object-cover shadow-[0_10px_24px_rgba(0,0,0,0.5)]"
             />
           ) : (
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-border/40 bg-accent/10">
-              <Music2 className="w-5 h-5 text-foreground/80" />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+              <Music2 className="w-4 h-4 text-foreground/80" />
             </div>
           )}
 
@@ -209,9 +211,16 @@ export const SpotifyLastPlayed = () => {
             >
               {clampText(track.artists.join(", "), MAX_ARTISTS_CHARS)}
             </p>
-            <p className="mt-1 text-[11px] tracking-[0.04em] text-muted-foreground">
-              {track.isPlaying ? "Now Playing" : `Played ${formatRelativeTime(track.playedAt)}`}
-            </p>
+            <div className="mt-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground/80">
+              {track.isPlaying ? (
+                <>
+                  <span className="h-1.5 w-1.5 rounded-full bg-foreground/70" />
+                  Now Playing
+                </>
+              ) : (
+                `Played ${formatRelativeTime(track.playedAt)}`
+              )}
+            </div>
           </div>
         </a>
       ) : (
@@ -221,6 +230,7 @@ export const SpotifyLastPlayed = () => {
       {isDebugMode && debugMessage ? (
         <p className="mt-2 text-[11px] text-amber-500/85">Debug: {debugMessage}</p>
       ) : null}
+      </div>
     </div>
   );
 };

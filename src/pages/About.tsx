@@ -15,6 +15,15 @@ type ExperienceCard = {
 
 const experienceCards: ExperienceCard[] = [
   {
+    period: "May 2026 - Aug 2026",
+    company: "Dell Technologies",
+    role: "Incoming Software Engineering Intern",
+    location: "Hopkinton, MA",
+    focus: "Infrastructure · Cloud · Microservices · Distrubuted Systems",
+    summary: "Summer '26",
+    href: "/experience#dell-technologies-isg",
+  },
+  {
     period: "May 2025 – Present",
     company: "ChitChat Workplace",
     role: "Co-Founder / Software Engineer",
