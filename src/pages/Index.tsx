@@ -54,7 +54,7 @@ const Index = () => {
                   <GraduationCap className="h-3.5 w-3.5" />
                   Education
                 </p>
-                <div className="mt-3 flex items-start gap-3">
+                <div className="mt-4 flex items-start gap-3">
                   <UMassBadge className="h-12 w-12 shrink-0" />
                   <div>
                     <h2 className="text-[18px] font-semibold text-foreground leading-tight">
