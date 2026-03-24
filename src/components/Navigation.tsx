@@ -57,7 +57,7 @@ const socialLinks: { label: string; href: string; icon: IconComponent }[] = [
 
 export const Navigation = () => {
   return (
-    <header className="sticky top-0 z-50">
+    <header className="w-full">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <div className="mt-4 hidden items-center justify-between gap-4 md:flex">
           <nav className="hidden md:flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
@@ -97,15 +97,15 @@ export const Navigation = () => {
           </div>
         </div>
 
-        <div className="mt-3 flex flex-col items-start gap-3 md:hidden">
-          <nav className="flex items-center gap-3 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+        <div className="mt-3 flex items-center justify-between gap-3 md:hidden">
+          <nav className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
                 key={item.href}
                 to={item.href}
                 className={({ isActive }) =>
                   cn(
-                    "rounded-full px-2 py-1 transition-colors",
+                    "rounded-full px-1.5 py-1 transition-colors",
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )
                 }
@@ -128,7 +128,7 @@ export const Navigation = () => {
                   aria-label={social.label}
                   className="group p-1 transition-transform duration-300 hover:-translate-y-0.5"
                 >
-                  <Icon className="h-6 w-6 text-foreground/80 group-hover:text-accent transition-colors" />
+                  <Icon className="h-5 w-5 text-foreground/80 group-hover:text-accent transition-colors sm:h-6 sm:w-6" />
                 </a>
               );
             })}

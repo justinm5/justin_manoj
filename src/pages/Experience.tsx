@@ -1,53 +1,6 @@
 import { PageLayout } from "@/components/PageLayout";
 import { cn } from "@/lib/utils";
-
-const experiences = [
-  {
-    id: "chitchat-workplace",
-    title: "Software Engineer",
-    company: "ChitChat Workplace",
-    location: "Boston, MA",
-    period: "May 2025 – Present",
-    summary:
-      "Built real-time backend for 100k+ user concurrent messaging platform & launched enterprise pilots in 90 days.",
-  },
-  {
-    id: "gbcs-group",
-    title: "Software Engineer Intern",
-    company: "GBCS Group",
-    location: "Alberta, CA",
-    period: "Mar 2025 – Sept 2025",
-    summary:
-      "Rebuilt core APIs with GraphQL & caching, reducing backend load & cutting dashboard load times by 65%.",
-  },
-  {
-    id: "umass-autonomous-learning-lab",
-    title: "Research Assistant",
-    company: "UMass Amherst - Autonomous Learning Lab",
-    location: "Amherst, MA",
-    period: "Nov 2024 – Apr 2025",
-    summary:
-      "Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x.",
-  },
-  {
-    id: "build-umass",
-    title: "Software Engineer",
-    company: "BUILD UMass",
-    location: "Amherst, MA",
-    period: "Sept 2024 – Present",
-    summary:
-      "Optimized campus events platform with faster search & reliable real-time updates for UMass students.",
-  },
-  {
-    id: "nrhs-robotics-first-vex-robotics",
-    title: "Team Captain",
-    company: "NRHS Robotics / FIRST & VEX Robotics",
-    location: "Thiells, NY",
-    period: "Sept 2022 - Jun 2023",
-    summary:
-      "Led C++ robotics software development and team execution for regional & national competitions.",
-  },
-];
+import { experienceTimeline } from "@/data/experience";
 
 const Experience = () => {
   return (
@@ -57,7 +10,7 @@ const Experience = () => {
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Experience</h2>
           <div className="relative p-0 md:p-1">
             <ol className="relative space-y-5 md:space-y-7 before:absolute before:-bottom-8 before:left-[14px] before:-top-2 before:w-0 before:border-l-2 before:border-foreground/35 md:before:left-1/2 md:before:-translate-x-1/2">
-              {experiences.map((experience, index) => {
+              {experienceTimeline.map((experience, index) => {
                 const isRight = index % 2 === 1;
 
                 return (

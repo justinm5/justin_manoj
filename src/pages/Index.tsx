@@ -33,11 +33,11 @@ const Index = () => {
     <PageLayout width="wide" contentClassName="pb-0 max-w-[1280px]">
       <div id="home" className="flex flex-col">
         <section className="grid gap-3 lg:gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-stretch">
-          <div className="min-w-0 relative rounded-2xl overflow-hidden border border-white/12 bg-black/20 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] h-[300px] sm:h-[360px] lg:h-auto lg:aspect-[3/4]">
+          <div className="min-w-0 relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-white/12 bg-black/20 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)]">
             <img
               src="/profile.jpg"
               alt="Justin Manoj"
-              className="w-full h-full object-cover object-center md:object-contain"
+              className="w-full h-full object-contain object-center"
             />
             <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
               <h1 className="text-3xl font-semibold text-white tracking-tight">
