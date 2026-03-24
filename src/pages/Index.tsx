@@ -37,7 +37,7 @@ const Index = () => {
             <img
               src="/profile.jpg"
               alt="Justin Manoj"
-              className="w-full h-full object-contain object-center"
+              className="w-full h-full object-cover object-center md:object-contain"
             />
             <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
               <h1 className="text-3xl font-semibold text-white tracking-tight">

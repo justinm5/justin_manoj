@@ -57,9 +57,9 @@ const socialLinks: { label: string; href: string; icon: IconComponent }[] = [
 
 export const Navigation = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header className="sticky top-0 z-50">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <div className="mt-4 flex items-center justify-between gap-4">
+        <div className="mt-4 hidden items-center justify-between gap-4 md:flex">
           <nav className="hidden md:flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
