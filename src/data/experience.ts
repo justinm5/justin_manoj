@@ -33,6 +33,16 @@ export type ExperienceTimeline = {
 };
 
 const experienceBase: Record<string, ExperienceBase> = {
+  ibm: 
+    {
+      id: "ibm",
+      period: "Aug 2026 - Dec 2026",
+      company: "IBM",
+      role: "Software Developer Co-Op",
+      location: "Lowell, MA",
+      focus: "Cloud · Kubernetes · Microservices",
+      summary: "Fall 2026",
+    },
   dell: {
     id: "dell-technologies-isg",
     period: "May 2026 - Aug 2026",
@@ -46,7 +56,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     id: "chitchat-workplace",
     period: "May 2025 – Present",
     company: "ChitChat Workplace",
-    role: "Co-Founder / Software Engineer",
+    role: "Software Engineer",
     roleTimeline: "Software Engineer",
     location: "Boston, MA",
     focus: "Go · WebSockets · Kafka · Kubernetes · AWS · LangChain",
@@ -67,14 +77,13 @@ const experienceBase: Record<string, ExperienceBase> = {
     id: "umass-autonomous-learning-lab",
     period: "Nov 2024 – Apr 2025",
     company: "University of Massachusetts Amherst",
-    companySecondary: "Autonomous Learning Lab",
     companyTimeline: "UMass Amherst - Autonomous Learning Lab",
     role: "Undergraduate Research Assistant",
     roleTimeline: "Research Assistant",
     location: "Amherst, MA",
     focus: "Python · Multi-Agents · Ray · Pandas · NumPy · Juypter",
     summary:
-      "Tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed by 3x.",
+      "Autonomous Learning Lab. Tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed by 3x.",
     summaryTimeline:
       "Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x.",
   },
@@ -92,17 +101,16 @@ const experienceBase: Record<string, ExperienceBase> = {
     id: "nrhs-robotics-first-vex-robotics",
     period: "Sept 2022 - Jun 2023",
     company: "NRHS Robotics",
-    companySecondary: "FIRST & VEX Robotics",
     companyTimeline: "NRHS Robotics / FIRST & VEX Robotics",
     role: "Team Captain",
     location: "Thiells, NY",
     focus: "C++ · ROS · Gazebo · Computer Vision · PID Control",
     summary:
-      "Led C++ robotics software development and team execution for regional & national competitions.",
+      "First and VEX Robotics. Led C++ robotics software development and team execution for regional & national competitions.",
   },
 };
 
-const cardOrder = ["dell", "chitchat", "gbcs", "umass", "build", "nrhs"] as const;
+const cardOrder = ["ibm", "dell", "chitchat", "gbcs", "umass", "build", "nrhs"] as const;
 const timelineOrder = ["chitchat", "gbcs", "umass", "build", "nrhs"] as const;
 
 export const experienceCards: ExperienceCard[] = cardOrder.map((key) => {

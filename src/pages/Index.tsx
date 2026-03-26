@@ -32,14 +32,14 @@ const Index = () => {
   return (
     <PageLayout width="wide" contentClassName="pb-0 max-w-[1280px]">
       <div id="home" className="flex flex-col">
-        <section className="grid gap-3 lg:gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-stretch">
+        <section className="grid gap-3 lg:gap-3.5 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-stretch">
           <div className="min-w-0 relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-white/12 bg-black/20 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)]">
             <img
               src="/profile.jpg"
               alt="Justin Manoj"
-              className="w-full h-full object-contain object-center"
+              className="h-full w-full object-contain object-center"
             />
-            <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+            <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
               <h1 className="text-3xl font-semibold text-white tracking-tight">
                 Justin Manoj
               </h1>
@@ -48,7 +48,7 @@ const Index = () => {
           </div>
 
           <aside className="min-w-0 flex flex-col gap-3">
-            <div className="rounded-2xl p-6 sm:p-7 bg-card/35 border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] relative overflow-hidden flex flex-col">
+            <div className="rounded-2xl p-5 sm:p-6 bg-card/35 border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] relative overflow-hidden flex flex-col">
               <div>
                 <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
                   <GraduationCap className="h-3.5 w-3.5" />
@@ -61,13 +61,13 @@ const Index = () => {
                       University of <span className="whitespace-nowrap">Massachusetts Amherst</span>
                     </h2>
                     <p className="mt-1 text-[16px] tracking-tight text-foreground/90 leading-relaxed whitespace-nowrap">
-                      B.S in Computer Science & Mathematics
+                      B.S. in Computer Science & Mathematics
                     </p>
                   </div>
                 </div>
               </div>
 
-              <p className="mt-6 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
                 <BookOpen className="h-3.5 w-3.5" />
                 Relevant Coursework
               </p>
@@ -75,7 +75,7 @@ const Index = () => {
                 {coursework}
               </p>
 
-              <p className="mt-6 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
                 <Award className="h-3.5 w-3.5" />
                 Awards/Honors
               </p>
@@ -83,11 +83,11 @@ const Index = () => {
                 {honors}
               </p>
 
-              <p className="mt-6 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
                 <Cpu className="h-3.5 w-3.5" />
                 Technical Skills
               </p>
-              <div className="mt-3.5 space-y-3">
+              <div className="mt-3 space-y-2.5">
                 {technicalSkills.map((skillGroup) => (
                   <div key={skillGroup.title}>
                     <p className="text-[15px] font-medium text-foreground/90">
@@ -104,15 +104,15 @@ const Index = () => {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-6 text-sm font-medium text-foreground/80 hover:text-accent transition-colors"
+                className="inline-flex items-center gap-1 mt-5 text-sm font-medium text-foreground/80 hover:text-accent transition-colors"
               >
                 View Resume
                 <ArrowUpRight className="w-4 h-4" />
               </a>
-            </div>
 
-            <div className="min-w-0">
-              <SpotifyLastPlayed />
+              <div className="mt-5 border-t border-white/12 pt-4">
+                <SpotifyLastPlayed embedded />
+              </div>
             </div>
           </aside>
         </section>

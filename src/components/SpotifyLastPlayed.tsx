@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Loader2, Music2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface SpotifyLastPlayedPayload {
   albumName: string;
@@ -9,6 +10,10 @@ interface SpotifyLastPlayedPayload {
   trackName: string;
   trackUrl?: string;
   albumArtUrl?: string;
+}
+
+interface SpotifyLastPlayedProps {
+  embedded?: boolean;
 }
 
 const POLL_INTERVAL_MS = 5000;
@@ -80,7 +85,7 @@ const clampText = (value: string, maxChars: number) => {
   return `${value.slice(0, maxChars - 1).trimEnd()}...`;
 };
 
-export const SpotifyLastPlayed = () => {
+export const SpotifyLastPlayed = ({ embedded = false }: SpotifyLastPlayedProps) => {
   const initialTrack = getCachedTrack();
   const isDebugMode =
     import.meta.env.DEV &&
@@ -163,8 +168,17 @@ export const SpotifyLastPlayed = () => {
   }, [loadTrack]);
 
   return (
-    <div className="min-w-0 overflow-hidden rounded-2xl p-4 sm:p-5 bg-card/30 border border-white/12 shadow-[0_24px_60px_rgba(0,0,0,0.6),0_8px_20px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.12)] relative">
-      <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
+    <div
+      className={cn(
+        "min-w-0 overflow-hidden relative",
+        embedded
+          ? "rounded-none p-0 bg-transparent border-0 shadow-none"
+          : "rounded-2xl p-4 sm:p-5 bg-card/30 border border-white/12 shadow-[0_24px_60px_rgba(0,0,0,0.6),0_8px_20px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.12)]",
+      )}
+    >
+      {!embedded ? (
+        <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
+      ) : null}
       <div className="relative">
         <p className="text-[11px] font-mono uppercase tracking-[0.24em] text-muted-foreground/90">
           What I&apos;m Listening To

@@ -123,44 +123,11 @@ const About = () => {
             {experienceCards.map((experience) => (
               <article
                 key={`${experience.company}-${experience.period}`}
-                className="group flex h-[388px] w-[286px] shrink-0 snap-start flex-col rounded-2xl border border-border/45 bg-card/20 p-4 transition-colors duration-300 hover:border-border/70"
+                className="group relative flex h-[388px] w-[286px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border/45 bg-card/20 p-4 transition-colors duration-300 hover:border-border/70"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <p className="text-[11px] font-mono uppercase tracking-[0.08em] text-muted-foreground">
+                  <p className="text-[12px] font-mono uppercase tracking-[0.08em] text-muted-foreground">
                     {experience.period}
-                  </p>
-                </div>
-
-                <div className="mt-2.5 space-y-1">
-                  <p className="truncate text-[14px] font-semibold leading-snug text-foreground">
-                    {experience.company}
-                  </p>
-                  {experience.companySecondary ? (
-                    <p className="truncate text-[12px] font-semibold leading-snug text-foreground/75">
-                      {experience.companySecondary}
-                    </p>
-                  ) : null}
-                </div>
-                <h3 className="mt-1 truncate text-[13px] font-medium leading-snug text-foreground/90">
-                  {experience.role}
-                </h3>
-                <p className="mt-2.5 text-[13px] leading-relaxed text-muted-foreground">{experience.summary}</p>
-                <div className="mt-4 border-t border-border/30 pt-3">
-                  <div className="flex flex-wrap gap-2">
-                    {experience.focus.split("·").map((item) => (
-                      <span
-                        key={`${experience.company}-${item}`}
-                        className="rounded-full bg-background/40 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.1em] text-foreground/70"
-                      >
-                        {item.trim()}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-auto flex items-center justify-between pt-3">
-                  <p className="text-[11px] font-mono uppercase tracking-[0.07em] text-foreground/70">
-                    {experience.location}
                   </p>
                   <a
                     href={experience.href}
@@ -169,6 +136,56 @@ const About = () => {
                   >
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
+                </div>
+
+                <div className="mt-2.5 space-y-1">
+                  <p className="truncate text-[16px] font-semibold leading-snug text-foreground">
+                    {experience.company}
+                  </p>
+                  {experience.companySecondary ? (
+                    <p className="truncate text-[14px] font-semibold leading-snug text-foreground/75">
+                      {experience.companySecondary}
+                    </p>
+                  ) : null}
+                </div>
+                <h3 className="mt-1 truncate text-[14px] font-medium leading-snug text-foreground/90">
+                  {experience.role}
+                </h3>
+
+                <p className="mt-2.5 text-[12px] font-mono uppercase tracking-[0.07em] text-foreground/70">
+                  {experience.location}
+                </p>
+
+                <div className="mt-3 border-t border-border/30 pt-3 md:hidden">
+                  <p className="text-[14px] leading-relaxed text-muted-foreground">{experience.summary}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {experience.focus.split("·").map((item) => (
+                      <span
+                        key={`${experience.company}-${item}`}
+                        className="rounded-full bg-background/40 px-2.5 py-1 text-[11px] font-mono uppercase tracking-[0.1em] text-foreground/70"
+                      >
+                        {item.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="mt-auto hidden text-[11px] font-mono uppercase tracking-[0.1em] text-foreground/45 md:block">
+                  Hover For Details
+                </p>
+
+                <div className="pointer-events-none absolute inset-x-3 bottom-3 hidden translate-y-2 rounded-xl border border-border/35 bg-background/88 p-3 opacity-0 backdrop-blur-lg transition-all duration-300 md:block md:group-hover:translate-y-0 md:group-hover:opacity-100 md:group-focus-within:translate-y-0 md:group-focus-within:opacity-100">
+                  <p className="text-[13px] leading-relaxed text-muted-foreground">{experience.summary}</p>
+                  <div className="mt-2.5 flex flex-wrap gap-1.5">
+                    {experience.focus.split("·").map((item) => (
+                      <span
+                        key={`${experience.company}-hover-${item}`}
+                        className="rounded-full bg-background/60 px-2 py-0.5 text-[10px] font-mono uppercase tracking-[0.1em] text-foreground/70"
+                      >
+                        {item.trim()}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </article>
             ))}

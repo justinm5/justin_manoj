@@ -59,7 +59,7 @@ export const Navigation = () => {
   return (
     <header className="w-full">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <div className="mt-4 hidden items-center justify-between gap-4 md:flex">
+        <div className="mt-3.5 hidden items-center justify-between gap-4 md:flex">
           <nav className="hidden md:flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
@@ -67,7 +67,7 @@ export const Navigation = () => {
                 to={item.href}
                 className={({ isActive }) =>
                   cn(
-                    "rounded-full px-2 py-1 transition-colors",
+                    "rounded-full px-2 py-0.5 transition-colors",
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )
                 }
@@ -97,7 +97,7 @@ export const Navigation = () => {
           </div>
         </div>
 
-        <div className="mt-3 flex items-center justify-between gap-3 md:hidden">
+        <div className="mt-2.5 flex items-center justify-between gap-3 md:hidden">
           <nav className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
@@ -105,7 +105,7 @@ export const Navigation = () => {
                 to={item.href}
                 className={({ isActive }) =>
                   cn(
-                    "rounded-full px-1.5 py-1 transition-colors",
+                    "rounded-full px-1.5 py-0.5 transition-colors",
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )
                 }
