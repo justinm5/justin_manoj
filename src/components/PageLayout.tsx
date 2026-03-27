@@ -18,7 +18,7 @@ export const PageLayout = ({ children, width = "normal", contentClassName }: Pag
       <Navigation />
       <main
         className={cn(
-          "relative z-10 w-full px-4 pb-6 pt-6 sm:px-6 sm:pt-8 lg:px-10 lg:pt-10",
+          "relative z-10 w-full px-4 pb-6 pt-5 sm:px-6 sm:pt-7 lg:px-10 lg:pt-9",
           widthClass,
           contentClassName,
         )}
