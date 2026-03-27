@@ -180,7 +180,7 @@ export const SpotifyLastPlayed = ({ embedded = false }: SpotifyLastPlayedProps) 
         <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
       ) : null}
       <div className="relative">
-        <p className="text-[11px] font-mono uppercase tracking-[0.24em] text-muted-foreground/90">
+        <p className="text-[11px] font-tabular-itf uppercase tracking-[0.24em] text-muted-foreground/90">
           What I&apos;m Listening To
         </p>
 

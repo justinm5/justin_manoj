@@ -60,7 +60,7 @@ export const Navigation = () => {
     <header className="w-full">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <div className="mt-3.5 hidden items-center justify-between gap-4 md:flex">
-          <nav className="hidden md:flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+          <nav className="hidden md:flex items-center gap-3 text-[11px] font-tabular-itf uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
                 key={item.href}
@@ -98,7 +98,7 @@ export const Navigation = () => {
         </div>
 
         <div className="mt-2.5 flex items-center justify-between gap-3 md:hidden">
-          <nav className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+          <nav className="flex items-center gap-2 text-[10px] font-tabular-itf uppercase tracking-[0.2em] text-muted-foreground">
             {navLinks.map((item) => (
               <NavLink
                 key={item.href}

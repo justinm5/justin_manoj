@@ -47,10 +47,10 @@ const Index = () => {
             </div>
           </div>
 
-          <aside className="min-w-0 flex flex-col gap-3">
-            <div className="rounded-2xl p-5 sm:p-6 bg-card/35 border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] relative overflow-hidden flex flex-col">
+          <aside className="min-w-0 flex flex-col gap-3 lg:h-full">
+            <div className="rounded-2xl p-5 sm:p-6 bg-card/35 border border-white/12 shadow-[0_28px_80px_rgba(0,0,0,0.75),0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] relative overflow-hidden flex h-full flex-col">
               <div>
-                <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+                <p className="flex items-center gap-2 text-xs font-tabular-itf uppercase tracking-[0.14em] text-muted-foreground">
                   <GraduationCap className="h-3.5 w-3.5" />
                   Education
                 </p>
@@ -67,7 +67,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-5 flex items-center gap-2 text-xs font-tabular-itf uppercase tracking-[0.14em] text-muted-foreground">
                 <BookOpen className="h-3.5 w-3.5" />
                 Relevant Coursework
               </p>
@@ -75,7 +75,7 @@ const Index = () => {
                 {coursework}
               </p>
 
-              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-5 flex items-center gap-2 text-xs font-tabular-itf uppercase tracking-[0.14em] text-muted-foreground">
                 <Award className="h-3.5 w-3.5" />
                 Awards/Honors
               </p>
@@ -83,7 +83,7 @@ const Index = () => {
                 {honors}
               </p>
 
-              <p className="mt-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
+              <p className="mt-5 flex items-center gap-2 text-xs font-tabular-itf uppercase tracking-[0.14em] text-muted-foreground">
                 <Cpu className="h-3.5 w-3.5" />
                 Technical Skills
               </p>
@@ -110,7 +110,7 @@ const Index = () => {
                 <ArrowUpRight className="w-4 h-4" />
               </a>
 
-              <div className="mt-5 border-t border-white/12 pt-4">
+              <div className="mt-5 border-t border-white/12 pt-4 lg:mt-auto">
                 <SpotifyLastPlayed embedded />
               </div>
             </div>

@@ -108,7 +108,7 @@ const About = () => {
       <div id="about" className="space-y-4">
         <section id="experience" className="rounded-2xl bg-card/10 pt-4 pb-2 sm:pt-5 sm:pb-3">
           <div className="mb-4 px-0">
-            <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
+            <p className="text-xs font-tabular-itf uppercase tracking-[0.18em] text-muted-foreground">
               Experience
             </p>
           </div>
@@ -213,7 +213,7 @@ const About = () => {
 
         <section id="projects" className="rounded-2xl bg-card/10 py-4 sm:py-5">
           <div className="mb-4 px-0">
-            <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
+            <p className="text-xs font-tabular-itf uppercase tracking-[0.18em] text-muted-foreground">
               Projects
             </p>
           </div>
