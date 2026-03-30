@@ -38,10 +38,10 @@ const experienceBase: Record<string, ExperienceBase> = {
       id: "ibm",
       period: "Aug 2026 - Dec 2026",
       company: "IBM",
-      role: "Software Developer Co-Op",
+      role: "Software Developer Co-op",
       location: "Lowell, MA",
       focus: "Cloud · Kubernetes · Microservices",
-      summary: "Fall 2026",
+      summary: "Incoming Fall 2026",
     },
   dell: {
     id: "dell-technologies-isg",
@@ -50,7 +50,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     role: "Software Engineering Intern",
     location: "Hopkinton, MA",
     focus: "Infrastructure · Cloud · Microservices",
-    summary: "Summer 2026",
+    summary: "Incoming Summer 2026",
   },
   chitchat: {
     id: "chitchat-workplace",

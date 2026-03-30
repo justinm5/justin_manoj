@@ -19,7 +19,8 @@ const XIcon: IconComponent = ({ className }) => (
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About Me", href: "/about" },
+  { label: "About Me", href: "/home" },
+  { label: "Experiences", href: "/about" },
 ];
 
 const socialLinks: { label: string; href: string; icon: IconComponent }[] = [

@@ -4,7 +4,7 @@ import { SpotifyLastPlayed } from "@/components/SpotifyLastPlayed";
 import { UMassBadge } from "@/components/UMassBadge";
 
 const coursework =
-  "Algorithms · Data Structures · Operating Systems · Machine Learning · Databases · Web Programming · Scalable Web Systems · Data Science";
+  "Algorithms · Data Structures · Operating Systems · Machine Learning Databases · Web Programming · Scalable Web Systems · Data Science";
 
 const honors =
   "Commonwealth Honors College · Dean’s List · Chancellor’s Award · NYS Academic Excellence · National Merit Scholar · AP Scholar with Distinction";
