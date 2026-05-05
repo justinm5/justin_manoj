@@ -65,8 +65,8 @@ const Index = () => {
                       <h2 className="text-[18px] font-semibold text-foreground/88 leading-tight">
                         University of <span className="whitespace-nowrap">Massachusetts Amherst</span>
                       </h2>
-                      <p className="mt-1 text-[16px] tracking-tight text-foreground/68 leading-relaxed whitespace-nowrap">
-                        B.S. in Computer Science & Mathematics
+                      <p className="mt-0.5 text-[16px] tracking-tight text-foreground/68 leading-relaxed whitespace-nowrap">
+                        B.S, Computer Science & Mathematics
                       </p>
                     </div>
                   </div>
