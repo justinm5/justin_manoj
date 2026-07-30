@@ -49,29 +49,19 @@ const experienceBase: Record<string, ExperienceBase> = {
     company: "Dell Technologies",
     role: "Software Engineering Intern",
     location: "Hopkinton, MA",
-    focus: "Infrastructure · Cloud · Microservices",
-    summary: "Incoming Summer 2026",
-  },
-  chitchat: {
-    id: "chitchat-workplace",
-    period: "May 2025 – Present",
-    company: "ChitChat Workplace",
-    role: "Software Engineer",
-    roleTimeline: "Software Engineer",
-    location: "Boston, MA",
-    focus: "Go · WebSockets · Kafka · Kubernetes · AWS · LangChain",
+    focus: "Go · Kubernetes · OpenTelemetry · GitOps",
     summary:
-      "Built real-time backend for 100k+ user concurrent messaging platform & launched enterprise pilots in 90 days.",
+      "Shipped an internal Kubernetes operator in Go to automate audit logging across production clusters, integrating syslog and OpenTelemetry pipelines for compliance observability. Delivered platform features, critical bug fixes, and CVE remediation across GitOps-managed RKE2 clusters.",
   },
   gbcs: {
     id: "gbcs-group",
     period: "Mar 2025 – Sept 2025",
     company: "GBCS Group",
-    role: "Software Engineer Intern",
+    role: "Software Engineering Intern",
     location: "Alberta, CA",
     focus: "GraphQL · Redis · PostgreSQL · gRPC · Jest · Sentry · CI/CD",
     summary:
-      "Rebuilt core APIs with GraphQL & caching, reducing backend load & cutting dashboard load times by 65%.",
+      "Rebuilt core APIs with GraphQL & caching, reducing backend load & cutting dashboard load times by 65% using PostgreSQL composite indexes and Redis caching on frequently accessed data. Built GitHub Actions CI/CD pipelines for automated testing and deployment.",
   },
   umass: {
     id: "umass-autonomous-learning-lab",
@@ -81,11 +71,11 @@ const experienceBase: Record<string, ExperienceBase> = {
     role: "Undergraduate Research Assistant",
     roleTimeline: "Research Assistant",
     location: "Amherst, MA",
-    focus: "Python · Multi-Agents · Ray · Pandas · NumPy · Juypter",
+    focus: "Python · Multi-Agents · Ray · Pandas · NumPy · Jupyter",
     summary:
-      "Autonomous Learning Lab. Tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed by 3x.",
+      "Autonomous Learning Lab. Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x. Cut review time extensively with automated pipeline that classifies agent failures and critical patterns.",
     summaryTimeline:
-      "Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x.",
+      "Autonomous Learning Lab. Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x. Cut review time extensively with automated pipeline that classifies agent failures and critical patterns.",
   },
   build: {
     id: "build-umass",
@@ -106,12 +96,14 @@ const experienceBase: Record<string, ExperienceBase> = {
     location: "Thiells, NY",
     focus: "C++ · ROS · Gazebo · Computer Vision · PID Control",
     summary:
-      "First and VEX Robotics. Led C++ robotics software development and team execution for regional & national competitions.",
+      "Led C++ robotics software and team operations for FIRST and VEX competitions, building autonomous routines, computer-vision targeting, and PID control loops while driving match strategy and design reviews.",
+    summaryTimeline:
+      "Served as team captain and lead programmer for FIRST & VEX robotics. Architected C++ control software including autonomous routines, computer-vision targeting, and PID control loops. Led match strategy, design reviews, and the software subteam, advancing to regional championships.",
   },
 };
 
-const cardOrder = ["ibm", "dell", "chitchat", "gbcs", "umass", "build", "nrhs"] as const;
-const timelineOrder = ["chitchat", "gbcs", "umass", "build", "nrhs"] as const;
+const cardOrder = ["ibm", "dell", "gbcs", "umass", "build", "nrhs"] as const;
+const timelineOrder = ["gbcs", "umass", "build", "nrhs"] as const;
 
 export const experienceCards: ExperienceCard[] = cardOrder.map((key) => {
   const entry = experienceBase[key];

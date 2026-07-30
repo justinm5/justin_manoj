@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const name = "Justin Manoj";
 
@@ -48,20 +48,14 @@ const Entrance = () => {
             <div className="mt-1 flex flex-wrap items-center justify-center gap-3 text-[16px] text-foreground/70">
               {socialLinks.map((link, index) => (
                 <div key={link.label} className="inline-flex items-center gap-2">
-                  {"href" in link ? (
-                    <a
-                      href={link.href}
-                      target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                      rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                      className="transition-colors hover:text-foreground/90"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link to={link.to} className="transition-colors hover:text-foreground/90">
-                      {link.label}
-                    </Link>
-                  )}
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                    className="transition-colors duration-300 hover:text-foreground"
+                  >
+                    {link.label}
+                  </a>
                   {index < socialLinks.length - 1 ? <span className="text-foreground/45">·</span> : null}
                 </div>
               ))}
@@ -74,7 +68,7 @@ const Entrance = () => {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link
                 to="/home"
-                className="inline-flex rounded-lg items-center bg-foreground px-6 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
+                className="inline-flex rounded-lg items-center bg-foreground px-6 py-2.5 text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-foreground/90"
               >
                 Enter My Page
               </Link>

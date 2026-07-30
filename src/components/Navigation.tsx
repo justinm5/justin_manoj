@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 import type { ComponentType } from "react";
 import { cn } from "@/lib/utils";

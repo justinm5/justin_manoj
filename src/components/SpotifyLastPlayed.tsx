@@ -98,7 +98,6 @@ export const SpotifyLastPlayed = ({ embedded = false }: SpotifyLastPlayedProps) 
 
   const loadTrack = useCallback(async (signal?: AbortSignal) => {
     try {
-      setDebugMessage(null);
       const response = await fetch("/api/spotify-last-played", {
         cache: "no-store",
         signal,
@@ -121,6 +120,7 @@ export const SpotifyLastPlayed = ({ embedded = false }: SpotifyLastPlayedProps) 
         throw new Error(apiError);
       }
 
+      setDebugMessage(null);
       const payload = (await response.json()) as SpotifyLastPlayedPayload | { trackName: null };
       if ("trackName" in payload && payload.trackName === null) {
         setTrack(null);
@@ -143,6 +143,8 @@ export const SpotifyLastPlayed = ({ embedded = false }: SpotifyLastPlayedProps) 
 
   useEffect(() => {
     const controller = new AbortController();
+    // loadTrack only updates state after awaiting the fetch, so no cascading render happens here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     void loadTrack(controller.signal);
 
     const refreshTrack = () => {

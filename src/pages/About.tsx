@@ -5,11 +5,19 @@ import { experienceCards } from "@/data/experience";
 
 const projectsList = [
   {
+    title: "Quantitative Agent",
+    period: "Jun 2026",
+    category: "Quantitative Research + Microservices",
+    summary:
+      "Shipped a real-time algorithmic-research platform that ingests SEC Form 4 insider filings, live price feeds, and financial-news streams into a microservices pipeline. Built a Go ingestion gateway with gRPC and Kafka, stored time-series signals in TimescaleDB, cached hot anomalies in Redis, and trained a Python agent that flags filing/price divergences.",
+    tags: "Go · gRPC · Kafka · TimescaleDB · Redis · Python · React",
+  },
+  {
     title: "UMass Dining Engine",
     period: "Jan 2026",
     category: "AI + Full-Stack",
     summary:
-      "Built an AI meal-planning platform for 30,000+ UMass students with live menu aggregation across 4 dining halls and real-time dietary filters.",
+      "Shipped an AI meal-planning recommendation platform for 30,000+ UMass students. Aggregates live menus from 4 dining halls, normalizes dietary and allergen data, and serves real-time filters through a Redis-backed Spring Boot API with PostgreSQL full-text search and scheduled Python ETL for nutrition ingestion. React frontend supports instant menu queries and personalized meal plans.",
     tags: "Java · Spring Boot · React · PostgreSQL · Redis · Python",
     link: "https://github.com/JManoj01/UMassDining",
   },
@@ -18,25 +26,8 @@ const projectsList = [
     period: "Apr 2025",
     category: "Systems + Simulation",
     summary:
-      "Built a Texas Hold'em trainer with beginner/expert AI opponents using Monte Carlo simulations and WebAssembly for real-time EV and pot-odds training.",
+      "Engineered a Texas Hold'em training suite with configurable beginner and expert AI opponents. Compiled a Monte Carlo simulation engine to WebAssembly for fast, browser-side equity and pot-odds calculations. Built a React UI for real-time EV visualization, opponent modeling, and indexed hand-history review.",
     tags: "TypeScript · React · WebAssembly · Node.js",
-  },
-  {
-    title: "Medical Insight Bot",
-    period: "Jan 2025",
-    category: "RAG + LLM",
-    summary:
-      "Built a RAG-based symptom assistant using FastAPI and pgvector that returns ranked diagnoses with confidence scoring across test cases.",
-    tags: "Python · FastAPI · React · PostgreSQL · pgvector",
-    link: "https://github.com/JManoj01/symptom-bot",
-  },
-  {
-    title: "Subscription Tracker",
-    period: "2025",
-    category: "Backend API",
-    summary:
-      "Built a subscription manager that tracks recurring costs, computes monthly/yearly totals, and alerts users about upcoming trial expirations.",
-    tags: "Java · Javalin · PostgreSQL · JavaScript",
   },
 ];
 

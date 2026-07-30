@@ -4,7 +4,7 @@ import { SpotifyLastPlayed } from "@/components/SpotifyLastPlayed";
 import { UMassBadge } from "@/components/UMassBadge";
 
 const coursework =
-  "Algorithms · Data Structures · Operating Systems · Machine Learning Databases · Web Programming · Scalable Web Systems · Data Science";
+  "Algorithms · Data Structures · Operating Systems · Machine Learning · Databases · Web Programming · Scalable Web Systems · Data Science";
 
 const honors =
   "Commonwealth Honors College · Dean’s List · Chancellor’s Award · NYS Academic Excellence · National Merit Scholar · AP Scholar with Distinction";
@@ -12,11 +12,11 @@ const honors =
 const technicalSkills = [
   {
     title: "Languages",
-    items: "Python · Java · C++ · JavaScript / TypeScript · SQL",
+    items: "Go · Python · Java · JavaScript / TypeScript · SQL",
   },
   {
     title: "Frameworks",
-    items: "React · Node.js · Spring Boot · FastAPI · gRPC",
+    items: "React · Node.js · Spring Boot · FastAPI · gRPC · OpenTelemetry",
   },
   {
     title: "Machine Learning",
@@ -24,7 +24,7 @@ const technicalSkills = [
   },
   {
     title: "Systems & Infrastructure",
-    items: "AWS · Docker · Kubernetes · PostgreSQL · Redis · Git  · Linux",
+    items: "AWS · Docker · Kubernetes · PostgreSQL · Redis · Git · Linux",
   },
 ];
 
@@ -66,7 +66,7 @@ const Index = () => {
                         University of <span className="whitespace-nowrap">Massachusetts Amherst</span>
                       </h2>
                       <p className="mt-0.5 text-[16px] tracking-tight text-foreground/68 leading-relaxed whitespace-nowrap">
-                        B.S, Computer Science & Mathematics
+                        B.S., Computer Science & Mathematics <span className="text-[13px] text-foreground/50">(Expected May 2027)</span>
                       </p>
                     </div>
                   </div>
