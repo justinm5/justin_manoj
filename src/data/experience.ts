@@ -2,6 +2,7 @@ export type ExperienceBase = {
   id: string;
   period: string;
   company: string;
+  domain?: string;
   companySecondary?: string;
   role: string;
   roleTimeline?: string;
@@ -15,6 +16,7 @@ export type ExperienceBase = {
 export type ExperienceCard = {
   period: string;
   company: string;
+  domain?: string;
   companySecondary?: string;
   role: string;
   location: string;
@@ -38,6 +40,7 @@ const experienceBase: Record<string, ExperienceBase> = {
       id: "ibm",
       period: "Aug 2026 - Dec 2026",
       company: "IBM",
+      domain: "ibm.com",
       role: "Software Developer Co-op",
       location: "Lowell, MA",
       focus: "Cloud · Kubernetes · Microservices",
@@ -47,6 +50,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     id: "dell-technologies-isg",
     period: "May 2026 - Aug 2026",
     company: "Dell Technologies",
+    domain: "dell.com",
     role: "Software Engineering Intern",
     location: "Hopkinton, MA",
     focus: "Go · Kubernetes · OpenTelemetry · GitOps",
@@ -57,6 +61,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     id: "gbcs-group",
     period: "Mar 2025 – Sept 2025",
     company: "GBCS Group",
+    domain: "gbcsgroup.com",
     role: "Software Engineering Intern",
     location: "Alberta, CA",
     focus: "GraphQL · Redis · PostgreSQL · gRPC · Jest · Sentry · CI/CD",
@@ -67,6 +72,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     id: "umass-autonomous-learning-lab",
     period: "Nov 2024 – Apr 2025",
     company: "University of Massachusetts Amherst",
+    domain: "umass.edu",
     companyTimeline: "UMass Amherst - Autonomous Learning Lab",
     role: "Undergraduate Research Assistant",
     roleTimeline: "Research Assistant",
@@ -81,6 +87,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     id: "build-umass",
     period: "Sept 2024 – Present",
     company: "BUILD UMass",
+    domain: "buildumass.com",
     role: "Software Engineer",
     location: "Amherst, MA",
     focus: "React · Elasticsearch · WebSockets · Redis Pub/Sub",
@@ -91,6 +98,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     id: "nrhs-robotics-first-vex-robotics",
     period: "Sept 2022 - Jun 2023",
     company: "NRHS Robotics",
+    domain: "firstinspires.org",
     companyTimeline: "NRHS Robotics / FIRST & VEX Robotics",
     role: "Team Captain",
     location: "Thiells, NY",
@@ -102,7 +110,7 @@ const experienceBase: Record<string, ExperienceBase> = {
   },
 };
 
-const cardOrder = ["ibm", "dell", "gbcs", "umass", "build", "nrhs"] as const;
+const cardOrder = ["ibm", "dell", "gbcs", "umass", "build"] as const;
 const timelineOrder = ["gbcs", "umass", "build", "nrhs"] as const;
 
 export const experienceCards: ExperienceCard[] = cardOrder.map((key) => {
@@ -111,6 +119,7 @@ export const experienceCards: ExperienceCard[] = cardOrder.map((key) => {
   return {
     period: entry.period,
     company: entry.company,
+    domain: entry.domain,
     companySecondary: entry.companySecondary,
     role: entry.role,
     location: entry.location,

@@ -182,12 +182,14 @@ export const SpotifyLastPlayed = ({ embedded = false }: SpotifyLastPlayedProps) 
         <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
       ) : null}
       <div className="relative">
-        <p className="text-[11px] font-tabular-itf uppercase tracking-[0.24em] text-muted-foreground/90">
-          What I&apos;m Listening To
-        </p>
+        {!embedded ? (
+          <p className="text-[11px] font-tabular-itf uppercase tracking-[0.24em] text-muted-foreground/90">
+            Listening To
+          </p>
+        ) : null}
 
       {isLoading ? (
-        <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
+        <div className={cn("flex items-center gap-2 text-sm text-muted-foreground", !embedded && "mt-3")}>
           <Loader2 className="w-4 h-4 animate-spin" />
           Loading latest track...
         </div>
@@ -196,7 +198,7 @@ export const SpotifyLastPlayed = ({ embedded = false }: SpotifyLastPlayedProps) 
           href={track.trackUrl ?? "https://open.spotify.com"}
           target="_blank"
           rel="noopener noreferrer"
-          className="group mt-3 flex w-full min-w-0 items-center gap-3 overflow-hidden"
+          className={cn("group flex w-full min-w-0 items-center gap-3 overflow-hidden", !embedded && "mt-3")}
         >
           {/**
            * Hard clamp text length in addition to CSS ellipsis so extremely long
@@ -206,28 +208,28 @@ export const SpotifyLastPlayed = ({ embedded = false }: SpotifyLastPlayedProps) 
             <img
               src={track.albumArtUrl}
               alt={`${track.trackName} album art`}
-              className="h-12 w-12 shrink-0 rounded-xl border border-white/10 object-cover shadow-[0_10px_24px_rgba(0,0,0,0.5)]"
+              className="h-10 w-10 shrink-0 rounded-md border border-white/10 object-cover"
             />
           ) : (
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5">
               <Music2 className="w-4 h-4 text-foreground/80" />
             </div>
           )}
 
           <div className="min-w-0 basis-0 flex-1">
             <p
-              className="block w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold leading-tight text-foreground"
+              className="block w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-medium text-foreground"
               title={track.trackName}
             >
               {clampText(track.trackName, MAX_TITLE_CHARS)}
             </p>
             <p
-              className="mt-0.5 block w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm text-muted-foreground"
+              className="mt-0.5 block w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm text-[#a1a1aa]"
               title={track.artists.join(", ")}
             >
               {clampText(track.artists.join(", "), MAX_ARTISTS_CHARS)}
             </p>
-            <div className="mt-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground/80">
+            <div className="mt-0.5 flex items-center gap-2 text-sm text-[#52525b]">
               {track.isPlaying ? (
                 <>
                   <span className="h-1.5 w-1.5 rounded-full bg-foreground/70" />
