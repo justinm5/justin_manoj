@@ -100,7 +100,6 @@ export const projects: ProjectEntry[] = [
   },
   {
     title: "UMass Dining Engine",
-    href: "https://github.com/JManoj01/UMassDining",
     description:
       "AI meal-planning platform that aggregates live dining-hall menus, normalizes dietary data, and serves real-time filters through a Spring Boot API with a Python ETL layer and React frontend.",
   },

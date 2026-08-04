@@ -38,7 +38,15 @@ const Home = () => (
         <a href="https://www.dell.com/" target="_blank" rel="noopener noreferrer">
           Dell
         </a>
-        , API and caching work at GBCS Group, and multi-agent LLM research at the{" "}
+        , API and caching work at{" "}
+        <a
+          href="https://www.gbcsgroup.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GBCS Group
+        </a>
+        , and multi-agent LLM research at the{" "}
         <a href="https://www.umass.edu/" target="_blank" rel="noopener noreferrer">
           UMass Autonomous Learning Lab
         </a>
