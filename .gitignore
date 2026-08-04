@@ -27,3 +27,9 @@ dist-ssr
 *.sw?
 .vercel
 .env*.local
+
+# Logo.dev key — keep out of git
+src/lib/logoKey.ts
+
+# TypeScript build info
+*.tsbuildinfo

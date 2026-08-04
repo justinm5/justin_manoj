@@ -55,7 +55,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     location: "Hopkinton, MA",
     focus: "Go · Kubernetes · OpenTelemetry · GitOps",
     summary:
-      "Shipped an internal Kubernetes operator in Go to automate audit logging across production clusters, integrating syslog and OpenTelemetry pipelines for compliance observability. Delivered platform features, critical bug fixes, and CVE remediation across GitOps-managed RKE2 clusters.",
+      "Shipped a Go Kubernetes operator to automate audit logging and OpenTelemetry across production RKE2 clusters. Delivered GitOps-managed platform features, critical bug fixes, and CVE remediation.",
   },
   gbcs: {
     id: "gbcs-group",
@@ -66,7 +66,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     location: "Alberta, CA",
     focus: "GraphQL · Redis · PostgreSQL · gRPC · Jest · Sentry · CI/CD",
     summary:
-      "Rebuilt core APIs with GraphQL & caching, reducing backend load & cutting dashboard load times by 65% using PostgreSQL composite indexes and Redis caching on frequently accessed data. Built GitHub Actions CI/CD pipelines for automated testing and deployment.",
+      "Rebuilt core APIs with GraphQL, PostgreSQL indexes, and Redis caching, cutting dashboard load times by 65%. Built GitHub Actions CI/CD for automated testing and deployment.",
   },
   umass: {
     id: "umass-autonomous-learning-lab",
@@ -79,9 +79,9 @@ const experienceBase: Record<string, ExperienceBase> = {
     location: "Amherst, MA",
     focus: "Python · Multi-Agents · Ray · Pandas · NumPy · Jupyter",
     summary:
-      "Autonomous Learning Lab. Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x. Cut review time extensively with automated pipeline that classifies agent failures and critical patterns.",
+      "Stress-tested multi-agent LLM systems across 10k+ simulations, surfacing 14 failure modes and 3x faster analysis. Automated failure classification pipeline.",
     summaryTimeline:
-      "Autonomous Learning Lab. Stress-tested multi-agent LLM systems, finding 14 failure modes in 10k+ simulations & improving analysis speed 3x. Cut review time extensively with automated pipeline that classifies agent failures and critical patterns.",
+      "Stress-tested multi-agent LLM systems across 10k+ simulations, surfacing 14 failure modes and 3x faster analysis. Automated failure classification pipeline.",
   },
   build: {
     id: "build-umass",
@@ -92,7 +92,7 @@ const experienceBase: Record<string, ExperienceBase> = {
     location: "Amherst, MA",
     focus: "React · Elasticsearch · WebSockets · Redis Pub/Sub",
     summary:
-      "Optimized campus events platform with faster search & reliable real-time updates for UMass students.",
+      "Optimized campus events platform with Elasticsearch search and Redis Pub/Sub real-time updates for UMass students.",
   },
   nrhs: {
     id: "nrhs-robotics-first-vex-robotics",
@@ -104,9 +104,9 @@ const experienceBase: Record<string, ExperienceBase> = {
     location: "Thiells, NY",
     focus: "C++ · ROS · Gazebo · Computer Vision · PID Control",
     summary:
-      "Led C++ robotics software and team operations for FIRST and VEX competitions, building autonomous routines, computer-vision targeting, and PID control loops while driving match strategy and design reviews.",
+      "Led C++ robotics software and match strategy for FIRST/VEX, building autonomous routines, computer-vision targeting, and PID control loops.",
     summaryTimeline:
-      "Served as team captain and lead programmer for FIRST & VEX robotics. Architected C++ control software including autonomous routines, computer-vision targeting, and PID control loops. Led match strategy, design reviews, and the software subteam, advancing to regional championships.",
+      "Led C++ robotics software and match strategy for FIRST/VEX, building autonomous routines, computer-vision targeting, and PID control loops.",
   },
 };
 
