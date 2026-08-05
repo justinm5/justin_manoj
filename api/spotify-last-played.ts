@@ -10,6 +10,8 @@
  * the widget renders nothing, so the footer degrades cleanly.
  */
 
+import type { IncomingMessage, ServerResponse } from "node:http";
+
 const TOKEN_URL = "https://accounts.spotify.com/api/token";
 const NOW_PLAYING_URL = "https://api.spotify.com/v1/me/player/currently-playing";
 const RECENT_URL = "https://api.spotify.com/v1/me/player/recently-played?limit=1";
@@ -37,14 +39,17 @@ export type LastPlayedPayload = {
   playedAt: string | null;
 };
 
-const json = (body: unknown, status = 200, cache = false) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      "Content-Type": "application/json",
-      ...(cache ? { "Cache-Control": CACHE_CONTROL } : {}),
-    },
-  });
+const sendJson = (
+  res: ServerResponse,
+  body: unknown,
+  status = 200,
+  cache = false,
+) => {
+  res.statusCode = status;
+  res.setHeader("Content-Type", "application/json");
+  if (cache) res.setHeader("Cache-Control", CACHE_CONTROL);
+  res.end(JSON.stringify(body));
+};
 
 /** Works in Node (Buffer) and Vercel Edge (btoa). */
 const encodeBase64 = (value: string): string => {
@@ -94,9 +99,10 @@ const toPayload = (
   playedAt,
 });
 
-export default async function handler(request: Request): Promise<Response> {
-  if (request.method !== "GET") {
-    return json({ error: "Method not allowed" }, 405);
+export default async function handler(req: IncomingMessage, res: ServerResponse) {
+  if (req.method !== "GET" && req.method !== "get") {
+    sendJson(res, { error: "Method not allowed" }, 405);
+    return;
   }
 
   const clientId = process.env.SPOTIFY_CLIENT_ID;
@@ -104,7 +110,8 @@ export default async function handler(request: Request): Promise<Response> {
   const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
   if (!clientId || !clientSecret || !refreshToken) {
-    return json({ configured: false }, 200, true);
+    sendJson(res, { configured: false }, 200, true);
+    return;
   }
 
   try {
@@ -120,13 +127,15 @@ export default async function handler(request: Request): Promise<Response> {
         item?: SpotifyTrack | null;
       };
       if (data.item) {
-        return json(toPayload(data.item, Boolean(data.is_playing), null), 200, true);
+        sendJson(res, toPayload(data.item, Boolean(data.is_playing), null), 200, true);
+        return;
       }
     }
 
     const recent = await fetch(RECENT_URL, { headers: auth });
     if (!recent.ok) {
-      return json({ error: `Spotify error (${recent.status})` }, 502);
+      sendJson(res, { error: `Spotify error (${recent.status})` }, 502);
+      return;
     }
 
     const data = (await recent.json()) as {
@@ -134,11 +143,12 @@ export default async function handler(request: Request): Promise<Response> {
     };
     const item = data.items?.[0];
     if (!item?.track) {
-      return json({ error: "No recent tracks" }, 404);
+      sendJson(res, { error: "No recent tracks" }, 404);
+      return;
     }
 
-    return json(toPayload(item.track, false, item.played_at ?? null), 200, true);
+    sendJson(res, toPayload(item.track, false, item.played_at ?? null), 200, true);
   } catch (error) {
-    return json({ error: "Request failed", detail: String(error) }, 500);
+    sendJson(res, { error: "Request failed", detail: String(error) }, 500);
   }
 }
