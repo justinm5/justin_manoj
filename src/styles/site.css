@@ -41,6 +41,8 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  /* dvh accounts for the collapsing mobile browser chrome. */
+  min-height: 100dvh;
   background: var(--hv-bg);
   color: var(--hv-text);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -48,10 +50,30 @@ body {
   font-size: 0.9375rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 a {
   color: inherit;
+}
+
+/* One visible focus ring for every interactive element, keyboard only. */
+:focus-visible {
+  outline: 2px solid var(--hv-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .visually-hidden {
@@ -153,12 +175,22 @@ a {
 @media (max-width: 720px) {
   .home-grid {
     grid-template-columns: 1fr;
-    padding: clamp(1rem, 4vw, 1.2rem);
+    /* Extra bottom room so the fixed footer never sits on top of content. */
+    padding: clamp(1rem, 4vw, 1.2rem) clamp(1rem, 4vw, 1.2rem) 8.5rem;
   }
 
   .home-content {
     padding-top: 2.2rem;
     padding-right: 0;
+  }
+
+  .home-content.ask-main {
+    max-width: none;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+    gap: 1.25rem 1rem;
   }
 }
 
@@ -179,8 +211,8 @@ a {
     height: 2.35rem;
     border: 1px solid var(--hv-line);
     border-radius: 0.55rem;
-    background: #101a34;
-    color: #f2f2f2;
+    background: var(--hv-surface);
+    color: var(--hv-text);
     font-size: 1.05rem;
     line-height: 1;
     cursor: pointer;
@@ -206,8 +238,9 @@ a {
     width: min(68vw, 20rem);
     max-width: 90vw;
     padding: calc(max(0.9rem, env(safe-area-inset-top)) + 0.3rem) 1.05rem 1.2rem;
-    background: #101a34;
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--hv-surface);
+    border-left: 1px solid var(--hv-line);
+    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.28);
     overflow-y: auto;
     transform: translateX(102%);
     transition: transform 220ms ease;
@@ -215,6 +248,11 @@ a {
 
   body.mobile-menu-open .home-sidebar {
     transform: translateX(0);
+  }
+
+  /* Stop the page behind the drawer from scrolling with it. */
+  body.mobile-menu-open {
+    overflow: hidden;
   }
 
   .mobile-menu-close {
@@ -228,7 +266,7 @@ a {
     border: none;
     border-radius: 0.45rem;
     background: transparent;
-    color: #f4f4f5;
+    color: var(--hv-text);
     font-size: 1.6rem;
     line-height: 1;
     cursor: pointer;
@@ -430,7 +468,7 @@ a {
 
 .home-exp-desc .home-exp-role {
   display: block;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.82rem;
   color: var(--hv-text);
   margin-bottom: 0.35rem;
@@ -476,67 +514,194 @@ a {
   margin: 0 0 2.25rem;
 }
 
-.projects-serial .pc-list {
+/* Projects: compact card grid. Two per row on desktop, one on mobile — the
+   cards are smaller than the books so the page feels denser. */
+.pc-grid {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-.projects-serial .pc-item {
-  margin-bottom: 2rem;
+.pc-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--hv-line);
+  border-radius: 0.65rem;
+  background: var(--hv-surface);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
 }
 
-.projects-serial .pc-item:last-child {
-  margin-bottom: 0;
+.pc-card:hover,
+.pc-card:focus-within {
+  transform: translateY(-3px);
+  border-color: var(--hv-accent);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
 }
 
-/* Books: card grid, no covers. */
+.pc-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0.75rem 0.85rem 0.9rem;
+}
+
+@media (max-width: 560px) {
+  .pc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Books: cover shelf with topic filter. */
+.books-lede {
+  margin: -1.5rem 0 1.35rem;
+  max-width: 34rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--hv-muted);
+}
+
+.books-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.6rem;
+}
+
+.books-filter-chip {
+  padding: 0.24rem 0.7rem;
+  font: inherit;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  text-transform: lowercase;
+  color: var(--hv-muted);
+  background: transparent;
+  border: 1px solid var(--hv-line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.books-filter-chip:hover {
+  color: var(--hv-text);
+  border-color: var(--hv-muted);
+}
+
+.books-filter-chip[aria-pressed="true"] {
+  color: var(--hv-bg);
+  background: var(--hv-text);
+  border-color: var(--hv-text);
+}
+
 .books-grid {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-  gap: 0.65rem;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 1.5rem 1.25rem;
 }
 
 .book-card {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.65rem 0.85rem;
-  border: 1px solid var(--hv-line);
-  border-radius: 0.65rem;
-  background: var(--hv-surface);
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  gap: 0.55rem;
+  min-width: 0;
 }
 
-.book-card:hover {
-  transform: translateY(-2px);
-  background: var(--hv-hover-bg);
-  border-color: var(--hv-accent);
+.book-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 0.3rem;
+  background: var(--hv-surface);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 6px 16px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.book-card:hover .book-cover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 12px 26px rgba(0, 0, 0, 0.3);
+}
+
+.book-cover--fallback {
+  display: flex;
+  align-items: flex-end;
+  padding: 0.7rem;
+  border: 1px solid var(--hv-line);
+  /* Left edge reads as a spine so text-only covers still look like books. */
+  background: linear-gradient(
+    100deg,
+    var(--hv-hover-bg) 0 0.35rem,
+    var(--hv-surface) 0.35rem
+  );
+}
+
+.book-cover--pending {
+  box-shadow: none;
+}
+
+.book-cover-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--hv-text);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+}
+
+.book-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
 }
 
 .book-title {
-  font-weight: 500;
-  font-size: 0.82rem;
+  font-weight: 600;
+  font-size: 0.8rem;
   color: var(--hv-text);
   line-height: 1.3;
 }
 
 .book-author {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--hv-muted);
   line-height: 1.35;
 }
 
+.book-note {
+  margin: 0.3rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--hv-muted);
+}
+
 .home-content .projects-serial a.pc-title {
   display: inline-block;
+  align-self: flex-start;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--hv-accent);
   text-decoration: none;
   margin-bottom: 0.35rem;
@@ -549,8 +714,9 @@ a {
 
 .projects-serial .pc-title-static {
   display: inline-block;
+  align-self: flex-start;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--hv-text);
   margin-bottom: 0.35rem;
 }
@@ -565,9 +731,60 @@ a {
 .projects-serial .pc-desc {
   margin: 0;
   color: var(--hv-muted);
-  max-width: 38rem;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   line-height: 1.55;
+}
+
+/* Demo frame. Sits flush against the top of the card, so dropping in a
+   capture later needs no layout work — just set `media` in context.ts. */
+.pc-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--hv-line);
+  background: var(--hv-bg);
+}
+
+/* Empty state: a faint diagonal hatch so the slot reads as deliberate
+   whitespace rather than a failed image. */
+.pc-media--empty {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 9px,
+    var(--hv-hover-bg) 9px 10px
+  );
+}
+
+.pc-media-asset {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.pc-card:hover .pc-media-asset,
+.pc-card:focus-within .pc-media-asset {
+  transform: scale(1.03);
+}
+
+.pc-media-hint {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #f4f4f5;
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.pc-card:hover .pc-media-hint,
+.pc-card:focus-within .pc-media-hint {
+  opacity: 0;
 }
 
 /* ---------------------------------------------------------------- */
@@ -578,9 +795,10 @@ body.ask-page .home-main {
   background: var(--hv-bg);
 }
 
+/* No width override — the Ask column matches every other page's text column
+   so the terminal never pushes past the site margins. */
 .home-content.ask-main {
-  max-width: 52rem;
-  padding-right: clamp(0px, 6vw, 3rem);
+  max-width: none;
 }
 
 .ask-hero {
@@ -682,8 +900,12 @@ body.ask-page .home-main {
 }
 
 .ask-window-scroll {
-  max-height: min(64vh, 34rem);
+  /* Fixed height so the window reads as a tall terminal instead of growing
+     wider and shifting the page as the transcript fills in. */
+  height: clamp(22rem, 58vh, 34rem);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
   padding: 0.85rem 1rem 1rem;
   font-size: 0.85rem;
   font-weight: 400;
@@ -868,8 +1090,24 @@ body.ask-page .home-main {
 .site-footer {
   position: fixed;
   bottom: max(1rem, env(safe-area-inset-bottom));
+  left: max(1.25rem, env(safe-area-inset-left));
   right: max(1.25rem, env(safe-area-inset-right));
   z-index: 998;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  /* The bar spans the viewport, so let clicks through everywhere except the
+     two corners that actually hold content. */
+  pointer-events: none;
+}
+
+.site-footer-left,
+.site-footer-right {
+  pointer-events: auto;
+}
+
+.site-footer-right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -900,18 +1138,111 @@ body.ask-page .home-main {
   transform: translateY(-2px);
 }
 
+/* Spotify footer widget — no card, reads as part of the footer itself. */
+.spotify-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: min(17rem, 45vw);
+  color: var(--hv-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a.spotify-widget:hover {
+  color: var(--hv-text);
+}
+
+.spotify-art {
+  width: 2.125rem;
+  height: 2.125rem;
+  flex-shrink: 0;
+  border-radius: 0.3rem;
+  object-fit: cover;
+}
+
+.spotify-art--empty {
+  border: 1px solid var(--hv-line);
+}
+
+.spotify-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.spotify-status,
+.spotify-title,
+.spotify-artists {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spotify-status {
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--hv-muted);
+}
+
+.spotify-dot {
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  background: #1db954;
+  vertical-align: middle;
+}
+
+.spotify-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--hv-text);
+}
+
+.spotify-artists {
+  font-size: 0.68rem;
+  color: var(--hv-muted);
+}
+
+@media (max-width: 640px) {
+  /* Stack the footer so the track title is not fighting the icon row for
+     horizontal space on a phone. */
+  .site-footer {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .site-footer-right {
+    align-self: stretch;
+    align-items: flex-start;
+  }
+
+  .spotify-widget {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 520px) {
   .ask-chat-form {
     flex-direction: column;
   }
 
   .ask-chat-form button[type="submit"] {
-    align-self: flex-start;
+    align-self: stretch;
+    text-align: center;
   }
 
-  .site-footer {
-    left: max(1.25rem, env(safe-area-inset-left));
-    right: auto;
-    align-items: flex-start;
+  .ask-window-scroll {
+    height: clamp(18rem, 52vh, 26rem);
+  }
+
+  /* 16px keeps iOS Safari from zooming the page on focus. */
+  .ask-chat-form input[type="text"] {
+    font-size: 1rem;
   }
 }

@@ -9,8 +9,10 @@ const Home = () => (
         className="home-avatar"
         src="/profile.jpg"
         alt="Justin Manoj"
-        width="44"
-        height="44"
+        width="60"
+        height="60"
+        fetchPriority="high"
+        decoding="async"
       />
       <h1 className="home-name">{displayName}</h1>
     </div>

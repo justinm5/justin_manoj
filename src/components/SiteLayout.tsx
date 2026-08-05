@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
-import { NavLink } from "react-router";
-import { displayName, socials } from "@/data/context";
+import { NavLink, useLocation } from "react-router";
+import { SpotifyLastPlayed } from "@/components/SpotifyLastPlayed";
+import { displayName, footerSocials, socials } from "@/data/context";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -70,15 +71,6 @@ const icons: Record<string, ReactNode> = {
   ),
 };
 
-const footerSocials = [
-  { label: "Email", href: "mailto:justinmmanoj@gmail.com", icon: "email" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/justinmmanoj", icon: "linkedin" },
-  { label: "Spotify", href: "https://open.spotify.com/user/YOUR_USERNAME", icon: "spotify" },
-  { label: "GitHub", href: "https://github.com/justinm5", icon: "github" },
-  { label: "X", href: "https://x.com/YOUR_USERNAME", icon: "x" },
-  { label: "Instagram", href: "https://instagram.com/YOUR_USERNAME", icon: "instagram" },
-];
-
 const ThemeToggle = () => {
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window === "undefined") return "dark";
@@ -118,24 +110,29 @@ const ThemeToggle = () => {
 };
 
 const Footer = () => (
-  <footer className="site-footer" aria-label="Social links and copyright">
-    <div className="site-footer-icons">
-      {footerSocials.map((social) => (
-        <a
-          key={social.label}
-          href={social.href}
-          className="site-footer-icon"
-          aria-label={social.label}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {icons[social.icon]}
-        </a>
-      ))}
+  <footer className="site-footer" aria-label="Now playing, social links, and copyright">
+    <div className="site-footer-left">
+      <SpotifyLastPlayed />
     </div>
-    <p className="site-footer-copy">
-      © {new Date().getFullYear()} {displayName}
-    </p>
+    <div className="site-footer-right">
+      <div className="site-footer-icons">
+        {footerSocials.map((social) => (
+          <a
+            key={social.label}
+            href={social.href}
+            className="site-footer-icon"
+            aria-label={social.label}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {icons[social.icon]}
+          </a>
+        ))}
+      </div>
+      <p className="site-footer-copy">
+        © {new Date().getFullYear()} {displayName}
+      </p>
+    </div>
   </footer>
 );
 
@@ -143,18 +140,41 @@ interface SiteLayoutProps {
   children: ReactNode;
   bodyClass?: string;
   contentClassName?: string;
+  /** Page name for the browser tab. Falls back to just the site name. */
+  title?: string;
 }
 
 export const SiteLayout = ({
   children,
   bodyClass,
   contentClassName,
+  title,
 }: SiteLayoutProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    document.title = title ? `${title} · ${displayName}` : displayName;
+  }, [title]);
+
+  // A client-side route change does not reset scroll on its own.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.classList.toggle("mobile-menu-open", menuOpen);
     return () => document.body.classList.remove("mobile-menu-open");
+  }, [menuOpen]);
+
+  // Escape is the expected way out of an open drawer.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
   useEffect(() => {

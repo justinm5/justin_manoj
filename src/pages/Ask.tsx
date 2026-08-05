@@ -113,7 +113,7 @@ const Ask = () => {
   };
 
   return (
-    <SiteLayout bodyClass="ask-page" contentClassName="ask-main">
+    <SiteLayout bodyClass="ask-page" contentClassName="ask-main" title="Ask">
       <header className="ask-hero">
         <span className="ask-hi">{askUi.greeting}</span>
         <span className="ask-name-script" aria-label={displayName}>

@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 
 const NotFound = () => (
-  <SiteLayout>
+  <SiteLayout title="Not found">
     <h1 className="home-name">404</h1>
     <div className="home-intro">
       <p>

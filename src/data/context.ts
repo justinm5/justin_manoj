@@ -17,15 +17,34 @@ export type ExperienceEntry = {
   domain?: string;
 };
 
+export type ProjectMedia = {
+  /**
+   * Path under `public/`, e.g. "/demos/quant-agent.mp4".
+   * `.mp4` and `.webm` play on hover; `.gif`, `.png`, `.jpg`, and `.webp`
+   * render as a still that zooms slightly on hover.
+   */
+  src: string;
+  /** Still frame shown before a video starts playing. Recommended for video. */
+  poster?: string;
+  /** Describe the demo for screen readers. Leave unset for pure decoration. */
+  alt?: string;
+};
+
 export type ProjectEntry = {
   title: string;
   href?: string;
   description: string;
+  /** Omit until you have a demo — the card renders an empty frame instead. */
+  media?: ProjectMedia;
 };
 
 export type BookEntry = {
   title: string;
   author: string;
+  /** One line on what the book is actually about. Shown under the cover. */
+  note: string;
+  /** Short category chip, e.g. "systems". */
+  tag: string;
 };
 
 export type AskPart =
@@ -111,16 +130,66 @@ export const projects: ProjectEntry[] = [
 ];
 
 export const books: BookEntry[] = [
-  { title: "Designing Data-Intensive Applications", author: "Martin Kleppmann" },
-  { title: "The Pragmatic Programmer", author: "Andrew Hunt & David Thomas" },
-  { title: "Clean Code", author: "Robert C. Martin" },
-  { title: "Thinking, Fast and Slow", author: "Daniel Kahneman" },
-  { title: "The Almanack of Naval Ravikant", author: "Eric Jorgenson" },
-  { title: "The Man Who Solved the Market", author: "Gregory Zuckerman" },
-  { title: "Shoe Dog", author: "Phil Knight" },
-  { title: "Outliers", author: "Malcolm Gladwell" },
-  { title: "Sapiens", author: "Yuval Noah Harari" },
-  { title: "Atomic Habits", author: "James Clear" },
+  {
+    title: "Designing Data-Intensive Applications",
+    author: "Martin Kleppmann",
+    tag: "systems",
+    note: "Replication, partitioning, and consensus explained from first principles.",
+  },
+  {
+    title: "The Pragmatic Programmer",
+    author: "Andrew Hunt & David Thomas",
+    tag: "craft",
+    note: "Habits and heuristics that hold up across every codebase.",
+  },
+  {
+    title: "Clean Code",
+    author: "Robert C. Martin",
+    tag: "craft",
+    note: "Naming, function design, and the real cost of letting code rot.",
+  },
+  {
+    title: "Thinking, Fast and Slow",
+    author: "Daniel Kahneman",
+    tag: "psychology",
+    note: "The two systems behind human judgment, and how each one fails.",
+  },
+  {
+    title: "The Almanack of Naval Ravikant",
+    author: "Eric Jorgenson",
+    tag: "essays",
+    note: "Collected notes on leverage, judgment, and specific knowledge.",
+  },
+  {
+    title: "The Man Who Solved the Market",
+    author: "Gregory Zuckerman",
+    tag: "quant",
+    note: "How Renaissance Technologies turned statistics into a durable edge.",
+  },
+  {
+    title: "Shoe Dog",
+    author: "Phil Knight",
+    tag: "memoir",
+    note: "Nike's first two decades told as an operating story, not a highlight reel.",
+  },
+  {
+    title: "Outliers",
+    author: "Malcolm Gladwell",
+    tag: "psychology",
+    note: "The timing, practice, and context hidden behind outlier success.",
+  },
+  {
+    title: "Sapiens",
+    author: "Yuval Noah Harari",
+    tag: "history",
+    note: "A long view of how shared fictions let humans cooperate at scale.",
+  },
+  {
+    title: "Atomic Habits",
+    author: "James Clear",
+    tag: "habits",
+    note: "Systems over goals, and the compounding math of small changes.",
+  },
 ];
 
 export const socials = [
@@ -133,6 +202,13 @@ export const socials = [
   { label: "Email", href: "mailto:justinmmanoj@gmail.com", icon: "email" },
   { label: "Resume", href: "/resume.pdf", icon: "resume" },
 ] as const;
+
+/** Footer icon row. */
+export const footerSocials = [
+  { label: "Email", href: "mailto:justinmmanoj@gmail.com", icon: "email" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/justinmmanoj", icon: "linkedin" },
+  { label: "GitHub", href: "https://github.com/justinm5", icon: "github" },
+];
 
 export const askUi = {
   greeting: "hi i'm",

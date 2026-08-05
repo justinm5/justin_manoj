@@ -1,171 +1,136 @@
-interface SpotifyTokenPayload {
-  access_token?: string;
-}
+/**
+ * Serverless endpoint backing the footer "now playing / last played" widget.
+ *
+ * Requires three environment variables on the host:
+ *   SPOTIFY_CLIENT_ID
+ *   SPOTIFY_CLIENT_SECRET
+ *   SPOTIFY_REFRESH_TOKEN   (scopes: user-read-currently-playing, user-read-recently-played)
+ *
+ * When any of them is missing the endpoint returns `{ configured: false }` and
+ * the widget renders nothing, so the footer degrades cleanly.
+ */
 
-interface SpotifyTrack {
+const TOKEN_URL = "https://accounts.spotify.com/api/token";
+const NOW_PLAYING_URL = "https://api.spotify.com/v1/me/player/currently-playing";
+const RECENT_URL = "https://api.spotify.com/v1/me/player/recently-played?limit=1";
+
+/** Cache at the edge so a busy page does not burn through Spotify's rate limit. */
+const CACHE_CONTROL = "public, s-maxage=30, stale-while-revalidate=120";
+
+type SpotifyArtist = { name: string };
+type SpotifyImage = { url: string; width?: number; height?: number };
+
+type SpotifyTrack = {
   name?: string;
-  artists?: Array<{ name?: string }>;
+  artists?: SpotifyArtist[];
+  album?: { images?: SpotifyImage[] };
   external_urls?: { spotify?: string };
-  album?: {
-    name?: string;
-    images?: Array<{ url?: string }>;
-  };
-}
-
-interface SpotifyCurrentlyPlayingResponse {
-  timestamp?: number;
-  is_playing?: boolean;
-  item?: SpotifyTrack;
-}
-
-interface SpotifyRecentResponse {
-  items?: Array<{
-    played_at?: string;
-    track?: SpotifyTrack;
-  }>;
-}
-
-type RuntimeEnv = Record<string, string | undefined>;
-
-interface ApiRequest {
-  method?: string;
-  url?: string;
-}
-
-interface ApiResponse {
-  statusCode: number;
-  setHeader: (name: string, value: string) => void;
-  end: (body: string) => void;
-}
-
-const getEnv = () =>
-  ((globalThis as typeof globalThis & { process?: { env?: RuntimeEnv } }).process?.env ??
-    {}) as RuntimeEnv;
-
-const json = (res: ApiResponse, status: number, body: Record<string, unknown>) => {
-  res.statusCode = status;
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.setHeader("Cache-Control", "no-store");
-  res.end(JSON.stringify(body));
 };
 
-const isProductionRuntime = (env: RuntimeEnv) =>
-  env.VERCEL_ENV === "production" || env.NODE_ENV === "production";
-
-const getMissingCredentials = (credentials: {
-  clientId?: string;
-  clientSecret?: string;
-  refreshToken?: string;
-}) => {
-  const missing: string[] = [];
-  if (!credentials.clientId) missing.push("SPOTIFY_CLIENT_ID");
-  if (!credentials.clientSecret) missing.push("SPOTIFY_CLIENT_SECRET");
-  if (!credentials.refreshToken) missing.push("SPOTIFY_REFRESH_TOKEN");
-  return missing;
+export type LastPlayedPayload = {
+  configured: true;
+  isPlaying: boolean;
+  title: string;
+  artists: string;
+  albumArt: string | null;
+  url: string | null;
+  playedAt: string | null;
 };
 
-const getAccessToken = async (clientId: string, clientSecret: string, refreshToken: string) => {
-  const body = new URLSearchParams({
-    grant_type: "refresh_token",
-    refresh_token: refreshToken,
+const json = (body: unknown, status = 200, cache = false) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      ...(cache ? { "Cache-Control": CACHE_CONTROL } : {}),
+    },
   });
 
-  const response = await fetch("https://accounts.spotify.com/api/token", {
+const getAccessToken = async (
+  clientId: string,
+  clientSecret: string,
+  refreshToken: string,
+): Promise<string> => {
+  const res = await fetch(TOKEN_URL, {
     method: "POST",
     headers: {
-      Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
       "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
     },
-    body,
+    body: new URLSearchParams({
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+    }),
   });
 
-  if (!response.ok) {
-    return null;
+  if (!res.ok) {
+    throw new Error(`token refresh failed (${res.status}): ${(await res.text()).slice(0, 200)}`);
   }
 
-  const payload = (await response.json()) as SpotifyTokenPayload;
-  return payload.access_token ?? null;
+  const data = (await res.json()) as { access_token?: string };
+  if (!data.access_token) throw new Error("token refresh returned no access_token");
+  return data.access_token;
 };
 
-const toTrackPayload = (track: SpotifyTrack, playedAt: string, isPlaying: boolean) => ({
-  albumArtUrl: track.album?.images?.[0]?.url ?? null,
-  albumName: track.album?.name ?? "",
-  artists: (track.artists ?? []).map((artist) => artist.name).filter(Boolean),
+const toPayload = (
+  track: SpotifyTrack,
+  isPlaying: boolean,
+  playedAt: string | null,
+): LastPlayedPayload => ({
+  configured: true,
   isPlaying,
+  title: track.name ?? "Unknown track",
+  artists: (track.artists ?? []).map((artist) => artist.name).join(", "),
+  albumArt: track.album?.images?.at(-1)?.url ?? track.album?.images?.[0]?.url ?? null,
+  url: track.external_urls?.spotify ?? null,
   playedAt,
-  trackName: track.name,
-  trackUrl: track.external_urls?.spotify ?? null,
 });
 
-export default async function handler(req: ApiRequest, res: ApiResponse) {
-  if (req.method !== "GET") {
-    res.setHeader("Allow", "GET");
-    return json(res, 405, { error: "Method not allowed." });
+export default async function handler(request: Request): Promise<Response> {
+  if (request.method !== "GET") {
+    return json({ error: "Method not allowed" }, 405);
   }
 
-  const env = getEnv();
-  const clientId = env.SPOTIFY_CLIENT_ID;
-  const clientSecret = env.SPOTIFY_CLIENT_SECRET;
-  const refreshToken = env.SPOTIFY_REFRESH_TOKEN;
-  const requestUrl = new URL(req.url ?? "/", "http://localhost");
-  const debugRequested = requestUrl.searchParams.get("debug") === "1";
-  const productionRuntime = isProductionRuntime(env);
+  const clientId = process.env.SPOTIFY_CLIENT_ID;
+  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
-  const missingCredentials = getMissingCredentials({ clientId, clientSecret, refreshToken });
-  if (missingCredentials.length > 0) {
-    if (!productionRuntime && debugRequested) {
-      return json(res, 500, {
-        error: "Spotify server credentials are missing.",
-        missing: missingCredentials,
-        vercelEnv: env.VERCEL_ENV ?? null,
-      });
-    }
-
-    return json(res, 500, { error: "Spotify server credentials are missing." });
+  if (!clientId || !clientSecret || !refreshToken) {
+    return json({ configured: false }, 200, true);
   }
 
   try {
     const accessToken = await getAccessToken(clientId, clientSecret, refreshToken);
-    if (!accessToken) {
-      return json(res, 502, { error: "Could not refresh Spotify access token." });
-    }
+    const auth = { Authorization: `Bearer ${accessToken}` };
 
-    const spotifyHeaders = {
-      Authorization: `Bearer ${accessToken}`,
-    };
+    const nowPlaying = await fetch(NOW_PLAYING_URL, { headers: auth });
 
-    // Faster updates: check currently playing first, then fall back to recently played.
-    const currentResponse = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
-      headers: spotifyHeaders,
-    });
-
-    if (currentResponse.status === 200) {
-      const currentPayload = (await currentResponse.json()) as SpotifyCurrentlyPlayingResponse;
-      const currentTrack = currentPayload.item;
-      if (currentTrack?.name) {
-        const playedAt = new Date(currentPayload.timestamp ?? Date.now()).toISOString();
-        return json(res, 200, toTrackPayload(currentTrack, playedAt, Boolean(currentPayload.is_playing)));
+    // 204 means nothing is playing right now; anything 2xx with a body is a track.
+    if (nowPlaying.status === 200) {
+      const data = (await nowPlaying.json()) as {
+        is_playing?: boolean;
+        item?: SpotifyTrack | null;
+      };
+      if (data.item) {
+        return json(toPayload(data.item, Boolean(data.is_playing), null), 200, true);
       }
     }
 
-    const recentResponse = await fetch("https://api.spotify.com/v1/me/player/recently-played?limit=1", {
-      headers: spotifyHeaders,
-    });
-
-    if (!recentResponse.ok) {
-      return json(res, 502, { error: "Could not fetch recent Spotify track." });
+    const recent = await fetch(RECENT_URL, { headers: auth });
+    if (!recent.ok) {
+      return json({ error: `Spotify error (${recent.status})` }, 502);
     }
 
-    const recentPayload = (await recentResponse.json()) as SpotifyRecentResponse;
-    const item = recentPayload.items?.[0];
-    const track = item?.track;
-
-    if (!track || !track.name || !item?.played_at) {
-      return json(res, 200, { trackName: null });
+    const data = (await recent.json()) as {
+      items?: { track?: SpotifyTrack; played_at?: string }[];
+    };
+    const item = data.items?.[0];
+    if (!item?.track) {
+      return json({ error: "No recent tracks" }, 404);
     }
 
-    return json(res, 200, toTrackPayload(track, item.played_at, false));
-  } catch {
-    return json(res, 500, { error: "Unexpected Spotify API error." });
+    return json(toPayload(item.track, false, item.played_at ?? null), 200, true);
+  } catch (error) {
+    return json({ error: "Request failed", detail: String(error) }, 500);
   }
 }

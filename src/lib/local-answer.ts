@@ -1,13 +1,17 @@
 /**
- * Zero-cost offline fallback for the Ask page.
+ * Zero-cost answering engine for the Ask page.
  *
- * Scores each fact line from `systemContext` against the question using token
- * overlap with IDF-style weighting, then returns the best-matching facts. Used
- * whenever the /api/chat serverless function is unreachable (plain `vite dev`,
- * static hosting, or a missing API key) so the chatbot always answers.
+ * Two layers, tried in order:
+ *   1. Intents — hand-written handlers that compose a real answer from the
+ *      structured data in `context.ts` (experience, projects, books).
+ *   2. Retrieval — token overlap with IDF weighting over the fact lines in
+ *      `systemContext`, for anything the intents do not cover.
+ *
+ * Runs entirely in the browser, so it works with plain `vite dev`, on static
+ * hosting, and whenever /api/chat is unreachable or has no API key.
  */
 
-import { systemContext } from "@/data/context";
+import { books, experience, projects, systemContext } from "@/data/context";
 
 const STOPWORDS = new Set([
   "a", "about", "all", "am", "an", "and", "any", "are", "as", "at", "be",
@@ -54,6 +58,198 @@ const SYNONYMS: Record<string, string[]> = {
 
 const CONTACT_LINE =
   "You can reach me at justinmmanoj@gmail.com, on LinkedIn at linkedin.com/in/justinmmanoj, or on GitHub at github.com/justinm5.";
+
+/* ------------------------------------------------------------------ */
+/* Intent layer                                                        */
+/* ------------------------------------------------------------------ */
+
+const EDUCATION =
+  "I'm studying Computer Science and Mathematics at UMass Amherst, graduating in 2027.";
+
+const FOCUS =
+  "I work mostly on backend systems, data pipelines, and quantitative engineering — the kind of production work where latency and correctness both matter.";
+
+const SKILLS =
+  "Day to day I write Go, Python, Java, and TypeScript. On top of that: React and Node on the frontend, and Docker, Kubernetes, PostgreSQL, Redis, Kafka, and gRPC underneath.";
+
+const COURSEWORK =
+  "Relevant coursework: algorithms, data structures, operating systems, machine learning, databases, scalable web systems, and data science.";
+
+const lowerFirst = (text: string) =>
+  text ? text.charAt(0).toLowerCase() + text.slice(1) : text;
+
+/** "Software Engineer Intern · Internship · 2026" -> "Software Engineer Intern, 2026". */
+const roleLabel = (role: string) => {
+  const segments = role.split("·").map((part) => part.trim());
+  if (segments.length <= 1) return role;
+  return [segments[0], segments[segments.length - 1]].join(", ");
+};
+
+const describeRole = (entry: (typeof experience)[number]) => {
+  const head = `${entry.company} — ${roleLabel(entry.role)}`;
+  return entry.description ? `${head}. ${entry.description}` : `${head}.`;
+};
+
+const experienceOverview = () =>
+  [
+    `I've had ${experience.length} engineering roles so far.`,
+    ...experience.map((entry) => describeRole(entry)),
+  ].join(" ");
+
+const projectsOverview = () =>
+  [
+    "Three projects I keep coming back to:",
+    ...projects.map((project) => `${project.title} — ${project.description}`),
+  ].join(" ");
+
+const booksOverview = () =>
+  `I've got ${books.length} books on the site: ${books
+    .map((book) => `${book.title} (${book.author})`)
+    .join(", ")}. The Books page has a line on each one.`;
+
+/**
+ * Alias -> matcher for the entities people actually name in questions.
+ * Checked before the generic overviews so "tell me about Dell" beats
+ * "tell me about your experience".
+ */
+const companyAliases: { pattern: RegExp; company: string }[] = [
+  { pattern: /\bibm\b/, company: "IBM" },
+  { pattern: /\bdell\b/, company: "Dell Technologies" },
+  { pattern: /\bgbcs\b/, company: "GBCS Group" },
+  {
+    pattern: /\b(autonomous learning|research lab|research assistant|research)\b/,
+    company: "University of Massachusetts Amherst",
+  },
+  { pattern: /\bbuild\s?umass\b/, company: "BUILD UMass" },
+];
+
+const projectAliases: { pattern: RegExp; title: string }[] = [
+  { pattern: /\b(quant|quantitative|signal|trading|sec filings)\b/, title: "Quantitative Signal Agent" },
+  { pattern: /\b(dining|meal|food|menu)\b/, title: "UMass Dining Engine" },
+  { pattern: /\b(poker|hold\s?'?em|monte carlo)\b/, title: "Poker IQ Trainer" },
+];
+
+type Intent = {
+  pattern: RegExp;
+  respond: (question: string) => string | null;
+};
+
+const intents: Intent[] = [
+  {
+    pattern: /^(hi|hey|hello|yo|sup|howdy|good (morning|afternoon|evening))\b/,
+    respond: () =>
+      `Hey. ${EDUCATION} Ask me about my experience, projects, coursework, or what I've been reading.`,
+  },
+  {
+    pattern: /\b(thanks|thank you|appreciate it|ty)\b/,
+    respond: () => "Anytime. Anything else you want to dig into?",
+  },
+  {
+    pattern: /\b(what can (you|i) ask|help|options|topics)\b/,
+    respond: () =>
+      "Ask about my experience and internships, individual companies like Dell or IBM, my projects, my stack, coursework, books I've read, or how to get in touch.",
+  },
+
+  // Named entities first — most specific wins.
+  {
+    pattern: /./,
+    respond: (question) => {
+      const alias = companyAliases.find((entry) => entry.pattern.test(question));
+      if (!alias) return null;
+      const entry = experience.find((item) => item.company === alias.company);
+      if (!entry) return null;
+      if (!entry.description) {
+        return `${entry.company} — ${roleLabel(entry.role)}${
+          entry.location ? ` in ${entry.location}` : ""
+        }. I'm joining the cloud platform organization to work on Kubernetes microservices.`;
+      }
+      return describeRole(entry);
+    },
+  },
+  {
+    pattern: /./,
+    respond: (question) => {
+      const alias = projectAliases.find((entry) => entry.pattern.test(question));
+      if (!alias) return null;
+      const project = projects.find((item) => item.title === alias.title);
+      return project ? `${project.title} — ${project.description}` : null;
+    },
+  },
+  {
+    pattern: /./,
+    respond: (question) => {
+      const match = books.find((book) => {
+        const key = book.title.toLowerCase().replace(/^the\s+/, "");
+        return key.length > 5 && question.includes(key);
+      });
+      return match
+        ? `${match.title} by ${match.author}. ${match.note}`
+        : null;
+    },
+  },
+
+  // Broad topics.
+  {
+    pattern:
+      /\b(who are you|about yourself|about you|introduce|introduction|elevator pitch|tell me about you|summar(y|ize|ise))\b/,
+    respond: () =>
+      `${EDUCATION} ${FOCUS} So far I've worked at ${experience
+        .slice(0, 3)
+        .map((entry) => entry.company)
+        .join(", ")}, plus research at the UMass Autonomous Learning Lab.`,
+  },
+  {
+    pattern:
+      /\b(experience|internship|internships|intern|co-?op|work history|worked|employment|jobs?|career|resume|cv)\b/,
+    respond: () => experienceOverview(),
+  },
+  {
+    pattern: /\b(projects?|built|building|shipped|side project|portfolio piece)\b/,
+    respond: () => projectsOverview(),
+  },
+  {
+    pattern: /\b(books?|reading|read|bookshelf|recommend)\b/,
+    respond: () => booksOverview(),
+  },
+  {
+    pattern:
+      /\b(skills?|stack|tech|technologies|tools|languages?|programming|proficient|know how to)\b/,
+    respond: () => SKILLS,
+  },
+  {
+    pattern:
+      /\b(school|study|studying|college|university|umass|amherst|major|degree|graduat|class of|gpa)\b/,
+    respond: () => EDUCATION,
+  },
+  {
+    pattern: /\b(course|courses|coursework|classes|classwork|curriculum)\b/,
+    respond: () => COURSEWORK,
+  },
+  {
+    pattern:
+      /\b(why (should|would) (i|we|anyone) hire|strengths?|good at|stand out|best qualit|what makes you)\b/,
+    respond: () =>
+      `${FOCUS} What I'd point to: persistence, systems thinking, and a bias toward shipping. Concretely, a Go Kubernetes operator running across production RKE2 clusters at Dell, and an API rebuild at GBCS that cut dashboard load times 65%.`,
+  },
+  {
+    pattern: /\b(backend|infrastructure|systems|distributed|kubernetes|k8s|devops|platform)\b/,
+    respond: () =>
+      `${FOCUS} Most of that has been Kubernetes and Go: an operator at Dell automating audit logging and OpenTelemetry across production RKE2 clusters, GitOps-managed platform features, and CVE remediation.`,
+  },
+  {
+    pattern: /\b(hobb(y|ies)|interests|free time|fun|outside of work|music|gym|lift)\b/,
+    respond: () =>
+      "Outside of engineering I read a lot, lift, and listen to more hip-hop and R&B than is probably reasonable.",
+  },
+  {
+    pattern: /\b(where.*(live|based|located)|location|city|relocat)\b/,
+    respond: () =>
+      "I'm based in Massachusetts — school in Amherst, and my roles have been in Hopkinton and Lowell.",
+  },
+];
+
+const SUGGESTIONS =
+  "Try asking about my experience, a specific company like Dell or IBM, my projects, my stack, or what I've been reading.";
 
 const tokenize = (text: string): string[] =>
   text
@@ -126,33 +322,40 @@ const scoreFact = (queryTokens: string[], index: number): number => {
 };
 
 export const answerLocally = (question: string): string => {
-  const queryTokens = expand(tokenize(question));
+  const normalized = question.toLowerCase().trim();
 
-  if (queryTokens.length === 0) {
-    return "Ask me about my experience, projects, coursework, or what I have been reading.";
+  if (normalized.length === 0) {
+    return `Ask me anything about my background. ${SUGGESTIONS}`;
   }
 
-  // Contact intent is answered directly — keyword matching would otherwise pull
-  // in unrelated facts that merely mention GitHub or email.
-  if (/\b(contact|reach|email|hire|resume|linkedin|github profile)\b/i.test(question)) {
+  // Contact is checked first — keyword matching would otherwise pull in every
+  // fact line that merely mentions GitHub or email.
+  if (/\b(contact|reach you|reach out|get in touch|email|linkedin|github profile)\b/.test(normalized)) {
     return CONTACT_LINE;
   }
 
+  for (const intent of intents) {
+    if (!intent.pattern.test(normalized)) continue;
+    const reply = intent.respond(normalized);
+    if (reply) return reply;
+  }
+
+  const queryTokens = expand(tokenize(normalized));
   const scored = facts
     .map((fact, index) => ({ fact, score: scoreFact(queryTokens, index) }))
     .filter((entry) => entry.score > 0.8)
     .sort((a, b) => b.score - a.score);
 
   if (scored.length === 0) {
-    return `I do not have that on the site. ${CONTACT_LINE}`;
+    return `I don't have that on the site. ${SUGGESTIONS} Otherwise, ${lowerFirst(CONTACT_LINE)}`;
   }
 
   // Only keep facts close to the best match, so a question about one job does
   // not drag in every other job that happens to share a keyword.
   const cutoff = scored[0].score * 0.62;
-  const ranked = scored.filter((entry) => entry.score >= cutoff).slice(0, 3);
-
-  return ranked
+  return scored
+    .filter((entry) => entry.score >= cutoff)
+    .slice(0, 3)
     .map((entry) => entry.fact.replace(/\s+/g, " ").trim())
     .join(" ");
 };
