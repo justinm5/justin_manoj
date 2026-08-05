@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Ask from "./pages/Ask";
 import Books from "./pages/Books";
@@ -14,6 +15,7 @@ const App = () => (
       <Route path="/ask" element={<Ask />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
+    <Analytics />
   </BrowserRouter>
 );
 
