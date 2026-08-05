@@ -46,6 +46,14 @@ const json = (body: unknown, status = 200, cache = false) =>
     },
   });
 
+/** Works in Node (Buffer) and Vercel Edge (btoa). */
+const encodeBase64 = (value: string): string => {
+  if (typeof Buffer !== "undefined") {
+    return Buffer.from(value).toString("base64");
+  }
+  return (globalThis as unknown as { btoa: (s: string) => string }).btoa(value);
+};
+
 const getAccessToken = async (
   clientId: string,
   clientSecret: string,
@@ -55,7 +63,7 @@ const getAccessToken = async (
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
+      Authorization: `Basic ${encodeBase64(`${clientId}:${clientSecret}`)}`,
     },
     body: new URLSearchParams({
       grant_type: "refresh_token",
