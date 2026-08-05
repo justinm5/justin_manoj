@@ -10,7 +10,7 @@ type Track = {
 };
 
 const ENDPOINT = "/api/spotify-last-played";
-const REFRESH_MS = 15_000;
+const REFRESH_MS = 2_000;
 const CACHE_KEY = "spotify-last-played-v1";
 
 const readCache = (): Track | null => {

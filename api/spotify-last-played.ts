@@ -17,7 +17,7 @@ const NOW_PLAYING_URL = "https://api.spotify.com/v1/me/player/currently-playing"
 const RECENT_URL = "https://api.spotify.com/v1/me/player/recently-played?limit=1";
 
 /** Cache at the edge so a busy page does not burn through Spotify's rate limit. */
-const CACHE_CONTROL = "public, max-age=15, s-maxage=15, stale-while-revalidate=60";
+const CACHE_CONTROL = "public, max-age=0, s-maxage=2";
 
 type SpotifyArtist = { name: string };
 type SpotifyImage = { url: string; width?: number; height?: number };
@@ -105,9 +105,9 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     return;
   }
 
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+  const clientId = process.env.SPOTIFY_CLIENT_ID?.trim();
+  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET?.trim();
+  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN?.trim();
 
   if (!clientId || !clientSecret || !refreshToken) {
     sendJson(res, { configured: false }, 200, true);
