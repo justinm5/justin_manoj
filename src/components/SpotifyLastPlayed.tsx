@@ -10,7 +10,7 @@ type Track = {
 };
 
 const ENDPOINT = "/api/spotify-last-played";
-const REFRESH_MS = 60_000;
+const REFRESH_MS = 15_000;
 const CACHE_KEY = "spotify-last-played-v1";
 
 const readCache = (): Track | null => {
@@ -96,11 +96,9 @@ export const SpotifyLastPlayed = () => {
 
   if (hidden || !track) return null;
 
-  const status = track.isPlaying
-    ? "now playing"
-    : track.playedAt
-      ? `last played · ${relativeTime(track.playedAt)}`
-      : "last played";
+  const statusLabel = track.isPlaying ? "Now Playing" : "Last Played";
+  const timeLabel = track.playedAt ? relativeTime(track.playedAt) : null;
+  const status = timeLabel ? `${statusLabel} · ${timeLabel}` : statusLabel;
 
   const body = (
     <>

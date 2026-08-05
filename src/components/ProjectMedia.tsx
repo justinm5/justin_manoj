@@ -52,7 +52,11 @@ export const ProjectMedia = ({ media }: { media?: ProjectMediaData }) => {
   }, [isVideo]);
 
   if (!media) {
-    return <div className="pc-media pc-media--empty" aria-hidden="true" />;
+    return (
+      <div className="pc-media pc-media--empty" aria-hidden="true">
+        <span className="pc-media-placeholder">demo soon</span>
+      </div>
+    );
   }
 
   if (!isVideo) {
