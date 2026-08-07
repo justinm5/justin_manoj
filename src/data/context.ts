@@ -116,73 +116,55 @@ export const projects: ProjectEntry[] = [
     title: "Personal Website",
     href: "https://github.com/justinm5/justin_manoj",
     description:
-      "The portfolio you're on right now — a React + Vite site backed by Vercel serverless functions for the Spotify widget and Ask chatbot.",
+      "The portfolio you're currently on — built with React and Vite.",
   },
   {
     title: "Quantitative Signal Agent",
     description:
-      "Real-time pipeline that ingests SEC filings, price feeds, and news into a microservices architecture. Go ingestion over gRPC and Kafka, time-series storage in TimescaleDB, Redis caching, and Python anomaly detection.",
+      "Real-time pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.",
   },
   {
     title: "UMass Dining Engine",
     description:
-      "AI meal-planning platform that aggregates live dining-hall menus, normalizes dietary data, and serves real-time filters through a Spring Boot API with a Python ETL layer and React frontend.",
+      "AI meal planner aggregating dining-hall menus via Spring Boot, Python ETL, and React.",
   },
   {
     title: "Poker IQ Trainer",
     description:
-      "Texas Hold'em trainer with configurable AI opponents and a Monte Carlo simulation engine compiled to WebAssembly, plus a React UI for EV visualization and hand-history review.",
+      "Texas Hold'em trainer with AI opponents, a WASM Monte Carlo engine, and a React UI.",
   },
 ];
 
 export const books: BookEntry[] = [
   {
-    title: "Designing Data-Intensive Applications",
-    author: "Martin Kleppmann",
-    tag: "systems",
-    note: "Replication, partitioning, and consensus explained from first principles.",
+    title: "Atomic Habits",
+    author: "James Clear",
+    tag: "habits",
+    note: "Systems over goals, and the compounding math of small changes.",
   },
   {
-    title: "The Pragmatic Programmer",
-    author: "Andrew Hunt & David Thomas",
-    tag: "craft",
-    note: "Habits and heuristics that hold up across every codebase.",
-  },
-  {
-    title: "Clean Code",
-    author: "Robert C. Martin",
-    tag: "craft",
-    note: "Naming, function design, and the real cost of letting code rot.",
-  },
-  {
-    title: "Thinking, Fast and Slow",
-    author: "Daniel Kahneman",
-    tag: "psychology",
-    note: "The two systems behind human judgment, and how each one fails.",
-  },
-  {
-    title: "The Almanack of Naval Ravikant",
-    author: "Eric Jorgenson",
-    tag: "essays",
-    note: "Collected notes on leverage, judgment, and specific knowledge.",
-  },
-  {
-    title: "The Man Who Solved the Market",
-    author: "Gregory Zuckerman",
-    tag: "quant",
-    note: "How Renaissance Technologies turned statistics into a durable edge.",
-  },
-  {
-    title: "Shoe Dog",
-    author: "Phil Knight",
-    tag: "memoir",
-    note: "Nike's first two decades told as an operating story, not a highlight reel.",
+    title: "Deep Work",
+    author: "Cal Newport",
+    tag: "productivity",
+    note: "Rules for focused work in a distracted world.",
   },
   {
     title: "Outliers",
     author: "Malcolm Gladwell",
-    tag: "psychology",
+    tag: "success",
     note: "The timing, practice, and context hidden behind outlier success.",
+  },
+  {
+    title: "Never Split the Difference",
+    author: "Chris Voss",
+    tag: "negotiation",
+    note: "Tactical empathy and calibrated questions for high-stakes conversations.",
+  },
+  {
+    title: "The Outsiders",
+    author: "William N. Thorndike",
+    tag: "business",
+    note: "Eight CEOs and the unconventional paths to exceptional returns.",
   },
   {
     title: "Sapiens",
@@ -191,10 +173,70 @@ export const books: BookEntry[] = [
     note: "A long view of how shared fictions let humans cooperate at scale.",
   },
   {
-    title: "Atomic Habits",
-    author: "James Clear",
-    tag: "habits",
-    note: "Systems over goals, and the compounding math of small changes.",
+    title: "Zero to One",
+    author: "Peter Thiel",
+    tag: "startups",
+    note: "Building companies that create something new instead of competing.",
+  },
+  {
+    title: "Competition Demystified",
+    author: "Bruce Greenwald",
+    tag: "strategy",
+    note: "Moats, entry barriers, and what actually protects a business's profits.",
+  },
+  {
+    title: "Ultralearning",
+    author: "Scott Young",
+    tag: "learning",
+    note: "A practical system for teaching yourself hard skills quickly.",
+  },
+  {
+    title: "The Personal MBA",
+    author: "Josh Kaufman",
+    tag: "business",
+    note: "A broad, no-MBA-required introduction to how business works.",
+  },
+  {
+    title: "The Prince",
+    author: "Niccolò Machiavelli",
+    tag: "strategy",
+    note: "The classic, unsentimental guide to power, politics, and leadership.",
+  },
+  {
+    title: "Thinking, Fast and Slow",
+    author: "Daniel Kahneman",
+    tag: "psychology",
+    note: "The two systems behind human judgment, and how each one fails.",
+  },
+  {
+    title: "Shoe Dog",
+    author: "Phil Knight",
+    tag: "memoir",
+    note: "Nike's first two decades told as an operating story, not a highlight reel.",
+  },
+  {
+    title: "The Last Lecture",
+    author: "Randy Pausch",
+    tag: "memoir",
+    note: "A professor's final talk on childhood dreams and what really matters.",
+  },
+  {
+    title: "Influence: The Psychology of Persuasion",
+    author: "Robert B. Cialdini",
+    tag: "psychology",
+    note: "Why people say yes and the six shortcuts behind persuasion.",
+  },
+  {
+    title: "The Status Game",
+    author: "Will Storr",
+    tag: "psychology",
+    note: "How humans compete for status and why that shapes almost everything.",
+  },
+  {
+    title: "Poor Charlie's Almanack",
+    author: "Charlie Munger",
+    tag: "wisdom",
+    note: "Mental models, inversion, and multidisciplinary thinking.",
   },
 ];
 

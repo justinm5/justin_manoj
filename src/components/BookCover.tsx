@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { coverUrl, fetchCoverId, getCachedCoverId } from "@/lib/book-covers";
+import { fetchCover, getCachedCover } from "@/lib/book-covers";
 
 interface BookCoverProps {
   title: string;
@@ -7,37 +7,37 @@ interface BookCoverProps {
 }
 
 /**
- * Renders real cover art when Open Library has it, and a typographic cover
- * built from the title when it does not. Either way the tile keeps the same
- * 2:3 aspect ratio so the shelf never reflows as covers arrive.
+ * Renders real cover art when Open Library or Google Books has it, and a
+ * typographic cover built from the title when neither does. Either way the
+ * tile keeps the same 2:3 aspect ratio so the shelf never reflows.
  */
 export const BookCover = ({ title, author }: BookCoverProps) => {
-  const [coverId, setCoverId] = useState<number | null | undefined>(() =>
-    getCachedCoverId(title, author),
+  const [cover, setCover] = useState<string | null | undefined>(() =>
+    getCachedCover(title, author),
   );
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    if (coverId !== undefined) return;
+    if (cover !== undefined) return;
 
     const controller = new AbortController();
     let active = true;
 
-    void fetchCoverId(title, author, controller.signal).then((id) => {
-      if (active) setCoverId(id);
+    void fetchCover(title, author, controller.signal).then((url) => {
+      if (active) setCover(url);
     });
 
     return () => {
       active = false;
       controller.abort();
     };
-  }, [title, author, coverId]);
+  }, [title, author, cover]);
 
-  if (typeof coverId === "number" && !failed) {
+  if (typeof cover === "string" && !failed) {
     return (
       <img
         className="book-cover"
-        src={coverUrl(coverId, "M")}
+        src={cover}
         alt=""
         loading="lazy"
         decoding="async"
@@ -46,9 +46,7 @@ export const BookCover = ({ title, author }: BookCoverProps) => {
     );
   }
 
-  // Undefined means the lookup is still in flight; keep the tile quiet rather
-  // than flashing a fallback that is about to be replaced.
-  const pending = coverId === undefined && !failed;
+  const pending = cover === undefined && !failed;
 
   return (
     <div

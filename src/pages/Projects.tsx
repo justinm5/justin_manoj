@@ -5,7 +5,7 @@ import { projects } from "@/data/context";
 const Projects = () => (
   <SiteLayout title="Projects">
     <div className="projects-serial">
-      <h1 className="pc-signature">cool things i've built</h1>
+      <h1 className="pc-signature">Cool Things I've Built</h1>
       <ul className="pc-grid">
         {projects.map((project) => {
           const external = project.href?.startsWith("http");
