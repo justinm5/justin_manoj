@@ -77,54 +77,46 @@ export const displayName = "Justin Manoj";
 export const experience: ExperienceEntry[] = [
   {
     company: "IBM",
-    role: "Software Developer · Co-op · 2026",
+    role: "Incoming Software Developer · Co-op · Fall 2026",
     location: "Lowell, MA",
     description:
-      "",
+      "Incoming Fall 2026",
     logo: "/ibm-com-logo.png",
     domain: "ibm.com",
   },
   {
     company: "Dell Technologies",
-    role: "Software Engineer Intern · Internship · 2026",
+    role: "Software Engineer Intern · Internship · Summer 2026",
     location: "Hopkinton, MA",
     description:
-      "Shipped a Go Kubernetes operator to automate audit logging and OpenTelemetry across production RKE2 clusters, plus GitOps-managed platform features and CVE remediation.",
+      "Owned end-to-end design and deployment of a Go-based Kubernetes operator that automated audit logging across production RKE2 clusters. Integrated Syslog and OpenTelemetry Collector pipelines for real-time security monitoring and shipped 20+ GitOps-managed releases.",
     logo: "/dell-logo.jpg",
     domain: "dell.com",
   },
   {
     company: "GBCS Group",
     role: "Software Engineer Intern · Internship · 2025",
-    location: "",
+    location: "New York, NY",
     description:
-      "Rebuilt core APIs with GraphQL, PostgreSQL indexes, and Redis caching, cutting dashboard load times by 65%. Built GitHub Actions CI/CD for automated testing and deployment.",
+      "Migrated 8 REST endpoints to a GraphQL API with DataLoader batching, reducing database queries and response payloads. Cut high-traffic query latency by 65% using PostgreSQL composite indexes and Redis caching, and built a GitHub Actions CI/CD pipeline with Jest and Sentry.",
     logo: "/gbcs-group.jpg",
     domain: "gbcsgroup.com",
   },
   {
     company: "University of Massachusetts Amherst",
-    role: "Undergraduate Research Assistant · 2024",
+    role: "Research Assistant · 2024",
     location: "Amherst, MA",
     description:
-      "UMass Autonomous Learning Lab. Stress-tested multi-agent LLM systems across 10k+ simulations, surfacing 14 failure modes and automating the failure-classification pipeline for 3x faster analysis.",
+      "Stress-tested 7 multi-agent LLM frameworks across 10,000+ simulations, built an automated Ray and Pandas pipeline that classifies agent failures and surfaces recurring patterns, and defined reliability metrics used to benchmark framework behavior at scale.",
     logo: "/manning-logo-2.jpg",
     domain: "umass.edu",
-  },
-  {
-    company: "BUILD UMass",
-    role: "Software Engineer · 2024",
-    location: "Amherst, MA",
-    description:
-      "Optimized a campus events platform with Elasticsearch search and Redis Pub/Sub real-time updates for UMass students.",
-    logo: "/build-logo.png",
   },
 ];
 
 export const education: EducationEntry[] = [
   {
     school: "University of Massachusetts Amherst",
-    degree: "B.S. in Computer Science & Mathematics · 2022 – 2026",
+    degree: "B.S. in Computer Science & Mathematics · 2023 – 2027",
     location: "Amherst, MA",
     coursework:
       "Relevant Coursework: Data Structures, Algorithms, Computer Systems, Distributed Systems, Machine Learning, Web Programming, Computer Networks and Security",
@@ -297,6 +289,7 @@ export const askUi = {
             },
             { type: "text", value: " @ " },
             { type: "link", label: "umass amherst", href: "https://www.umass.edu/" },
+            { type: "text", value: " (2023–2027)" },
           ],
         },
         {
@@ -327,19 +320,12 @@ export const askUi = {
         {
           parts: [
             { type: "text", value: "shipped " },
-            { type: "link", label: "quantitative signal agent", href: "/projects" },
-            { type: "text", value: " (" },
-            { type: "link", label: "ask me about this!", href: "/projects" },
-            { type: "text", value: "), " },
-            {
-              type: "link",
-              label: "umass dining engine",
-              href: "https://github.com/JManoj01/UMassDining",
-            },
+            { type: "link", label: "signalaent", href: "/projects" },
             { type: "text", value: ", " },
-            { type: "link", label: "poker iq trainer", href: "/projects" },
-            { type: "text", value: ", and more on " },
-            { type: "link", label: "projects", href: "/projects" },
+            { type: "link", label: "nutriplan", href: "/projects" },
+            { type: "text", value: ", " },
+            { type: "link", label: "pokeriq", href: "/projects" },
+            { type: "text", value: ", and this site — ask me about any of them." },
           ],
         },
         {
@@ -376,23 +362,43 @@ export const askUi = {
  */
 export const systemContext = `Facts to draw from (answer as I/me/my):
 
-- School: B.S. Computer Science & Mathematics at UMass Amherst, class of 2027.
+- Education: B.S. Computer Science & Mathematics at UMass Amherst, 2023–2027.
 - Focus: backend systems, data pipelines, and quantitative engineering — production work where latency and correctness both matter.
 - Core qualities: persistence, systems thinking, and a bias toward shipping.
-- IBM (software developer, co-op, 2026): joining the cloud platform organization to work on Kubernetes microservices.
-- Dell Technologies (SWE intern, Summer 2026): built a Go Kubernetes operator automating audit logging and OpenTelemetry across production RKE2 clusters; GitOps-managed platform features and CVE remediation.
-- GBCS Group (SWE intern, 2025): rebuilt core APIs with GraphQL, PostgreSQL indexes, and Redis caching, cutting dashboard load times 65%; built GitHub Actions CI/CD.
-- UMass Autonomous Learning Lab (undergrad research assistant, 2024-2025): stress-tested multi-agent LLM systems across 10k+ simulations, surfaced 14 failure modes, automated failure classification for 3x faster analysis.
-- BUILD UMass (software engineer, 2024-present): optimized a campus events platform with Elasticsearch search and Redis Pub/Sub real-time updates.
-- Relevant coursework: algorithms, data structures, operating systems, machine learning, databases, scalable web systems, data science.
-- Languages and tools: Go, Python, Java, TypeScript, React, Node.js, Docker, Kubernetes, PostgreSQL, Redis, Kafka, gRPC, Git.
+
+Experience:
+- IBM (Incoming Software Developer, co-op, Fall 2026, Lowell, MA): upcoming co-op on cloud platform / Kubernetes microservices.
+- Dell Technologies (Software Engineer Intern, May 2026 – August 2026, Hopkinton, MA): owned end-to-end design and deployment of a Go-based Kubernetes operator that automated audit logging across production RKE2 clusters; integrated Syslog and OpenTelemetry Collector pipelines to stream compliance events into a distributed observability platform for real-time security monitoring; shipped 20+ GitOps-managed releases across production clusters, including platform features, critical bug fixes, and CVE remediations.
+- GBCS Group (Software Engineer Intern, March 2025 – September 2025, New York, NY): migrated 8 REST endpoints to a GraphQL API with DataLoader batching, reducing database queries and response payloads for internal services; cut high-traffic query latency by 65% using PostgreSQL composite indexes and Redis caching; built a GitHub Actions CI/CD pipeline with Jest and Sentry, reducing production bug reports per sprint.
+- UMass Amherst Autonomous Learning Lab (Research Assistant, November 2024 – April 2025, Amherst, MA): stress-tested 7 multi-agent LLM frameworks across 10,000+ simulation runs, uncovering failure patterns and benchmarking agent reliability; accelerated log analysis with Ray and Pandas, building an automated pipeline that classifies agent failures and surfaces recurring patterns; defined and tracked reliability metrics for multi-agent LLM systems, producing benchmark results used to compare framework behavior at scale.
 
 Projects:
-- Quantitative Signal Agent: real-time pipeline ingesting SEC filings, price feeds, and news; Go ingestion over gRPC and Kafka, TimescaleDB time-series, Redis caching, Python anomaly detection.
-- UMass Dining Engine: AI meal-planning platform aggregating live dining-hall menus with a Spring Boot API, Python ETL, and React frontend — https://github.com/JManoj01/UMassDining
-- Poker IQ Trainer: Texas Hold'em trainer with configurable AI opponents and a Monte Carlo engine compiled to WebAssembly, React UI for EV visualization.
+- Personal Website: the portfolio you are on — built with React and Vite.
+- SignalAgent: real-time quantitative pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.
+- NutriPlan (Java, Spring Boot, Python, PostgreSQL, React, Redis): built a prototype AI meal planning app for UMass Dining, aggregating live menus from 4 dining halls with real-time dietary filters and LLM-generated meal suggestions; designed a Spring Boot REST API with Redis caching, PostgreSQL, and a Python scraping pipeline for live menu accuracy, pending adoption into the official UMass Dining App.
+- PokerIQ (Python, Go, React, PostgreSQL, Redis): built a poker decision-training tool that runs Monte Carlo simulations across 30,000+ generated spots to score user actions and identify strategic leaks; designed a Redis-backed adaptive quiz pipeline that tracks user error patterns and personalizes drills to maximize improvement in high-EV decision categories.
 
-Books I have read: Designing Data-Intensive Applications (Kleppmann), The Pragmatic Programmer (Hunt & Thomas), Clean Code (Robert C. Martin), Thinking Fast and Slow (Kahneman), The Almanack of Naval Ravikant (Jorgenson), The Man Who Solved the Market (Zuckerman), Shoe Dog (Phil Knight), Outliers (Gladwell), Sapiens (Harari), Atomic Habits (James Clear).
+Relevant coursework: Data Structures, Algorithms, Computer Systems, Distributed Systems, Machine Learning, Web Programming, Computer Networks and Security.
+- Languages and tools: Go, Python, Java, TypeScript, React, Node.js, Docker, Kubernetes, PostgreSQL, Redis, Kafka, gRPC, GraphQL, Git.
+
+Books I have read and my notes:
+- Atomic Habits (James Clear): Systems over goals, and the compounding math of small changes.
+- Deep Work (Cal Newport): Rules for focused work in a distracted world.
+- Outliers (Malcolm Gladwell): The timing, practice, and context hidden behind outlier success.
+- Never Split the Difference (Chris Voss): Tactical empathy and calibrated questions for high-stakes conversations.
+- The Outsiders (William N. Thorndike): Eight CEOs and the unconventional paths to exceptional returns.
+- Sapiens (Yuval Noah Harari): A long view of how shared fictions let humans cooperate at scale.
+- Zero to One (Peter Thiel): Building companies that create something new instead of competing.
+- Competition Demystified (Bruce Greenwald): Moats, entry barriers, and what actually protects a business's profits.
+- Ultralearning (Scott Young): A practical system for teaching yourself hard skills quickly.
+- The Personal MBA (Josh Kaufman): A broad, no-MBA-required introduction to how business works.
+- The Prince (Niccolò Machiavelli): The classic, unsentimental guide to power, politics, and leadership.
+- Thinking, Fast and Slow (Daniel Kahneman): The two systems behind human judgment, and how each one fails.
+- Shoe Dog (Phil Knight): Nike's first two decades told as an operating story, not a highlight reel.
+- The Last Lecture (Randy Pausch): A professor's final talk on childhood dreams and what really matters.
+- Influence: The Psychology of Persuasion (Robert B. Cialdini): Why people say yes and the six shortcuts behind persuasion.
+- The Status Game (Will Storr): How humans compete for status and why that shapes almost everything.
+- Poor Charlie's Almanack (Charlie Munger): Mental models, inversion, and multidisciplinary thinking.
 
 Contact (share when relevant): GitHub https://github.com/justinm5, LinkedIn https://linkedin.com/in/justinmmanoj, email justinmmanoj@gmail.com.
 
