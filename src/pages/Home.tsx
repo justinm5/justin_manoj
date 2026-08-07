@@ -25,17 +25,20 @@ const Home = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Computer Science &amp; Math
+          Computer Science &amp; Mathematics
         </a>{" "}
         at the{" "}
         <a href="https://www.umass.edu/" target="_blank" rel="noopener noreferrer">
           University of Massachusetts Amherst
         </a>{" "}
-        and currently a software developer co-op at{" "}
+        and an incoming software developer co-op at{" "}
         <a href="https://www.ibm.com/" target="_blank" rel="noopener noreferrer">
           IBM
         </a>
-        . My expertise is focused on backend systems, distributed infrastructure, and
+        .
+      </p>
+      <p>
+        My expertise is focused on backend systems, distributed infrastructure, and
         performance-critical software. I have done platform infrastructure at{" "}
         <a href="https://www.dell.com/" target="_blank" rel="noopener noreferrer">
           Dell
@@ -49,7 +52,7 @@ const Home = () => (
           GBCS Group
         </a>
         , and multi-agent LLM research at the{" "}
-        <a href="https://www.umass.edu/" target="_blank" rel="noopener noreferrer">
+        <a href="https://all.cs.umass.edu/" target="_blank" rel="noopener noreferrer">
           UMass Autonomous Learning Lab
         </a>
         .
@@ -63,7 +66,7 @@ const Home = () => (
 
     <section aria-labelledby="exp-heading">
       <h2 id="exp-heading" className="home-section-title">
-        Work Experience
+        Experience
       </h2>
       <ul className="home-exp-list">
         {experience.map((item) => (
