@@ -113,6 +113,12 @@ export const experience: ExperienceEntry[] = [
 
 export const projects: ProjectEntry[] = [
   {
+    title: "Personal Website",
+    href: "https://github.com/justinm5/justin_manoj",
+    description:
+      "The portfolio you're on right now — a React + Vite site backed by Vercel serverless functions for the Spotify widget and Ask chatbot.",
+  },
+  {
     title: "Quantitative Signal Agent",
     description:
       "Real-time pipeline that ingests SEC filings, price feeds, and news into a microservices architecture. Go ingestion over gRPC and Kafka, time-series storage in TimescaleDB, Redis caching, and Python anomaly detection.",
