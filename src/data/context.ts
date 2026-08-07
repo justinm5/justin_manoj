@@ -27,25 +27,10 @@ export type EducationEntry = {
   domain?: string;
 };
 
-export type ProjectMedia = {
-  /**
-   * Path under `public/`, e.g. "/demos/quant-agent.mp4".
-   * `.mp4` and `.webm` play on hover; `.gif`, `.png`, `.jpg`, and `.webp`
-   * render as a still that zooms slightly on hover.
-   */
-  src: string;
-  /** Still frame shown before a video starts playing. Recommended for video. */
-  poster?: string;
-  /** Describe the demo for screen readers. Leave unset for pure decoration. */
-  alt?: string;
-};
-
 export type ProjectEntry = {
   title: string;
   href?: string;
   description: string;
-  /** Omit until you have a demo — the card renders an empty frame instead. */
-  media?: ProjectMedia;
 };
 
 export type BookEntry = {
@@ -99,7 +84,6 @@ export const experience: ExperienceEntry[] = [
     location: "New York, NY",
     description:
       "Migrated 8 REST endpoints to a GraphQL API with DataLoader batching, reducing database queries and response payloads. Cut high-traffic query latency by 65% using PostgreSQL composite indexes and Redis caching, and built a GitHub Actions CI/CD pipeline with Jest and Sentry.",
-    logo: "/gbcs-group.jpg",
     domain: "gbcsgroup.com",
   },
   {
