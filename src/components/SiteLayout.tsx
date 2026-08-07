@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router";
 import { SpotifyLastPlayed } from "@/components/SpotifyLastPlayed";
 import { displayName, footerSocials, socials } from "@/data/context";
@@ -75,11 +75,10 @@ const ThemeToggle = () => {
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window === "undefined") return "dark";
     const saved = localStorage.getItem("theme");
-    if (saved === "light" || saved === "dark") return saved;
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    return saved === "light" || saved === "dark" ? saved : "dark";
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);

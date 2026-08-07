@@ -521,13 +521,15 @@ a {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
 }
 
 .pc-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--hv-line);
@@ -544,6 +546,20 @@ a {
   transform: translateY(-3px);
   border-color: var(--hv-accent);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
+}
+
+.pc-arrow {
+  padding-right: 1.1rem;
+  color: var(--hv-muted);
+  transition:
+    transform 0.22s ease,
+    color 0.22s ease;
+}
+
+.pc-card:hover .pc-arrow,
+.pc-card:focus-within .pc-arrow {
+  color: var(--hv-accent);
+  transform: translateX(5px);
 }
 
 .pc-card-body {

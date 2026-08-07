@@ -17,6 +17,16 @@ export type ExperienceEntry = {
   domain?: string;
 };
 
+export type EducationEntry = {
+  school: string;
+  degree: string;
+  location: string;
+  coursework: string;
+  /** Preferred: a square logo in `public/logos/`. Falls back to `domain`. */
+  logo?: string;
+  domain?: string;
+};
+
 export type ProjectMedia = {
   /**
    * Path under `public/`, e.g. "/demos/quant-agent.mp4".
@@ -89,7 +99,7 @@ export const experience: ExperienceEntry[] = [
     location: "",
     description:
       "Rebuilt core APIs with GraphQL, PostgreSQL indexes, and Redis caching, cutting dashboard load times by 65%. Built GitHub Actions CI/CD for automated testing and deployment.",
-    logo: "/gbcs-com-logo.png",
+    logo: "/gbcs-group.jpg",
     domain: "gbcsgroup.com",
   },
   {
@@ -98,7 +108,7 @@ export const experience: ExperienceEntry[] = [
     location: "Amherst, MA",
     description:
       "UMass Autonomous Learning Lab. Stress-tested multi-agent LLM systems across 10k+ simulations, surfacing 14 failure modes and automating the failure-classification pipeline for 3x faster analysis.",
-    logo: "/manning-logo.jpg",
+    logo: "/manning-logo-2.jpg",
     domain: "umass.edu",
   },
   {
@@ -111,25 +121,36 @@ export const experience: ExperienceEntry[] = [
   },
 ];
 
+export const education: EducationEntry[] = [
+  {
+    school: "University of Massachusetts Amherst",
+    degree: "B.S. in Computer Science & Mathematics · 2022 – 2026",
+    location: "Amherst, MA",
+    coursework:
+      "Relevant Coursework: Data Structures, Algorithms, Computer Systems, Distributed Systems, Machine Learning, Web Programming, Computer Networks and Security",
+    logo: "/manning-logo.jpg",
+    domain: "umass.edu",
+  },
+];
+
 export const projects: ProjectEntry[] = [
   {
     title: "Personal Website",
-    href: "https://github.com/justinm5/justin_manoj",
     description:
       "The portfolio you're currently on — built with React and Vite.",
   },
   {
-    title: "Quantitative Signal Agent",
+    title: "SignalAgent",
     description:
-      "Real-time pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.",
+      "Real-time quantitative pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.",
   },
   {
-    title: "UMass Dining Engine",
+    title: "NutriPlan",
     description:
       "AI meal planner aggregating dining-hall menus via Spring Boot, Python ETL, and React.",
   },
   {
-    title: "Poker IQ Trainer",
+    title: "PokerIQ",
     description:
       "Texas Hold'em trainer with AI opponents, a WASM Monte Carlo engine, and a React UI.",
   },

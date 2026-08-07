@@ -16,9 +16,9 @@ export const ExpLogo = ({
   size = 64,
   className,
 }: ExpLogoProps) => {
-  const sources = domain
-    ? [logoDevUrl(domain, size)]
-    : [logo].filter((source): source is string => Boolean(source));
+  const sources = [logo, domain ? logoDevUrl(domain, size) : null].filter(
+    (source): source is string => Boolean(source),
+  );
 
   const [sourceIndex, setSourceIndex] = useState(0);
   const src = sources[sourceIndex];

@@ -1,4 +1,3 @@
-import { ProjectMedia } from "@/components/ProjectMedia";
 import { SiteLayout } from "@/components/SiteLayout";
 import { projects } from "@/data/context";
 
@@ -7,29 +6,30 @@ const Projects = () => (
     <div className="projects-serial">
       <h1 className="pc-signature">Cool Things I've Built</h1>
       <ul className="pc-grid">
-        {projects.map((project) => {
-          const external = project.href?.startsWith("http");
-          return (
-            <li key={project.title} className="pc-card">
-              <ProjectMedia media={project.media} />
-              <div className="pc-card-body">
-                {project.href ? (
-                  <a
-                    className="pc-title"
-                    href={project.href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener noreferrer" : undefined}
-                  >
-                    {project.title}
-                  </a>
-                ) : (
-                  <span className="pc-title-static">{project.title}</span>
-                )}
-                <p className="pc-desc">{project.description}</p>
-              </div>
-            </li>
-          );
-        })}
+        {projects.map((project) => (
+          <li key={project.title} className="pc-card">
+            <div className="pc-card-body">
+              {project.href ? (
+                <a
+                  className="pc-title"
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.title}
+                </a>
+              ) : (
+                <span className="pc-title-static">{project.title}</span>
+              )}
+              <p className="pc-desc">{project.description}</p>
+            </div>
+            {project.href && (
+              <span className="pc-arrow" aria-hidden="true">
+                →
+              </span>
+            )}
+          </li>
+        ))}
       </ul>
     </div>
   </SiteLayout>

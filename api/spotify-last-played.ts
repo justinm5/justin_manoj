@@ -126,8 +126,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         is_playing?: boolean;
         item?: SpotifyTrack | null;
       };
-      if (data.item) {
-        sendJson(res, toPayload(data.item, Boolean(data.is_playing), null), 200, true);
+      if (data.item && data.is_playing) {
+        sendJson(res, toPayload(data.item, true, null), 200, true);
         return;
       }
     }
