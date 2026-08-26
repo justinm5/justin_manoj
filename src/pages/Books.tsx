@@ -18,9 +18,9 @@ const Books = () => {
   return (
     <SiteLayout title="Books">
       <div className="projects-serial">
-        <h1 className="pc-signature">Cool Books to Read!</h1>
+        <h1 className="pc-signature">Reading</h1>
         <p className="books-lede">
-          A Few Books I've Read and Enjoyed Recently.
+          A few books I've read and enjoyed recently.
         </p>
 
         <div className="books-filter" role="group" aria-label="Filter books by topic">

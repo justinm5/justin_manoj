@@ -88,7 +88,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     company: "University of Massachusetts Amherst",
-    role: "Research Assistant · 2024",
+    role: "Undergraduate Research Assistant · 2024",
     location: "Amherst, MA",
     description:
       "Stress-tested 7 multi-agent LLM frameworks across 10,000+ simulations, built an automated Ray and Pandas pipeline that classifies agent failures and surfaces recurring patterns, and defined reliability metrics used to benchmark framework behavior at scale.",
@@ -113,22 +113,22 @@ export const projects: ProjectEntry[] = [
   {
     title: "Personal Website",
     description:
-      "The portfolio you're currently on — built with React and Vite.",
+      "A personal space for sharing my experience, projects, reading list, and an interactive way to learn more about me. I built it with React and Vite, with an emphasis on speed, accessibility, and a clean reading experience.",
   },
   {
     title: "SignalAgent",
     description:
-      "Real-time quantitative pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.",
+      "A research tool that brings company filings, market prices, and news into one place so investment ideas can be evaluated with current information. Its real-time data pipeline keeps many different sources organized, fast, and ready for analysis.",
   },
   {
     title: "NutriPlan",
     description:
-      "AI meal planner aggregating dining-hall menus via Spring Boot, Python ETL, and React.",
+      "A meal-planning app that turns dining-hall menus into personalized suggestions based on nutrition goals and food preferences. It automatically gathers menu information and uses AI to make campus dining easier to navigate.",
   },
   {
     title: "PokerIQ",
     description:
-      "Texas Hold'em trainer with AI opponents, a WASM Monte Carlo engine, and a React UI.",
+      "An interactive Texas Hold'em trainer for practicing decisions against computer-controlled opponents. It runs thousands of possible outcomes directly in the browser to explain the odds and help players build better intuition.",
   },
 ];
 

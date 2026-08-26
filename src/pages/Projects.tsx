@@ -4,10 +4,17 @@ import { projects } from "@/data/context";
 const Projects = () => (
   <SiteLayout title="Projects">
     <div className="projects-serial">
-      <h1 className="pc-signature">Cool Things I've Built</h1>
+      <h1 className="pc-signature">Projects</h1>
+      <p className="projects-lede">
+        A few things I've built to solve real problems, learn new systems, and
+        make complex information easier to use.
+      </p>
       <ul className="pc-grid">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <li key={project.title} className="pc-card">
+            <span className="pc-number" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <div className="pc-card-body">
               {project.href ? (
                 <a
