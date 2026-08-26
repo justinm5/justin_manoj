@@ -4,7 +4,7 @@ import { projects } from "@/data/context";
 const Projects = () => (
   <SiteLayout title="Projects">
     <div className="projects-serial">
-      <h1 className="pc-signature">Cool Things I've Built</h1>
+      <h1 className="pc-signature">Selected projects</h1>
       <ul className="pc-grid">
         {projects.map((project) => (
           <li key={project.title} className="pc-card">

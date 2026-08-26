@@ -19,31 +19,28 @@ const Home = () => (
 
     <div className="home-intro">
       <p>
-        Hi, I'm Justin - I study{" "}
-        <a
-          href="https://www.cics.umass.edu/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Computer Science &amp; Mathematics
-        </a>{" "}
-        at the{" "}
+        I'm a Computer Science &amp; Mathematics student at{" "}
         <a href="https://www.umass.edu/" target="_blank" rel="noopener noreferrer">
-          University of Massachusetts Amherst
-        </a>{" "}
-        and an incoming software developer co-op at{" "}
+          UMass Amherst
+        </a>
+        , and an incoming software developer co-op at{" "}
         <a href="https://www.ibm.com/" target="_blank" rel="noopener noreferrer">
           IBM
         </a>
         .
       </p>
       <p>
-        My expertise is focused on backend systems, distributed infrastructure, and
-        performance-critical software. I have done platform infrastructure at{" "}
-        <a href="https://www.dell.com/" target="_blank" rel="noopener noreferrer">
+        I build backend systems, distributed infrastructure, and
+        performance-critical software. Previously, I worked on platform
+        infrastructure at{" "}
+        <a
+          href="https://www.dell.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Dell
-        </a>
-        , API and caching work at{" "}
+        </a>{" "}
+        and API performance at{" "}
         <a
           href="https://www.gbcsgroup.com/"
           target="_blank"
@@ -51,14 +48,15 @@ const Home = () => (
         >
           GBCS Group
         </a>
-        , and multi-agent LLM research at the{" "}
+        , and researched multi-agent LLM reliability at the{" "}
         <a href="https://all.cs.umass.edu/" target="_blank" rel="noopener noreferrer">
           UMass Autonomous Learning Lab
         </a>
         .
       </p>
       <p>
-        Outside of that, I'm usually reading, listening to music (hip-hop/R&B), or building things.
+        Away from the keyboard, I'm usually reading, lifting, or listening to
+        hip-hop and R&amp;B.
       </p>
     </div>
 

@@ -1,29 +1,29 @@
 :root {
-  --hv-bg: #111114;
-  --hv-surface: #18181d;
-  --hv-text: #f0f0f0;
-  --hv-muted: #8e8e93;
-  --hv-line: #27272a;
-  --hv-accent: #9d78ff;
-  --hv-accent-hover: #b89cff;
+  --hv-bg: #0e0f11;
+  --hv-surface: #15171a;
+  --hv-text: #f4f4f5;
+  --hv-muted: #9b9ba1;
+  --hv-line: #292b30;
+  --hv-accent: #a78bfa;
+  --hv-accent-hover: #c4b5fd;
   --hv-hover-bg: rgba(255, 255, 255, 0.05);
 
   color-scheme: dark;
 
   --site-display-name-font: inherit;
-  --site-display-name-size: clamp(1.5rem, 4.5vw, 2rem);
-  --site-display-name-weight: 400;
-  --site-display-name-line-height: 1.05;
+  --site-display-name-size: clamp(2rem, 4.5vw, 2.75rem);
+  --site-display-name-weight: 650;
+  --site-display-name-line-height: 1.08;
 }
 
 html[data-theme="light"] {
-  --hv-bg: #f7f7f5;
+  --hv-bg: #fafaf9;
   --hv-surface: #ffffff;
-  --hv-text: #111111;
-  --hv-muted: #6b6b6b;
-  --hv-line: #e3e3e3;
-  --hv-accent: #6b46c1;
-  --hv-accent-hover: #553c9a;
+  --hv-text: #18181b;
+  --hv-muted: #71717a;
+  --hv-line: #e4e4e7;
+  --hv-accent: #6d4cc3;
+  --hv-accent-hover: #51359a;
   --hv-hover-bg: rgba(0, 0, 0, 0.04);
   color-scheme: light;
 }
@@ -45,9 +45,10 @@ body {
   min-height: 100dvh;
   background: var(--hv-bg);
   color: var(--hv-text);
-  font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: -0.006em;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -55,6 +56,12 @@ body {
 
 a {
   color: inherit;
+  transition: color 160ms ease;
+}
+
+::selection {
+  color: var(--hv-text);
+  background: color-mix(in srgb, var(--hv-accent) 38%, transparent);
 }
 
 /* One visible focus ring for every interactive element, keyboard only. */
@@ -93,18 +100,23 @@ a {
 
 .home-grid {
   display: grid;
-  grid-template-columns: minmax(11rem, 13.5rem) minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
-  max-width: 68rem;
+  grid-template-columns: minmax(9rem, 11rem) minmax(0, 1fr);
+  gap: clamp(3rem, 7vw, 6rem);
+  max-width: 74rem;
   margin: 0 auto;
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem) 4rem;
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem) 8rem;
   align-items: start;
+}
+
+.home-sidebar {
+  position: sticky;
+  top: 4rem;
 }
 
 .home-sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.3rem;
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -113,15 +125,20 @@ a {
   color: var(--hv-muted);
   text-decoration: none;
   font-weight: 500;
+  width: fit-content;
+  margin-left: -0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.45rem;
 }
 
 .home-sidebar-nav a:hover {
   color: var(--hv-text);
+  background: var(--hv-hover-bg);
 }
 
 .home-sidebar-nav a[aria-current="page"] {
   color: var(--hv-text);
-  font-weight: 700;
+  font-weight: 650;
 }
 
 .home-sidebar-rule {
@@ -147,7 +164,7 @@ a {
   gap: 0.5rem;
   color: var(--hv-muted);
   text-decoration: none;
-  font-size: 0.8125rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -171,7 +188,7 @@ a {
   display: none;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 820px) {
   .home-grid {
     grid-template-columns: 1fr;
     /* Extra bottom room so the fixed footer never sits on top of content. */
@@ -179,7 +196,7 @@ a {
   }
 
   .home-content {
-    padding-top: 2.2rem;
+    padding-top: 2.75rem;
     padding-right: 0;
   }
 
@@ -300,48 +317,51 @@ a {
 }
 
 .home-content {
-  padding-right: clamp(0px, 4vw, 2.5rem);
+  width: 100%;
+  max-width: 48rem;
 }
 
 .home-hero {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  margin: 0 0 1rem;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
 }
 
 .home-avatar {
-  width: 3.75rem;
-  height: 3.75rem;
+  width: 4.25rem;
+  height: 4.25rem;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 0 0 1px var(--hv-line),
+    0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .home-name {
   margin: 0;
   font-family: var(--site-display-name-font);
-  font-size: clamp(1.75rem, 5.25vw, 2.25rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 5.25vw, 2.65rem);
+  font-weight: 650;
   font-style: normal;
   line-height: var(--site-display-name-line-height);
   color: var(--hv-text);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.045em;
 }
 
 .home-intro p {
-  margin: 0 0 0.85rem;
+  margin: 0 0 1rem;
   color: var(--hv-text);
-  max-width: 46rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  line-height: 1.6;
+  max-width: 43rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.72;
 }
 
 .home-content a {
   color: var(--hv-accent);
   text-decoration: underline;
-  text-underline-offset: 0.14em;
+  text-underline-offset: 0.18em;
   text-decoration-thickness: 1px;
 }
 
@@ -352,16 +372,17 @@ a {
 .home-section-rule {
   height: 1px;
   background: var(--hv-line);
-  margin: 2.25rem 0 1.75rem;
-  max-width: 46rem;
+  margin: 3rem 0 2rem;
+  max-width: 43rem;
 }
 
 .home-section-title {
-  margin: 0 0 0.55rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--hv-text);
-  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: var(--hv-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 /* ---------------------------------------------------------------- */
@@ -372,21 +393,20 @@ a {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: 46rem;
+  max-width: 43rem;
 }
 
 .home-exp-item {
   display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 0.5rem 0.85rem;
+  grid-template-columns: 2.75rem 1fr;
+  gap: 0.5rem 1rem;
   align-items: start;
-  margin-bottom: 0.65rem;
-  padding: 0.35rem;
-  margin-left: -0.35rem;
-  margin-right: -0.35rem;
+  margin-bottom: 0.8rem;
+  padding: 0.5rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
   border-radius: 0.75rem;
   background: transparent;
-  cursor: pointer;
   transition:
     transform 0.25s ease,
     background-color 0.25s ease;
@@ -398,8 +418,8 @@ a {
 }
 
 .home-exp-logo {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 0.65rem;
   flex-shrink: 0;
   overflow: hidden;
@@ -448,14 +468,14 @@ a {
 
 .home-exp-name {
   transition: color 0.25s ease;
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-weight: 650;
+  font-size: 0.98rem;
   color: var(--hv-text);
   line-height: 1.25;
 }
 
 .home-exp-desc {
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   color: var(--hv-muted);
   line-height: 1.4;
   margin-top: 0.1rem;
@@ -469,7 +489,7 @@ a {
 .home-exp-desc .home-exp-role {
   display: block;
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: var(--hv-text);
   margin-bottom: 0.35rem;
 }
@@ -486,7 +506,7 @@ a {
 }
 
 .home-exp-detail {
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   color: var(--hv-muted);
 }
 
@@ -495,6 +515,21 @@ a {
   opacity: 1;
   margin-top: 0.2rem;
   color: var(--hv-text);
+}
+
+/* Touch screens have no reliable hover state, so keep the supporting detail
+   available instead of hiding it behind an interaction that cannot happen. */
+@media (hover: none) {
+  .home-exp-detail {
+    max-height: none;
+    opacity: 1;
+    margin-top: 0.2rem;
+  }
+
+  .home-exp-item:hover {
+    transform: none;
+    background: transparent;
+  }
 }
 
 /* ---------------------------------------------------------------- */
@@ -511,7 +546,8 @@ a {
   font-weight: var(--site-display-name-weight);
   line-height: var(--site-display-name-line-height);
   color: var(--hv-text);
-  margin: 0 0 2.25rem;
+  letter-spacing: -0.04em;
+  margin: 0 0 2.5rem;
 }
 
 /* Projects: compact card grid. Two per row on desktop, one on mobile — the
@@ -522,7 +558,7 @@ a {
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75rem;
+  gap: 0.9rem;
 }
 
 .pc-card {
@@ -533,7 +569,7 @@ a {
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--hv-line);
-  border-radius: 0.65rem;
+  border-radius: 0.9rem;
   background: var(--hv-surface);
   transition:
     transform 0.22s ease,
@@ -543,9 +579,9 @@ a {
 
 .pc-card:hover,
 .pc-card:focus-within {
-  transform: translateY(-3px);
-  border-color: var(--hv-accent);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--hv-accent) 55%, var(--hv-line));
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
 }
 
 .pc-arrow {
@@ -566,7 +602,7 @@ a {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 1rem 1.1rem 1.2rem;
+  padding: 1.2rem 1.3rem 1.35rem;
 }
 
 @media (max-width: 560px) {
@@ -577,9 +613,9 @@ a {
 
 /* Books: cover shelf with topic filter. */
 .books-lede {
-  margin: -1.5rem 0 1.35rem;
+  margin: -1.7rem 0 1.5rem;
   max-width: 42rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.55;
   color: var(--hv-muted);
 }
@@ -592,9 +628,9 @@ a {
 }
 
 .books-filter-chip {
-  padding: 0.24rem 0.7rem;
+  padding: 0.3rem 0.75rem;
   font: inherit;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   line-height: 1.5;
   text-transform: lowercase;
   color: var(--hv-muted);
@@ -624,8 +660,8 @@ a {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
-  gap: 1.25rem 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(8.25rem, 1fr));
+  gap: 1.6rem 1.15rem;
 }
 
 .book-card {
@@ -695,20 +731,20 @@ a {
 
 .book-title {
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   color: var(--hv-text);
   line-height: 1.3;
 }
 
 .book-author {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--hv-muted);
   line-height: 1.35;
 }
 
 .book-note {
   margin: 0.3rem 0 0;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   line-height: 1.45;
   color: var(--hv-muted);
 }
@@ -716,8 +752,8 @@ a {
 .home-content .projects-serial a.pc-title {
   display: inline-block;
   align-self: flex-start;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 650;
+  font-size: 1.05rem;
   color: var(--hv-accent);
   text-decoration: none;
   margin-bottom: 0.5rem;
@@ -731,8 +767,8 @@ a {
 .projects-serial .pc-title-static {
   display: inline-block;
   align-self: flex-start;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 650;
+  font-size: 1.05rem;
   color: var(--hv-text);
   margin-bottom: 0.5rem;
 }
@@ -747,8 +783,8 @@ a {
 .projects-serial .pc-desc {
   margin: 0.15rem 0 0;
   color: var(--hv-muted);
-  font-size: 0.85rem;
-  line-height: 1.65;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 /* Demo frame. Sits flush against the top of the card, so dropping in a
@@ -843,11 +879,12 @@ body.ask-page .home-main {
   font-weight: var(--site-display-name-weight);
   line-height: var(--site-display-name-line-height);
   color: var(--hv-text);
+  letter-spacing: -0.04em;
 }
 
 .ask-window {
   border: 1px solid var(--hv-line);
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--hv-surface);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
@@ -927,8 +964,8 @@ body.ask-page .home-main {
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
-  padding: 0.85rem 1rem 1rem;
-  font-size: 0.85rem;
+  padding: 1rem 1.15rem 1.15rem;
+  font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.55;
   color: var(--hv-text);
@@ -1096,7 +1133,7 @@ body.ask-page .home-main {
   width: 2.35rem;
   height: 2.35rem;
   border: 1px solid var(--hv-line);
-  border-radius: 0.55rem;
+  border-radius: 999px;
   background: var(--hv-surface);
   color: var(--hv-text);
   cursor: pointer;
@@ -1143,7 +1180,7 @@ body.ask-page .home-main {
 
 .site-footer-copy {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--hv-muted);
 }
 
