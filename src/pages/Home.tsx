@@ -19,13 +19,9 @@ const Home = () => (
 
     <div className="home-intro">
       <p>
-        I'm a Computer Science &amp; Mathematics student at{" "}
+        I'm a Computer Science &amp; Mathematics student at the{" "}
         <a href="https://www.umass.edu/" target="_blank" rel="noopener noreferrer">
-          UMass Amherst
-        </a>
-        , and an incoming software developer co-op at{" "}
-        <a href="https://www.ibm.com/" target="_blank" rel="noopener noreferrer">
-          IBM
+          University of Massachusetts Amherst
         </a>
         .
       </p>

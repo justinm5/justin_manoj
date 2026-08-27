@@ -80,7 +80,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     company: "GBCS Group",
-    role: "Software Engineer Intern · Internship · 2025",
+    role: "Software Engineer Intern · Internship · Summer 2025",
     location: "New York, NY",
     description:
       "Migrated 8 REST endpoints to a GraphQL API with DataLoader batching, reducing database queries and response payloads. Cut high-traffic query latency by 65% using PostgreSQL composite indexes and Redis caching, and built a GitHub Actions CI/CD pipeline with Jest and Sentry.",
@@ -88,7 +88,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     company: "University of Massachusetts Amherst",
-    role: "Undergraduate Research Assistant · 2024",
+    role: "Undergraduate Research Assistant · Spring 2024",
     location: "Amherst, MA",
     description:
       "Stress-tested 7 multi-agent LLM frameworks across 10,000+ simulations, built an automated Ray and Pandas pipeline that classifies agent failures and surfaces recurring patterns, and defined reliability metrics used to benchmark framework behavior at scale.",
@@ -112,11 +112,13 @@ export const education: EducationEntry[] = [
 export const projects: ProjectEntry[] = [
   {
     title: "Personal Website",
+    href: "https://github.com/justinm5/justin_manoj",
     description:
       "A personal space for sharing my experience, projects, reading list, and an interactive way to learn more about me. I built it with React and Vite, with an emphasis on speed, accessibility, and a clean reading experience.",
   },
   {
-    title: "SignalAgent",
+    title: "Quantitative Signal Agent",
+    href: "https://github.com/justinm5/qsip_agent",
     description:
       "A research tool that brings company filings, market prices, and news into one place so investment ideas can be evaluated with current information. Its real-time data pipeline keeps many different sources organized, fast, and ready for analysis.",
   },
@@ -126,7 +128,8 @@ export const projects: ProjectEntry[] = [
       "A meal-planning app that turns dining-hall menus into personalized suggestions based on nutrition goals and food preferences. It automatically gathers menu information and uses AI to make campus dining easier to navigate.",
   },
   {
-    title: "PokerIQ",
+    title: "Poker Trainer",
+    href: "https://github.com/justinm5/poker",
     description:
       "An interactive Texas Hold'em trainer for practicing decisions against computer-controlled opponents. It runs thousands of possible outcomes directly in the browser to explain the odds and help players build better intuition.",
   },
@@ -136,25 +139,25 @@ export const books: BookEntry[] = [
   {
     title: "Atomic Habits",
     author: "James Clear",
-    tag: "habits",
+    tag: "growth",
     note: "Systems over goals, and the compounding math of small changes.",
   },
   {
     title: "Deep Work",
     author: "Cal Newport",
-    tag: "productivity",
+    tag: "growth",
     note: "Rules for focused work in a distracted world.",
   },
   {
     title: "Outliers",
     author: "Malcolm Gladwell",
-    tag: "success",
+    tag: "psychology",
     note: "The timing, practice, and context hidden behind outlier success.",
   },
   {
     title: "Never Split the Difference",
     author: "Chris Voss",
-    tag: "negotiation",
+    tag: "business",
     note: "Tactical empathy and calibrated questions for high-stakes conversations.",
   },
   {
@@ -166,25 +169,25 @@ export const books: BookEntry[] = [
   {
     title: "Sapiens",
     author: "Yuval Noah Harari",
-    tag: "history",
+    tag: "history & ideas",
     note: "A long view of how shared fictions let humans cooperate at scale.",
   },
   {
     title: "Zero to One",
     author: "Peter Thiel",
-    tag: "startups",
+    tag: "business",
     note: "Building companies that create something new instead of competing.",
   },
   {
     title: "Competition Demystified",
     author: "Bruce Greenwald",
-    tag: "strategy",
+    tag: "business",
     note: "Moats, entry barriers, and what actually protects a business's profits.",
   },
   {
     title: "Ultralearning",
     author: "Scott Young",
-    tag: "learning",
+    tag: "growth",
     note: "A practical system for teaching yourself hard skills quickly.",
   },
   {
@@ -196,7 +199,7 @@ export const books: BookEntry[] = [
   {
     title: "The Prince",
     author: "Niccolò Machiavelli",
-    tag: "strategy",
+    tag: "history & ideas",
     note: "The classic, unsentimental guide to power, politics, and leadership.",
   },
   {
@@ -208,13 +211,13 @@ export const books: BookEntry[] = [
   {
     title: "Shoe Dog",
     author: "Phil Knight",
-    tag: "memoir",
+    tag: "business",
     note: "Nike's first two decades told as an operating story, not a highlight reel.",
   },
   {
     title: "The Last Lecture",
     author: "Randy Pausch",
-    tag: "memoir",
+    tag: "growth",
     note: "A professor's final talk on childhood dreams and what really matters.",
   },
   {
@@ -232,7 +235,7 @@ export const books: BookEntry[] = [
   {
     title: "Poor Charlie's Almanack",
     author: "Charlie Munger",
-    tag: "wisdom",
+    tag: "growth",
     note: "Mental models, inversion, and multidisciplinary thinking.",
   },
 ];
@@ -304,11 +307,11 @@ export const askUi = {
         {
           parts: [
             { type: "text", value: "shipped " },
-            { type: "link", label: "signalaent", href: "/projects" },
+            { type: "link", label: "quantitative signal agent", href: "/projects" },
             { type: "text", value: ", " },
             { type: "link", label: "nutriplan", href: "/projects" },
             { type: "text", value: ", " },
-            { type: "link", label: "pokeriq", href: "/projects" },
+            { type: "link", label: "poker trainer", href: "/projects" },
             { type: "text", value: ", and this site — ask me about any of them." },
           ],
         },
@@ -353,14 +356,14 @@ export const systemContext = `Facts to draw from (answer as I/me/my):
 Experience:
 - IBM (Incoming Software Developer, co-op, Fall 2026, Lowell, MA): upcoming co-op on cloud platform / Kubernetes microservices.
 - Dell Technologies (Software Engineer Intern, May 2026 – August 2026, Hopkinton, MA): owned end-to-end design and deployment of a Go-based Kubernetes operator that automated audit logging across production RKE2 clusters; integrated Syslog and OpenTelemetry Collector pipelines to stream compliance events into a distributed observability platform for real-time security monitoring; shipped 20+ GitOps-managed releases across production clusters, including platform features, critical bug fixes, and CVE remediations.
-- GBCS Group (Software Engineer Intern, March 2025 – September 2025, New York, NY): migrated 8 REST endpoints to a GraphQL API with DataLoader batching, reducing database queries and response payloads for internal services; cut high-traffic query latency by 65% using PostgreSQL composite indexes and Redis caching; built a GitHub Actions CI/CD pipeline with Jest and Sentry, reducing production bug reports per sprint.
-- UMass Amherst Autonomous Learning Lab (Research Assistant, November 2024 – April 2025, Amherst, MA): stress-tested 7 multi-agent LLM frameworks across 10,000+ simulation runs, uncovering failure patterns and benchmarking agent reliability; accelerated log analysis with Ray and Pandas, building an automated pipeline that classifies agent failures and surfaces recurring patterns; defined and tracked reliability metrics for multi-agent LLM systems, producing benchmark results used to compare framework behavior at scale.
+- GBCS Group (Software Engineer Intern, Summer 2025, New York, NY): migrated 8 REST endpoints to a GraphQL API with DataLoader batching, reducing database queries and response payloads for internal services; cut high-traffic query latency by 65% using PostgreSQL composite indexes and Redis caching; built a GitHub Actions CI/CD pipeline with Jest and Sentry, reducing production bug reports per sprint.
+- UMass Amherst Autonomous Learning Lab (Undergraduate Research Assistant, Spring 2024, Amherst, MA): stress-tested 7 multi-agent LLM frameworks across 10,000+ simulation runs, uncovering failure patterns and benchmarking agent reliability; accelerated log analysis with Ray and Pandas, building an automated pipeline that classifies agent failures and surfaces recurring patterns; defined and tracked reliability metrics for multi-agent LLM systems, producing benchmark results used to compare framework behavior at scale.
 
 Projects:
 - Personal Website: the portfolio you are on — built with React and Vite.
-- SignalAgent: real-time quantitative pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.
+- Quantitative Signal Agent: real-time quantitative pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.
 - NutriPlan (Java, Spring Boot, Python, PostgreSQL, React, Redis): built a prototype AI meal planning app for UMass Dining, aggregating live menus from 4 dining halls with real-time dietary filters and LLM-generated meal suggestions; designed a Spring Boot REST API with Redis caching, PostgreSQL, and a Python scraping pipeline for live menu accuracy, pending adoption into the official UMass Dining App.
-- PokerIQ (Python, Go, React, PostgreSQL, Redis): built a poker decision-training tool that runs Monte Carlo simulations across 30,000+ generated spots to score user actions and identify strategic leaks; designed a Redis-backed adaptive quiz pipeline that tracks user error patterns and personalizes drills to maximize improvement in high-EV decision categories.
+- Poker Trainer (Python, Go, React, PostgreSQL, Redis): built a poker decision-training tool that runs Monte Carlo simulations across 30,000+ generated spots to score user actions and identify strategic leaks; designed a Redis-backed adaptive quiz pipeline that tracks user error patterns and personalizes drills to maximize improvement in high-EV decision categories.
 
 Relevant coursework: Data Structures, Algorithms, Computer Systems, Distributed Systems, Machine Learning, Web Programming, Computer Networks and Security.
 - Languages and tools: Go, Python, Java, TypeScript, React, Node.js, Docker, Kubernetes, PostgreSQL, Redis, Kafka, gRPC, GraphQL, Git.

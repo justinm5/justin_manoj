@@ -98,7 +98,7 @@ const experienceOverview = () =>
 
 const projectsOverview = () =>
   [
-    "Three projects I keep coming back to:",
+    "A few projects I've built:",
     ...projects.map((project) => `${project.title} — ${project.description}`),
   ].join(" ");
 
@@ -125,8 +125,8 @@ const companyAliases: { pattern: RegExp; company: string }[] = [
 
 const projectAliases: { pattern: RegExp; title: string }[] = [
   { pattern: /\b(quant|quantitative|signal|trading|sec filings)\b/, title: "Quantitative Signal Agent" },
-  { pattern: /\b(dining|meal|food|menu)\b/, title: "UMass Dining Engine" },
-  { pattern: /\b(poker|hold\s?'?em|monte carlo)\b/, title: "Poker IQ Trainer" },
+  { pattern: /\b(dining|meal|food|menu)\b/, title: "NutriPlan" },
+  { pattern: /\b(poker|hold\s?'?em|monte carlo)\b/, title: "Poker Trainer" },
 ];
 
 type Intent = {
