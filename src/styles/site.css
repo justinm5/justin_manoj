@@ -349,13 +349,166 @@ a {
   letter-spacing: -0.045em;
 }
 
+.home-identity {
+  min-width: 0;
+}
+
+.home-email {
+  margin: 0.3rem 0 0;
+  color: var(--hv-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
 .home-intro p {
   margin: 0 0 1rem;
   color: var(--hv-muted);
   max-width: 43rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.72;
+}
+
+.tech-marquee {
+  max-width: 43rem;
+  margin: 3rem 0 1.25rem;
+}
+
+.tech-marquee-viewport {
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  padding: 0.65rem 0 1.8rem;
+  animation: tech-marquee-scroll 34s linear infinite;
+  will-change: transform;
+}
+
+.tech-marquee:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+.tech-marquee-group {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: clamp(2.25rem, 5vw, 3.75rem);
+  margin: 0;
+  padding: 0 clamp(2.25rem, 5vw, 3.75rem) 0 0;
+  list-style: none;
+}
+
+.tech-logo {
+  position: relative;
+  display: grid;
+  flex: none;
+  width: clamp(1.85rem, 4vw, 2.25rem);
+  height: clamp(1.85rem, 4vw, 2.25rem);
+  place-items: center;
+  color: var(--hv-text);
+  opacity: 0.3;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.tech-logo svg,
+.tech-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tech-logo svg {
+  fill: currentColor;
+}
+
+.tech-logo img {
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+html[data-theme="light"] .tech-logo img {
+  filter: grayscale(1) brightness(0);
+}
+
+.tech-logo-label {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  left: 50%;
+  color: var(--hv-muted);
+  font-size: 0.61rem;
+  font-weight: 600;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 0.15rem);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  white-space: nowrap;
+}
+
+.tech-logo:hover {
+  opacity: 0.9;
+  transform: translateY(-2px) scale(1.08);
+}
+
+.tech-logo:hover .tech-logo-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@keyframes tech-marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-track {
+    width: auto;
+    transform: none;
+    animation: none !important;
+  }
+
+  .tech-marquee-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.25rem;
+    padding: 0.65rem 0.65rem 1.8rem;
+  }
+
+  .tech-marquee-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .tech-marquee-viewport {
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
 }
 
 .home-content a {
@@ -372,7 +525,7 @@ a {
 .home-section-rule {
   height: 1px;
   background: var(--hv-line);
-  margin: 3rem 0 2rem;
+  margin: 2.5rem 0 2rem;
   max-width: 43rem;
 }
 
@@ -468,8 +621,8 @@ a {
 
 .home-exp-name {
   transition: color 0.25s ease;
-  font-weight: 650;
-  font-size: 0.98rem;
+  font-weight: 800;
+  font-size: 0.92rem;
   color: var(--hv-text);
   line-height: 1.25;
 }
@@ -482,27 +635,37 @@ a {
   transition: color 0.25s ease;
 }
 
+.home-exp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+}
+
 .home-exp-item:hover .home-exp-desc {
   color: var(--hv-text);
 }
 
 .home-exp-desc .home-exp-role {
-  display: block;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 0.84rem;
   color: var(--hv-muted);
-  margin-bottom: 0.35rem;
+}
+
+.home-exp-location {
+  flex-shrink: 0;
+  color: var(--hv-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
 }
 
 .home-exp-detail {
   display: block;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition:
-    max-height 0.35s ease,
-    opacity 0.25s ease,
-    margin-top 0.25s ease;
+  max-width: 40rem;
+  margin-top: 0.35rem;
+  opacity: 0.88;
+  transition: color 0.25s ease, opacity 0.25s ease;
 }
 
 .home-exp-detail {
@@ -511,21 +674,11 @@ a {
 }
 
 .home-exp-item:hover .home-exp-detail {
-  max-height: 10rem;
   opacity: 1;
-  margin-top: 0.2rem;
   color: var(--hv-text);
 }
 
-/* Touch screens have no reliable hover state, so keep the supporting detail
-   available instead of hiding it behind an interaction that cannot happen. */
 @media (hover: none) {
-  .home-exp-detail {
-    max-height: none;
-    opacity: 1;
-    margin-top: 0.2rem;
-  }
-
   .home-exp-item:hover {
     transform: none;
     background: transparent;
@@ -555,6 +708,7 @@ a {
   margin: 0 0 2.75rem;
   color: var(--hv-muted);
   font-size: 0.95rem;
+  font-weight: 700;
   line-height: 1.65;
 }
 
@@ -630,6 +784,7 @@ a {
   margin: 0 0 1.5rem;
   max-width: 42rem;
   font-size: 0.95rem;
+  font-weight: 700;
   line-height: 1.55;
   color: var(--hv-muted);
 }
@@ -645,6 +800,7 @@ a {
   padding: 0.3rem 0.75rem;
   font: inherit;
   font-size: 0.75rem;
+  font-weight: 600;
   line-height: 1.5;
   text-transform: lowercase;
   color: var(--hv-muted);
@@ -744,7 +900,7 @@ a {
 }
 
 .book-title {
-  font-weight: 600;
+  font-weight: 800;
   font-size: 0.84rem;
   color: var(--hv-text);
   line-height: 1.3;
@@ -752,6 +908,7 @@ a {
 
 .book-author {
   font-size: 0.75rem;
+  font-weight: 700;
   color: var(--hv-muted);
   line-height: 1.35;
 }
@@ -766,7 +923,7 @@ a {
 .home-content .projects-serial a.pc-title {
   display: inline-block;
   align-self: flex-start;
-  font-weight: 650;
+  font-weight: 800;
   font-size: 1.05rem;
   color: var(--hv-accent);
   text-decoration: none;
@@ -781,7 +938,7 @@ a {
 .projects-serial .pc-title-static {
   display: inline-block;
   align-self: flex-start;
-  font-weight: 650;
+  font-weight: 800;
   font-size: 1.05rem;
   color: var(--hv-text);
   margin: 0;
@@ -805,6 +962,31 @@ a {
   color: var(--hv-muted);
   font-size: 0.9rem;
   line-height: 1.6;
+}
+
+.pc-summary {
+  min-width: 0;
+}
+
+.pc-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pc-stack li {
+  padding: 0.18rem 0.48rem;
+  border: 1px solid var(--hv-line);
+  border-radius: 999px;
+  color: var(--hv-muted);
+  background: var(--hv-surface);
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
 }
 
 /* Demo frame. Sits flush against the top of the card, so dropping in a
@@ -888,7 +1070,7 @@ body.ask-page .home-main {
 
 .ask-hi {
   font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--hv-text);
   text-transform: lowercase;
 }
@@ -1000,6 +1182,7 @@ body.ask-page .home-main {
   margin: 0.85rem 0 0.35rem;
   color: var(--hv-muted);
   font-size: inherit;
+  font-weight: 700;
 }
 
 .ask-section-label:first-child {
@@ -1035,6 +1218,7 @@ body.ask-page .home-main {
 
 .ask-window .ask-link {
   color: var(--hv-accent);
+  font-weight: 700;
   text-decoration: none;
 }
 

@@ -1,6 +1,77 @@
+import {
+  siApachekafka,
+  siDocker,
+  siGo,
+  siGraphql,
+  siKubernetes,
+  siOpentelemetry,
+  siPostgresql,
+  siPython,
+  siReact,
+  siRedis,
+  siSpringboot,
+  siTerraform,
+  siTypescript,
+} from "simple-icons";
+import javaLogo from "@/assets/java.svg";
 import { ExpLogo } from "@/components/ExpLogo";
 import { SiteLayout } from "@/components/SiteLayout";
 import { displayName, education, experience } from "@/data/context";
+
+type CoreSkill = {
+  name: string;
+  path?: string;
+  src?: string;
+};
+
+const coreSkills: CoreSkill[] = [
+  { name: "Go", path: siGo.path },
+  { name: "Python", path: siPython.path },
+  { name: "Java", src: javaLogo },
+  { name: "TypeScript", path: siTypescript.path },
+  { name: "React", path: siReact.path },
+  { name: "Spring Boot", path: siSpringboot.path },
+  { name: "GraphQL", path: siGraphql.path },
+  { name: "Kubernetes", path: siKubernetes.path },
+  { name: "Docker", path: siDocker.path },
+  { name: "Apache Kafka", path: siApachekafka.path },
+  { name: "PostgreSQL", path: siPostgresql.path },
+  { name: "Redis", path: siRedis.path },
+  { name: "OpenTelemetry", path: siOpentelemetry.path },
+  { name: "Terraform", path: siTerraform.path },
+];
+
+const TechMarquee = () => (
+  <section className="tech-marquee" aria-labelledby="tech-marquee-heading">
+    <h2 id="tech-marquee-heading" className="visually-hidden">
+      Core technologies
+    </h2>
+    <div className="tech-marquee-viewport">
+      <div className="tech-marquee-track">
+        {[false, true].map((duplicate) => (
+          <ul
+            key={duplicate ? "duplicate" : "primary"}
+            className="tech-marquee-group"
+            aria-hidden={duplicate || undefined}
+          >
+            {coreSkills.map(({ name, path, src }) => (
+              <li className="tech-logo" key={name}>
+                {src ? (
+                  <img src={src} alt="" aria-hidden="true" />
+                ) : (
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={path} />
+                  </svg>
+                )}
+                <span className="tech-logo-label">{name}</span>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 const Home = () => (
   <SiteLayout>
@@ -14,49 +85,27 @@ const Home = () => (
         fetchPriority="high"
         decoding="async"
       />
-      <h1 className="home-name">{displayName}</h1>
+      <div className="home-identity">
+        <h1 className="home-name">{displayName}</h1>
+        <p className="home-email">justinmmanoj (at) gmail.com</p>
+      </div>
     </div>
 
     <div className="home-intro">
       <p>
-        Currently studying Computer Science & Math at the {" "}
-        <a
-          href="https://www.umass.edu/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          University of Massachusetts Amherst
-        </a>
-        .
+        I'm a <strong>Computer Science & Mathematics</strong> student at{" "}
+        <strong>UMass Amherst</strong> interested in backend systems,
+        distributed infrastructure, and performance-critical software.
       </p>
       <p>
-        I build backend systems, distributed infrastructure, and
-        performance-critical software. Previously, I worked on platform
-        infrastructure at{" "}
-        <a
-          href="https://www.dell.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Dell
-        </a>{" "}
-        and API performance at{" "}
-        <a
-          href="https://www.gbcsgroup.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GBCS Group
-        </a>
-        , and researched multi-agent LLM reliability at {" "}
-        <a href="https://all.cs.umass.edu/" target="_blank" rel="noopener noreferrer">
-          UMass Autonomous Learning Lab
-        </a>
-        .
+        Previously, I worked on platform infrastructure at{" "}
+        <strong>Dell Technologies</strong> and API performance at{" "}
+        <strong>GBCS Group</strong>, and conducted research on multi-agent LLM
+        reliability at the <strong>UMass Autonomous Learning Lab</strong>.
       </p>
       <p>
-        Away from the computer, I'm usually reading, working out, or listening to music—especially
-        hip-hop and R&amp;B.
+        Outside of tech, I enjoy reading, working out, and listening to music
+        (hip-hop and R&amp;B!)
       </p>
     </div>
 
@@ -77,9 +126,14 @@ const Home = () => (
             <div className="home-exp-text">
               <div className="home-exp-name">{item.company}</div>
               <div className="home-exp-desc">
-                {item.role && (
-                  <span className="home-exp-role">{item.role}</span>
-                )}
+                <div className="home-exp-meta">
+                  {item.role && (
+                    <span className="home-exp-role">{item.role}</span>
+                  )}
+                  {item.location && (
+                    <span className="home-exp-location">{item.location}</span>
+                  )}
+                </div>
                 {item.description && (
                   <span className="home-exp-detail">{item.description}</span>
                 )}
@@ -107,9 +161,14 @@ const Home = () => (
             <div className="home-exp-text">
               <div className="home-exp-name">{item.school}</div>
               <div className="home-exp-desc">
-                {item.degree && (
-                  <span className="home-exp-role">{item.degree}</span>
-                )}
+                <div className="home-exp-meta">
+                  {item.degree && (
+                    <span className="home-exp-role">{item.degree}</span>
+                  )}
+                  {item.location && (
+                    <span className="home-exp-location">{item.location}</span>
+                  )}
+                </div>
                 {item.coursework && (
                   <span className="home-exp-detail">{item.coursework}</span>
                 )}
@@ -119,6 +178,8 @@ const Home = () => (
         ))}
       </ul>
     </section>
+
+    <TechMarquee />
   </SiteLayout>
 );
 

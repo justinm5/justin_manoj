@@ -31,6 +31,7 @@ export type ProjectEntry = {
   title: string;
   href?: string;
   description: string;
+  technologies: string[];
 };
 
 export type BookEntry = {
@@ -114,25 +115,36 @@ export const projects: ProjectEntry[] = [
     title: "Personal Website",
     href: "https://github.com/justinm5/justin_manoj",
     description:
-      "A personal space for sharing my experience, projects, reading list, and an interactive way to learn more about me. I built it with React and Vite, with an emphasis on speed, accessibility, and a clean reading experience.",
+      "A fast, accessible portfolio with a context-aware Q&A experience and a responsive reading-first interface.",
+    technologies: ["React", "TypeScript", "Vite"],
   },
   {
     title: "Quant Signal Agent",
     href: "https://github.com/justinm5/qsip_agent",
     description:
-      "A research tool that brings company filings, market prices, and news into one place so investment ideas can be evaluated with current information. Its real-time data pipeline keeps many different sources organized, fast, and ready for analysis.",
+      "A real-time quantitative pipeline that unifies company filings, market prices, and news for current, reproducible investment research.",
+    technologies: ["Go", "gRPC", "Kafka", "TimescaleDB", "Redis", "Python"],
   },
   {
     title: "NutriPlan",
     href: "https://github.com/justinm5/taste-scout",
     description:
-      "A meal-planning app that turns dining-hall menus into personalized suggestions based on nutrition goals and food preferences. It automatically gathers menu information and uses AI to make campus dining easier to navigate.",
+      "An AI meal-planning prototype that aggregates live menus from four UMass dining halls and turns nutrition goals into personalized suggestions.",
+    technologies: [
+      "Java",
+      "Spring Boot",
+      "Python",
+      "PostgreSQL",
+      "React",
+      "Redis",
+    ],
   },
   {
     title: "Poker Trainer",
     href: "https://github.com/justinm5/poker",
     description:
-      "An interactive Texas Hold'em trainer for practicing decisions against computer-controlled opponents. It runs thousands of possible outcomes directly in the browser to explain the odds and help players build better intuition.",
+      "An adaptive decision trainer that runs Monte Carlo simulations across 30,000+ generated poker spots to score actions and surface strategic leaks.",
+    technologies: ["Python", "Go", "React", "PostgreSQL", "Redis"],
   },
 ];
 

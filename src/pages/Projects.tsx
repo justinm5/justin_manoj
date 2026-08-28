@@ -6,8 +6,7 @@ const Projects = () => (
     <div className="projects-serial">
       <h1 className="pc-signature">Projects</h1>
       <p className="projects-lede">
-        A few things I've built to solve real problems, learn new systems, and
-        make complex information easier to use.
+        A few things I've built to solve real problems and learn new systems.
       </p>
       <ul className="pc-grid">
         {projects.map((project, index) => (
@@ -22,13 +21,24 @@ const Projects = () => (
                   href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${project.title} source code (opens in a new tab)`}
                 >
                   {project.title}
                 </a>
               ) : (
                 <span className="pc-title-static">{project.title}</span>
               )}
-              <p className="pc-desc">{project.description}</p>
+              <div className="pc-summary">
+                <p className="pc-desc">{project.description}</p>
+                <ul
+                  className="pc-stack"
+                  aria-label={`${project.title} technologies`}
+                >
+                  {project.technologies.map((technology) => (
+                    <li key={technology}>{technology}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
             {project.href && (
               <span className="pc-arrow" aria-hidden="true">
