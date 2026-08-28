@@ -19,8 +19,12 @@ const Home = () => (
 
     <div className="home-intro">
       <p>
-        I'm a Computer Science &amp; Mathematics student at the{" "}
-        <a href="https://www.umass.edu/" target="_blank" rel="noopener noreferrer">
+        Currently studying Computer Science & Math at the {" "}
+        <a
+          href="https://www.umass.edu/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           University of Massachusetts Amherst
         </a>
         .
@@ -44,14 +48,14 @@ const Home = () => (
         >
           GBCS Group
         </a>
-        , and researched multi-agent LLM reliability at the{" "}
+        , and researched multi-agent LLM reliability at {" "}
         <a href="https://all.cs.umass.edu/" target="_blank" rel="noopener noreferrer">
           UMass Autonomous Learning Lab
         </a>
         .
       </p>
       <p>
-        Away from the keyboard, I'm usually reading, lifting, or listening to
+        Away from the computer, I'm usually reading, working out, or listening to music—especially
         hip-hop and R&amp;B.
       </p>
     </div>
