@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router";
+import { SoundToggle } from "@/components/SoundToggle";
 import { SpotifyLastPlayed } from "@/components/SpotifyLastPlayed";
 import { displayName, footerSocials, socials } from "@/data/context";
 
@@ -184,7 +185,10 @@ export const SiteLayout = ({
 
   return (
     <>
-      <ThemeToggle />
+      <div className="site-controls" role="group" aria-label="Site controls">
+        <SoundToggle />
+        <ThemeToggle />
+      </div>
       <button
         type="button"
         className="mobile-menu-toggle"
