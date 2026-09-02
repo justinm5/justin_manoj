@@ -66,7 +66,7 @@ export const experience: ExperienceEntry[] = [
     role: "Software Developer · Co-op · Fall 2026",
     location: "Lowell, MA",
     description:
-      "",
+      "IBM webMethods Integration Server",
     logo: "/ibm-com-logo.png",
     domain: "ibm.com",
   },

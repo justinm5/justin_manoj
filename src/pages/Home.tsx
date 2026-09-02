@@ -95,17 +95,16 @@ const Home = () => (
       <p>
         I'm a <strong>Computer Science & Mathematics</strong> student at{" "}
         <strong>UMass Amherst</strong> interested in backend systems,
-        distributed infrastructure, and performance-critical software.
+        cloud infrastructure, DevOps, and performance-critical software.
       </p>
       <p>
-        Previously, I worked on platform infrastructure at{" "}
-        <strong>Dell Technologies</strong> and API performance at{" "}
-        <strong>GBCS Group</strong>, and conducted research on multi-agent LLM
-        reliability at the <strong>UMass Autonomous Learning Lab</strong>.
+        Currently, I'm working on <strong>IBM</strong> webMethods Integration Server. Previously, I worked on platform infrastructure at{" "}
+        <strong>Dell Technologies</strong>, API performance at{" "}
+        <strong>GBCS Group</strong>, and multi-agent LLM
+        reliability research at <strong>UMass Autonomous Learning Lab</strong>.
       </p>
       <p>
-        Outside of tech, I enjoy reading, working out, and listening to music
-        (hip-hop and R&amp;B!)
+        Outside of tech, I enjoy working out, reading, and listening to music!
       </p>
     </div>
 

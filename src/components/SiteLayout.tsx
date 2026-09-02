@@ -198,6 +198,7 @@ export const SiteLayout = ({
         onClick={() => setMenuOpen(true)}
       >
         <span aria-hidden="true">☰</span>
+        <span className="mobile-menu-label">Menu</span>
       </button>
 
       {menuOpen && (
