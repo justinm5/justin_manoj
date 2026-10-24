@@ -18,7 +18,7 @@ const Books = () => {
   return (
     <SiteLayout title="Books">
       <div className="projects-serial">
-        <h1 className="pc-signature">Reading</h1>
+        <h1 className="pc-signature">Books</h1>
         <p className="books-lede">
           A few books I've read and enjoyed recently.
         </p>

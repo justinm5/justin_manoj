@@ -1,74 +1,19 @@
-import {
-  siApachekafka,
-  siDocker,
-  siGo,
-  siGraphql,
-  siKubernetes,
-  siOpentelemetry,
-  siPostgresql,
-  siPython,
-  siReact,
-  siRedis,
-  siSpringboot,
-  siTerraform,
-  siTypescript,
-} from "simple-icons";
-import javaLogo from "@/assets/java.svg";
 import { ExpLogo } from "@/components/ExpLogo";
 import { SiteLayout } from "@/components/SiteLayout";
-import { displayName, education, experience } from "@/data/context";
+import { displayName, education, experience, technicalSkills } from "@/data/context";
 
-type CoreSkill = {
-  name: string;
-  path?: string;
-  src?: string;
-};
-
-const coreSkills: CoreSkill[] = [
-  { name: "Go", path: siGo.path },
-  { name: "Python", path: siPython.path },
-  { name: "Java", src: javaLogo },
-  { name: "TypeScript", path: siTypescript.path },
-  { name: "React", path: siReact.path },
-  { name: "Spring Boot", path: siSpringboot.path },
-  { name: "GraphQL", path: siGraphql.path },
-  { name: "Kubernetes", path: siKubernetes.path },
-  { name: "Docker", path: siDocker.path },
-  { name: "Apache Kafka", path: siApachekafka.path },
-  { name: "PostgreSQL", path: siPostgresql.path },
-  { name: "Redis", path: siRedis.path },
-  { name: "OpenTelemetry", path: siOpentelemetry.path },
-  { name: "Terraform", path: siTerraform.path },
-];
-
-const TechMarquee = () => (
-  <section className="tech-marquee" aria-labelledby="tech-marquee-heading">
-    <h2 id="tech-marquee-heading" className="visually-hidden">
-      Core technologies
-    </h2>
-    <div className="tech-marquee-viewport">
-      <div className="tech-marquee-track">
-        {[false, true].map((duplicate) => (
-          <ul
-            key={duplicate ? "duplicate" : "primary"}
-            className="tech-marquee-group"
-            aria-hidden={duplicate || undefined}
-          >
-            {coreSkills.map(({ name, path, src }) => (
-              <li className="tech-logo" key={name}>
-                {src ? (
-                  <img src={src} alt="" aria-hidden="true" />
-                ) : (
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d={path} />
-                  </svg>
-                )}
-                <span className="tech-logo-label">{name}</span>
-              </li>
-            ))}
+const Technologies = () => (
+  <section className="technologies" aria-labelledby="technologies-heading">
+    <h2 id="technologies-heading" className="home-section-title">Technical Skills</h2>
+    <div className="skill-groups">
+      {technicalSkills.map(({ category, items }) => (
+        <div className="skill-group" key={category}>
+          <h3>{category}</h3>
+          <ul className="technology-list" aria-label={category}>
+            {items.map(name => <li key={name}>{name}</li>)}
           </ul>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   </section>
 );
@@ -87,24 +32,24 @@ const Home = () => (
       />
       <div className="home-identity">
         <h1 className="home-name">{displayName}</h1>
-        <p className="home-email">justinmmanoj (at) gmail.com</p>
+        <a className="home-email" href="mailto:justinmmanoj@gmail.com">justinmmanoj (at) gmail.com</a>
       </div>
     </div>
 
     <div className="home-intro">
       <p>
-        I'm a <strong>Computer Science & Mathematics</strong> student at{" "}
+        I'm a <strong>Computer Science</strong> student at{" "}
         <strong>UMass Amherst</strong> interested in backend systems,
         cloud infrastructure, DevOps, and performance-critical software.
       </p>
       <p>
-        Currently, I'm working on <strong>IBM</strong> webMethods Integration Server. Previously, I worked on platform infrastructure at{" "}
+        I work on webMethods Integration Server at <strong>IBM</strong>. Previously, I worked on platform infrastructure at{" "}
         <strong>Dell Technologies</strong>, API performance at{" "}
         <strong>GBCS Group</strong>, and multi-agent LLM
-        reliability research at <strong>UMass Autonomous Learning Lab</strong>.
+        research at the <strong>Autonomous Learning Lab</strong>.
       </p>
       <p>
-        Outside of tech, I enjoy working out, reading, and listening to music!
+        Outside of tech, I enjoy working out, reading, and listening to music.
       </p>
     </div>
 
@@ -178,7 +123,7 @@ const Home = () => (
       </ul>
     </section>
 
-    <TechMarquee />
+    <Technologies />
   </SiteLayout>
 );
 

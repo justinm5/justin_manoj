@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router";
 import { SoundToggle } from "@/components/SoundToggle";
 import { SpotifyLastPlayed } from "@/components/SpotifyLastPlayed";
@@ -151,6 +151,16 @@ export const SiteLayout = ({
   title,
 }: SiteLayoutProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia("(max-width: 960px)").matches);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 960px)");
+    const update = () => { setIsMobile(query.matches); if (!query.matches) setMenuOpen(false); };
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -170,11 +180,22 @@ export const SiteLayout = ({
   // Escape is the expected way out of an open drawer.
   useEffect(() => {
     if (!menuOpen) return;
+    sidebarRef.current?.querySelector<HTMLButtonElement>(".mobile-menu-close")?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
+      if (event.key !== "Tab") return;
+      const links = sidebarRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
+      if (!links?.length) return;
+      const first = links[0];
+      const last = links[links.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      if (window.matchMedia("(max-width: 960px)").matches) menuButtonRef.current?.focus();
+    };
   }, [menuOpen]);
 
   useEffect(() => {
@@ -185,12 +206,14 @@ export const SiteLayout = ({
 
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="site-controls" role="group" aria-label="Site controls">
         <SoundToggle />
         <ThemeToggle />
       </div>
       <button
         type="button"
+        ref={menuButtonRef}
         className="mobile-menu-toggle"
         aria-expanded={menuOpen}
         aria-controls="site-sidebar"
@@ -209,7 +232,7 @@ export const SiteLayout = ({
       )}
 
       <div className="home-grid">
-        <aside className="home-sidebar" id="site-sidebar" aria-label="Site">
+        <aside ref={sidebarRef} className="home-sidebar" id="site-sidebar" aria-label="Site" inert={isMobile && !menuOpen} aria-hidden={isMobile && !menuOpen ? true : undefined}>
           <button
             type="button"
             className="mobile-menu-close"
@@ -261,7 +284,7 @@ export const SiteLayout = ({
         </aside>
 
         <div className="home-main">
-          <main className={`home-content${contentClassName ? ` ${contentClassName}` : ""}`}>
+          <main id="main-content" className={`home-content${contentClassName ? ` ${contentClassName}` : ""}`}>
             {children}
           </main>
         </div>

@@ -60,6 +60,12 @@ export type AskSection = {
 
 export const displayName = "Justin Manoj";
 
+export const technicalSkills = [
+  { category: "Languages", items: ["Java", "Python", "C++", "Go", "JavaScript", "TypeScript", "SQL"] },
+  { category: "Frameworks", items: ["Spring Boot", "FastAPI", "React", "Node.js", "GraphQL", "gRPC", "MCP"] },
+  { category: "Developer Tools", items: ["Kubernetes", "Docker", "PostgreSQL", "Redis", "AWS", "Kafka", "OpenTelemetry", "Terraform"] },
+];
+
 export const experience: ExperienceEntry[] = [
   {
     company: "IBM",
@@ -101,7 +107,7 @@ export const experience: ExperienceEntry[] = [
 export const education: EducationEntry[] = [
   {
     school: "University of Massachusetts Amherst",
-    degree: "B.S. in Computer Science & Mathematics · 2023 – 2027",
+    degree: "B.S. in Computer Science · 2023 – 2026",
     location: "Amherst, MA",
     coursework:
       "Relevant Coursework: Data Structures, Algorithms, Computer Systems, Distributed Systems, Machine Learning, Web Programming, Computer Networks and Security",
@@ -284,12 +290,12 @@ export const askUi = {
             { type: "text", value: "studying " },
             {
               type: "link",
-              label: "computer science & mathematics",
+              label: "computer science",
               href: "https://www.cics.umass.edu/",
             },
             { type: "text", value: " @ " },
             { type: "link", label: "umass amherst", href: "https://www.umass.edu/" },
-            { type: "text", value: " (2023–2027)" },
+            { type: "text", value: " (2023–2026)" },
           ],
         },
         {
@@ -362,7 +368,7 @@ export const askUi = {
  */
 export const systemContext = `Facts to draw from (answer as I/me/my):
 
-- Education: B.S. Computer Science & Mathematics at UMass Amherst, 2023–2027.
+- Education: B.S. Computer Science at UMass Amherst, 2023–2026.
 - Focus: backend systems, data pipelines, and quantitative engineering — production work where latency and correctness both matter.
 - Core qualities: persistence, systems thinking, and a bias toward shipping.
 
@@ -379,7 +385,7 @@ Projects:
 - Poker Trainer (Python, Go, React, PostgreSQL, Redis): built a poker decision-training tool that runs Monte Carlo simulations across 30,000+ generated spots to score user actions and identify strategic leaks; designed a Redis-backed adaptive quiz pipeline that tracks user error patterns and personalizes drills to maximize improvement in high-EV decision categories.
 
 Relevant coursework: Data Structures, Algorithms, Computer Systems, Distributed Systems, Machine Learning, Web Programming, Computer Networks and Security.
-- Languages and tools: Go, Python, Java, TypeScript, React, Node.js, Docker, Kubernetes, PostgreSQL, Redis, Kafka, gRPC, GraphQL, Git.
+${technicalSkills.map(({ category, items }) => `- ${category}: ${items.join(", ")}.`).join("\n")}
 
 Books I have read and my notes:
 - Atomic Habits (James Clear): Systems over goals, and the compounding math of small changes.

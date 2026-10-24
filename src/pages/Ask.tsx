@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { logoDevUrl } from "@/lib/logos";
-import { askUi, displayName, type AskPart } from "@/data/context";
+import { askUi, type AskPart } from "@/data/context";
 import { answerLocally } from "@/lib/local-answer";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -114,13 +114,11 @@ const Ask = () => {
 
   return (
     <SiteLayout bodyClass="ask-page" contentClassName="ask-main" title="Ask">
-      <header className="ask-hero">
-        <span className="ask-hi">{askUi.greeting}</span>
-        <span className="ask-name-script" aria-label={displayName}>
-          {displayName}
-        </span>
-      </header>
-
+      <h1 className="page-heading">Ask</h1>
+      <p className="page-description">Ask about my experience, projects, or education.</p>
+      <div className="ask-suggestions" role="group" aria-label="Suggested questions">
+        {["What did you build at Dell?", "What are your projects?", "When do you graduate?"].map(question => <button key={question} type="button" onClick={() => { setInput(question); inputRef.current?.focus(); }}>{question} <span aria-hidden="true">↗</span></button>)}
+      </div>
       <section className="ask-window" aria-label="Context and chat">
         <div className="ask-window-titlebar">
           <span className="ask-window-title">{askUi.windowTitle}</span>

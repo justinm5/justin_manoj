@@ -11,7 +11,7 @@
  * hosting, and whenever /api/chat is unreachable or has no API key.
  */
 
-import { books, experience, projects, systemContext } from "@/data/context";
+import { books, experience, projects, systemContext, technicalSkills } from "@/data/context";
 
 const STOPWORDS = new Set([
   "a", "about", "all", "am", "an", "and", "any", "are", "as", "at", "be",
@@ -29,12 +29,12 @@ const SYNONYMS: Record<string, string[]> = {
   jobs: ["intern", "co-op", "engineer", "developer", "experience"],
   internship: ["intern", "co-op"],
   internships: ["intern", "co-op"],
-  school: ["umass", "amherst", "computer", "science", "mathematics"],
-  study: ["umass", "amherst", "computer", "science", "mathematics"],
-  studying: ["umass", "amherst", "computer", "science", "mathematics"],
+  school: ["umass", "amherst", "computer", "science"],
+  study: ["umass", "amherst", "computer", "science"],
+  studying: ["umass", "amherst", "computer", "science"],
   college: ["umass", "amherst"],
   university: ["umass", "amherst"],
-  major: ["computer", "science", "mathematics"],
+  major: ["computer", "science"],
   classes: ["coursework", "algorithms", "databases"],
   courses: ["coursework", "algorithms", "databases"],
   coursework: ["algorithms", "databases", "operating", "systems"],
@@ -64,13 +64,14 @@ const CONTACT_LINE =
 /* ------------------------------------------------------------------ */
 
 const EDUCATION =
-  "I'm studying Computer Science and Mathematics at UMass Amherst, graduating in 2027.";
+  "I'm studying Computer Science at UMass Amherst, graduating in 2026.";
 
 const FOCUS =
   "I work mostly on backend systems, data pipelines, and quantitative engineering — the kind of production work where latency and correctness both matter.";
 
-const SKILLS =
-  "Day to day I write Go, Python, Java, and TypeScript. On top of that: React and Node on the frontend, and Docker, Kubernetes, PostgreSQL, Redis, Kafka, and gRPC underneath.";
+const SKILLS = technicalSkills
+  .map(({ category, items }) => `${category}: ${items.join(", ")}.`)
+  .join(" ");
 
 const COURSEWORK =
   "Relevant coursework: algorithms, data structures, operating systems, machine learning, databases, scalable web systems, and data science.";
@@ -218,7 +219,7 @@ const intents: Intent[] = [
   },
   {
     pattern:
-      /\b(school|study|studying|college|university|umass|amherst|major|degree|graduat|class of|gpa)\b/,
+      /\b(school|study|studying|college|university|umass|amherst|major|degree|graduat(?:e|es|ed|ing|ion)?|class of|gpa)\b/,
     respond: () => EDUCATION,
   },
   {

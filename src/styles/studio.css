@@ -1,0 +1,207 @@
+/* Readable content, visible project details, and quiet interaction feedback. */
+:root {
+  --hv-bg: #111214;
+  --hv-surface: #191a1e;
+  --hv-text: #eeeef0;
+  --hv-muted: #a1a1aa;
+  --hv-line: #303137;
+  --hv-accent: #b5a2ed;
+  --hv-accent-hover: #d3c6fa;
+  --portfolio-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html[data-theme="light"] {
+  --hv-bg: #f8f8f6;
+  --hv-surface: #ffffff;
+  --hv-text: #242428;
+  --hv-muted: #686873;
+  --hv-line: #deded8;
+  --hv-accent: #68509f;
+  --hv-accent-hover: #493471;
+}
+
+.skip-link {
+  position: fixed;
+  top: -5rem;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--hv-text);
+  color: var(--hv-bg);
+  z-index: 1100;
+}
+
+.skip-link:focus { top: 1rem; }
+
+.home-grid {
+  max-width: 86rem;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: clamp(3rem, 6vw, 6rem);
+  padding: 5rem clamp(1.5rem, 4vw, 4rem) 3rem;
+}
+
+.home-sidebar { top: 3rem; }
+.home-sidebar-nav { gap: 0.5rem; }
+.home-sidebar-nav a { font-weight: 400; }
+.home-sidebar-nav a[aria-current="page"] { font-weight: 600; }
+.home-social-link { font-weight: 400; }
+.home-content { max-width: 58rem; }
+
+.home-name {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+}
+
+.home-content a.home-email {
+  display: inline-block;
+  color: var(--hv-muted);
+  text-decoration: none;
+}
+.home-content a.home-email:hover { color: var(--hv-accent); }
+
+.home-intro p {
+  max-width: none;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.home-intro strong { color: var(--hv-text); font-weight: 500; }
+html[data-theme="light"] .home-intro strong { color: var(--hv-text); }
+.home-section-rule, .home-exp-list { max-width: none; }
+.home-exp-item { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.home-exp-item:hover { transform: none; }
+.home-exp-name { font-weight: 600; }
+.home-exp-desc .home-exp-role { font-weight: 500; }
+.home-exp-location { font-weight: 400; }
+.home-exp-detail { max-width: 48rem; font-size: 0.85rem; line-height: 1.75; opacity: 1; }
+
+.technologies {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--hv-line);
+  padding-top: 2rem;
+}
+.skill-groups { display: grid; gap: 1.15rem; margin-top: 1.5rem; }
+.skill-group { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0.5rem 1rem; align-items: baseline; }
+.skill-group h3 { margin: 0; font-size: 0.8rem; font-weight: 500; }
+.technology-list { display: flex; flex-wrap: wrap; gap: 0.45rem 1.1rem; padding: 0; margin: 0; list-style: none; }
+.technology-list li { color: var(--hv-muted); font-size: 0.8rem; line-height: 1.7; }
+
+.projects-serial { max-width: none; }
+.projects-serial .pc-signature, .page-heading {
+  margin: 0 0 2rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+.pc-grid { grid-template-columns: 1fr; }
+.pc-card {
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1.65rem 0;
+  transition: background-color 180ms ease;
+}
+.pc-card:hover, .pc-card:focus-within { padding: 1.65rem 0; background: transparent; }
+.pc-number { padding-top: 0.25rem; font-size: 0.64rem; }
+.pc-card-body { display: block; }
+.pc-project-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+.pc-project-title {
+  margin: 0;
+  color: var(--hv-text);
+  font-size: 1.04rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.home-content a.pc-code-link {
+  flex-shrink: 0;
+  color: var(--hv-muted);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.home-content a.pc-code-link:hover { color: var(--hv-accent); }
+.pc-code-link span { display: inline-block; margin-left: 0.25rem; }
+.projects-serial .pc-desc { font-weight: 400; font-size: 0.88rem; line-height: 1.7; }
+.pc-stack { gap: 0.4rem; margin-top: 0.9rem; }
+.pc-stack li {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 0.65rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.books-lede, .page-description {
+  font-size: 0.93rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--hv-muted);
+  margin: 0 0 1.5rem;
+}
+.books-grid { gap: 2rem 1.5rem; }
+.book-title { font-weight: 500; }
+.book-cover { border-radius: 2px 4px 4px 2px; }
+.book-note { font-size: 0.76rem; line-height: 1.65; }
+
+.ask-suggestions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; }
+.ask-suggestions button {
+  color: var(--hv-muted);
+  border: 1px solid var(--hv-line);
+  background: var(--hv-bg);
+  padding: 0.65rem 0.8rem;
+  font: 0.65rem/1.5 var(--portfolio-mono);
+  cursor: pointer;
+  border-radius: 4px;
+}
+.ask-suggestions button span { margin-left: 0.5rem; color: var(--hv-accent); }
+.ask-suggestions button:hover { border-color: var(--hv-accent); color: var(--hv-text); }
+.ask-window-scroll { font-family: var(--portfolio-mono); font-size: 0.76rem; line-height: 1.8; }
+
+.site-footer {
+  position: relative;
+  inset: auto;
+  max-width: 86rem;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1.5rem, 4vw, 4rem) 2rem;
+  border-top: 1px solid var(--hv-line);
+  align-items: center;
+}
+.site-footer-right { flex-direction: row; align-items: center; gap: 1.5rem; }
+
+@media (max-width: 960px) {
+  .home-grid { grid-template-columns: 1fr; padding: 5rem 2rem 3rem; gap: 0; }
+  .home-content { max-width: none; padding-top: 0; }
+  .site-controls { right: max(6rem, calc(env(safe-area-inset-right, 0px) + 6rem)); }
+  .home-sidebar { position: fixed; top: 0; }
+  .home-sidebar-nav a { font-size: 1rem; }
+  .site-footer { padding: 1.5rem 2rem; }
+  .site-footer-right { flex-direction: column; gap: 0.6rem; align-items: flex-end; }
+}
+
+@media (max-width: 700px) {
+  .home-grid { padding: 5rem 1.25rem 2rem; }
+  .home-intro p { font-size: 0.95rem; }
+  .pc-card { grid-template-columns: 1.25rem minmax(0, 1fr); gap: 0.75rem; }
+  .pc-project-title { font-size: 0.98rem; }
+  .books-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.7rem 1rem; }
+  .book-title { font-size: 0.74rem; }
+  .book-note { font-size: 0.7rem; }
+  .site-footer { padding: 1.5rem 1.25rem; flex-direction: row; align-items: center; }
+  .site-footer-right { align-items: flex-end; align-self: auto; }
+  .spotify-widget { max-width: 45vw; }
+}
+
+@media (max-width: 400px) {
+  .books-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-footer-copy { font-size: 0.6rem; }
+}
+
+@media (max-width: 700px) {
+  .skill-group { grid-template-columns: 1fr; gap: 0.4rem; }
+}
