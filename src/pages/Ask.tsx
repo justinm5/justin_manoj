@@ -2,9 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { logoDevUrl } from "@/lib/logos";
 import { askUi, type AskPart } from "@/data/context";
-import { answerLocally } from "@/lib/local-answer";
+import { answerLocally, type ChatMessage } from "@/lib/local-answer";
 
-type ChatMessage = { role: "user" | "assistant"; content: string };
 
 const renderPart = (part: AskPart, index: number) => {
   if (part.type === "text") {
@@ -45,25 +44,25 @@ const Ask = () => {
   const [transcript, setTranscript] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [status, setStatus] = useState("");
-  const [isError, setIsError] = useState(false);
   const [sending, setSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const requestRef = useRef<AbortController | null>(null);
+
+  useEffect(() => () => { requestRef.current?.abort(); requestRef.current = null; }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, [transcript, status]);
 
-  const setError = (message: string) => {
-    setStatus(message);
-    setIsError(true);
-  };
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const text = input.trim();
-    if (!text || sending) return;
+    if (!text || sending || requestRef.current) return;
+    const controller = new AbortController();
+    requestRef.current = controller;
+    const timer = setTimeout(() => controller.abort(), 15_000);
 
     const nextTranscript: ChatMessage[] = [
       ...transcript,
@@ -73,42 +72,49 @@ const Ask = () => {
     setInput("");
     setSending(true);
     setStatus("thinking…");
-    setIsError(false);
 
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextTranscript }),
+        body: JSON.stringify({ messages: nextTranscript.slice(-12) }),
+        signal: controller.signal,
       });
 
       if (!res.ok) throw new Error(`request failed (${res.status})`);
 
-      const data = (await res.json()) as { reply?: string; error?: string };
-      if (!data.reply) throw new Error(data.error || "no reply from server");
+      const data = (await res.json()) as { reply?: string; error?: string; source?: string };
+      if (typeof data.reply !== "string" || !data.reply.trim()) throw new Error(data.error || "no reply from server");
 
+      if (requestRef.current !== controller) return;
       setTranscript([
         ...nextTranscript,
         { role: "assistant", content: data.reply },
       ]);
-      setStatus("");
+      setStatus(data.source === "local" ? "Answered from portfolio information" : "");
     } catch {
       // No chat backend reachable (e.g. plain `vite dev` or static hosting):
       // fall back to on-device retrieval over the same context facts.
-      const reply = answerLocally(text);
+      if (requestRef.current !== controller) return;
+      const reply = answerLocally(text, transcript.slice(-10));
       setTranscript([...nextTranscript, { role: "assistant", content: reply }]);
-      setStatus("answered offline from local context");
-      setIsError(false);
+      setStatus("Answered from portfolio information");
     } finally {
-      setSending(false);
-      inputRef.current?.focus();
+      clearTimeout(timer);
+      if (requestRef.current === controller) {
+        requestRef.current = null;
+        setSending(false);
+        inputRef.current?.focus();
+      }
     }
   };
 
   const handleReset = () => {
+    requestRef.current?.abort();
+    requestRef.current = null;
+    setSending(false);
     setTranscript([]);
     setStatus("");
-    setIsError(false);
     inputRef.current?.focus();
   };
 
@@ -211,15 +217,14 @@ const Ask = () => {
               placeholder={askUi.inputPlaceholder}
               onChange={(event) => setInput(event.target.value)}
               required
+              maxLength={1500}
             />
             <button type="submit" disabled={sending}>
               send &#8629;
             </button>
           </form>
           <p
-            className={`ask-chat-status${
-              isError ? " ask-chat-status--error" : ""
-            }`}
+            className="ask-chat-status"
             role="status"
           >
             {status}

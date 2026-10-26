@@ -9,6 +9,7 @@ export type ExperienceEntry = {
   role: string;
   location: string;
   description: string;
+  team?: string;
   /**
    * Preferred: a square logo in `public/logos/`, e.g. "/logos/dell.jpeg".
    * Falls back to `domain` (Clearbit), then to the company initial.
@@ -63,7 +64,7 @@ export const displayName = "Justin Manoj";
 export const technicalSkills = [
   { category: "Languages", items: ["Java", "Python", "C++", "Go", "JavaScript", "TypeScript", "SQL"] },
   { category: "Frameworks", items: ["Spring Boot", "FastAPI", "React", "Node.js", "GraphQL", "gRPC", "MCP"] },
-  { category: "Developer Tools", items: ["Kubernetes", "Docker", "PostgreSQL", "Redis", "AWS", "Kafka", "OpenTelemetry", "Terraform"] },
+  { category: "Developer Tools", items: ["Kubernetes", "Docker", "PostgreSQL", "Redis", "AWS", "Kafka", "OpenTelemetry"] },
 ];
 
 export const experience: ExperienceEntry[] = [
@@ -78,6 +79,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     company: "Dell Technologies",
+    team: "Observability, Common Management and Orchestration (CMO)",
     role: "Software Engineer Intern · Internship · Summer 2026",
     location: "Hopkinton, MA",
     description:
@@ -95,6 +97,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     company: "University of Massachusetts Amherst",
+    team: "Autonomous Learning Lab",
     role: "Undergraduate Research Assistant · Spring 2024",
     location: "Amherst, MA",
     description:
@@ -279,7 +282,7 @@ export const footerSocials = [
 
 export const askUi = {
   greeting: "hi i'm",
-  windowTitle: "ask a context-aware llm about me",
+  windowTitle: "ask about my background",
   inputPlaceholder: 'e.g. "summarize your experience in 3 sentences"',
   sections: [
     {
@@ -311,7 +314,7 @@ export const askUi = {
             { type: "text", value: "swe intern @ " },
             { type: "logo", domain: "dell.com" },
             { type: "link", label: "dell", href: "https://www.dell.com/" },
-            { type: "text", value: " (platform infra); swe intern @ " },
+            { type: "text", value: " (CMO observability); swe intern @ " },
             { type: "logo", domain: "gbcsgroup.com" },
             { type: "text", value: " gbcs group; research @ " },
             { type: "logo", domain: "umass.edu" },
@@ -373,18 +376,15 @@ export const systemContext = `Facts to draw from (answer as I/me/my):
 - Core qualities: persistence, systems thinking, and a bias toward shipping.
 
 Experience:
-- IBM (Software Developer, co-op, Fall 2026, Lowell, MA): co-op on cloud platform / Kubernetes microservices.
-- Dell Technologies (Software Engineer Intern, May 2026 – August 2026, Hopkinton, MA): owned end-to-end design and deployment of a Go-based Kubernetes operator that automated audit logging across production RKE2 clusters; integrated Syslog and OpenTelemetry Collector pipelines to stream compliance events into a distributed observability platform for real-time security monitoring; shipped 20+ GitOps-managed releases across production clusters, including platform features, critical bug fixes, and CVE remediations.
-- GBCS Group (Software Engineer Intern, Summer 2025, New York, NY): migrated 8 REST endpoints to a GraphQL API with DataLoader batching, reducing database queries and response payloads for internal services; cut high-traffic query latency by 65% using PostgreSQL composite indexes and Redis caching; built a GitHub Actions CI/CD pipeline with Jest and Sentry, reducing production bug reports per sprint.
-- UMass Amherst Autonomous Learning Lab (Undergraduate Research Assistant, Spring 2024, Amherst, MA): stress-tested 7 multi-agent LLM frameworks across 10,000+ simulation runs, uncovering failure patterns and benchmarking agent reliability; accelerated log analysis with Ray and Pandas, building an automated pipeline that classifies agent failures and surfaces recurring patterns; defined and tracked reliability metrics for multi-agent LLM systems, producing benchmark results used to compare framework behavior at scale.
+${experience.map(({ company, role, location, description, team }) => `- ${company} (${role}, ${location}): ${team ? `${team}. ` : ""}${description}`).join("\n")}
 
 Projects:
 - Personal Website: the portfolio you are on — built with React and Vite.
-- Quantitative Signal Agent: real-time quantitative pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.
+- Quant Signal Agent: real-time quantitative pipeline ingesting filings, prices, and news with Go, gRPC, Kafka, TimescaleDB, Redis, and Python.
 - NutriPlan (Java, Spring Boot, Python, PostgreSQL, React, Redis): built a prototype AI meal planning app for UMass Dining, aggregating live menus from 4 dining halls with real-time dietary filters and LLM-generated meal suggestions; designed a Spring Boot REST API with Redis caching, PostgreSQL, and a Python scraping pipeline for live menu accuracy, pending adoption into the official UMass Dining App.
 - Poker Trainer (Python, Go, React, PostgreSQL, Redis): built a poker decision-training tool that runs Monte Carlo simulations across 30,000+ generated spots to score user actions and identify strategic leaks; designed a Redis-backed adaptive quiz pipeline that tracks user error patterns and personalizes drills to maximize improvement in high-EV decision categories.
 
-Relevant coursework: Data Structures, Algorithms, Computer Systems, Distributed Systems, Machine Learning, Web Programming, Computer Networks and Security.
+${education.map(item => item.coursework).join("\n")}.
 ${technicalSkills.map(({ category, items }) => `- ${category}: ${items.join(", ")}.`).join("\n")}
 
 Books I have read and my notes:

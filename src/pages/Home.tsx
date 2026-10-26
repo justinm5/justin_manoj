@@ -43,10 +43,9 @@ const Home = () => (
         cloud infrastructure, DevOps, and performance-critical software.
       </p>
       <p>
-        I work on webMethods Integration Server at <strong>IBM</strong>. Previously, I worked on platform infrastructure at{" "}
-        <strong>Dell Technologies</strong>, API performance at{" "}
-        <strong>GBCS Group</strong>, and multi-agent LLM
-        research at the <strong>Autonomous Learning Lab</strong>.
+        Previously, I’ve worked at <strong>IBM</strong>, <strong>Dell Technologies</strong>,
+        and <strong>GBCS Group</strong>, and contributed to research at the{" "}
+        <strong>Autonomous Learning Lab</strong>.
       </p>
       <p>
         Outside of tech, I enjoy working out, reading, and listening to music.

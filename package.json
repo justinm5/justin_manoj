@@ -9,7 +9,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "spotify:token": "node scripts/get-spotify-token.mjs"
+    "spotify:token": "node scripts/get-spotify-token.mjs",
+    "test:ask": "node scripts/test-ask.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
